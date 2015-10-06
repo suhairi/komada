@@ -2,8 +2,6 @@
 
 @section('content')
 
-    <div class="container-fluid">
-        <br /><br />
         <div class="jumbotron" style="padding: 8px">
             <h4>Hello Members</h4>
         </div>
@@ -13,6 +11,5 @@
                 <a href="{{ route('logout') }}">Log Keluar</a>
             </div>
         </div>
-    </div>
 
 @stop
