@@ -12,5 +12,28 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    if(\Auth::check())
+        return redirect()->route('members.index');
+    else
+        return View('auth.login');
+});
+
+Route::post('/authenticate', [
+    'as'        => 'authenticate',
+    'uses'      => 'LoginController@authenticate'
+]);
+
+Route::get('/logout', [
+    'as'        => 'logout',
+    'uses'      => 'LoginController@logout'
+]);
+
+Route::group(['prefix' => 'members'], function() {
+
+    Route::get('index', [
+        'as'    => 'members.index',
+        'uses'  => 'Members\UserController@index'
+    ]);
+
+
 });
