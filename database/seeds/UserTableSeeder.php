@@ -30,8 +30,8 @@ class UserTableSeeder extends Seeder
 
         Yurantambahan::create(array("nama" => " ", "jumlah" => "0.00", "catatan" => ""));
         Yurantambahan::create(array("nama" => "Sumbangan Kematian", "jumlah" => "10.00", "catatan" => "Hj Md Zuki"));
-//        Yurantambahan::update(array("id" => "0"))->where('id', 1);
-//        Yurantambahan::update(array("id" => "1"))->where('id', 2);
+        Yurantambahan::where('id', 1)->update(["id" => "0", 'created_at' => '1981-01-30 00:00:00']);
+        Yurantambahan::where('id', 2)->update(["id" => "1"]);
 
 
 
