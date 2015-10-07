@@ -8,11 +8,24 @@
             <div class="panel panel-primary">
                 <div class="panel-heading"><h4>Yuran Tambahan</h4></div>
                 <div class="panel-body">
+                    <table class="table table-responsive">
+                        <thead>
+                        <tr>
+                            <th>Bulan / Tahun</th>
+                            <th>Keterangan Sumbangan</th>
+                            <th>Catatan</th>
+                            <th>Jumlah (RM)</th>
+                        </tr>
+                        </thead>
+                        <tbody>
                     @forelse($yuranTambahans as $yuranTambahan)
                         @include('yuran._yuranTambahan')
                     @empty
                         @include('forms._yuranTambahan')
+                        @include('yuran._yuranTambahan')
                     @endforelse
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

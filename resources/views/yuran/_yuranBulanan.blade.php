@@ -12,24 +12,13 @@
     </tr>
 </table>
 
-<table class="table table-responsive">
-    <thead>
-    <tr>
-        <th>Bulan / Tahun</th>
-        <th>Jumlah</th>
-        <th>Yuran Tambahan</th>
-    </tr>
-    </thead>
-    <tbody>
-    @if($yuranBulanans)
+@if($count['totalAnggota'] != $count['totalYuran'])
+    @include('forms._yuranBulanan')
+@else
+    <table class="table">
         <tr>
-            <td>{{ $yuranBulanans->bulan_tahun }}</td>
-            <td>{{ number_format($yuranBulanans->jumlah, 2) }}</td>
-            <td>{{ number_format($yuranBulanans->yuran_tambahan_id, 2) }}</td>
+            <td class="alert-success">Yuran Bulan ini telah diproses.</td>
         </tr>
-    @else
-        @include('forms._yuranBulanan')
-    @endforelse
-    </tbody>
-</table>
+    </table>
+@endif
 

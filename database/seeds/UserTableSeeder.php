@@ -23,9 +23,9 @@ class UserTableSeeder extends Seeder
         Perkhidmatan::create(array("nama" => "TAYAR / BATERI"));
         Perkhidmatan::create(array("nama" => "INSURANS"));
 
-        Yuran::create(array("no_anggota" => "1749", "bulan_tahun" => "09-2015", "jumlah" => "36.00", "yuran_tambahan_id" => "1"));
-        Yuran::create(array("no_anggota" => "1749", "bulan_tahun" => "10-2015", "jumlah" => "36.00", "yuran_tambahan_id" => "0"));
-        Yuran::create(array("no_anggota" => "1749", "bulan_tahun" => "11-2015", "jumlah" => "36.00", "yuran_tambahan_id" => "0"));
+        Yuran::create(array("no_anggota" => "1749", "bulan_tahun" => "09-2015", "jumlah" => "25.00", "yuran_tambahan_id" => "1"));
+        Yuran::create(array("no_anggota" => "1749", "bulan_tahun" => "10-2015", "jumlah" => "25.00", "yuran_tambahan_id" => "0"));
+        Yuran::create(array("no_anggota" => "1749", "bulan_tahun" => "11-2015", "jumlah" => "25.00", "yuran_tambahan_id" => "0"));
 
 
         Yurantambahan::create(array("nama" => " ", "jumlah" => "0.00", "catatan" => ""));

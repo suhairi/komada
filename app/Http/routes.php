@@ -55,4 +55,9 @@ Route::group(['prefix' => 'members'], function() {
         'uses'  => 'Members\YuranController@index'
     ]);
 
+    Route::post('/yuran/process', [
+        'as'    => 'members.yuran.process',
+        'uses'  => 'Members\YuranController@yuranProcess'
+    ]);
+
 });
