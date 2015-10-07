@@ -3,9 +3,9 @@
     {{--{{ dd($yurans) }}--}}
 
     <div class="panel panel-info">
-        <div class="panel-heading"><h5>Maklumat Anggota</h5></div>
+        <div class="panel-heading"><h4>Maklumat Yuran</h4></div>
         <div class="panel-body">
-            <table class="table table-hover">
+            <table class="table table-hover table-striped">
                 <tr>
                     <th width="150">Bulan / Tahun</th>
                     <th width="150">Jumlah (RM)</th>

@@ -1,7 +1,7 @@
 <div class="panel panel-info">
     <div class="panel-heading"><h4>Maklumat Anggota</h4></div>
     <div class="panel-body">
-        <table class="table table-hover">
+        <table class="table table-hover table-striped">
             <tr>
                 <th width="150">No Anggota</th>
                 <td>{{ $profile->no_anggota }}</td>
@@ -38,8 +38,6 @@
                 <th>Tarikh Mula Berkhidmat</th>
                 <td>{{ $profile->tarikh_khidmat }}</td>
             </tr>
-
-
         </table>
     </div>
 </div>
