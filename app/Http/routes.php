@@ -35,5 +35,20 @@ Route::group(['prefix' => 'members'], function() {
         'uses'  => 'Members\UserController@index'
     ]);
 
+    Route::get('/carian', [
+        'as'    => 'members.carian',
+        'uses'  => 'Members\CarianController@index'
+    ]);
+
+    Route::post('/carian', [
+        'as'    => 'members.carian',
+        'uses'  => 'Members\CarianController@noAnggota'
+    ]);
+
+    Route::get('/daftar', [
+        'as'    => 'members.addUser',
+        'uses'  => 'Members\UserController@addUser'
+    ]);
+
 
 });

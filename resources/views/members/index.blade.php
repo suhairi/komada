@@ -2,14 +2,30 @@
 
 @section('content')
 
-        <div class="jumbotron" style="padding: 8px">
-            <h4>Hello Members</h4>
-        </div>
+    <div class="row">
+        <div class="col-xs-6">
 
-        <div class="row">
-            <div class="col-xs-4">
-                <a href="{{ route('logout') }}">Log Keluar</a>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4>Carian Anggota</h4>
+                </div>
+                <div class="panel-body">
+                    <form method="post" action="{{ route('members.carian') }}">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+                        <table class="table">
+                            <tr>
+                                <th>No Anggota : </th>
+                                <td><input class="form-control" name="no_anggota" type="no_anggota" placeholder="No Anggota" autofocus="" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" align="right"><input class="btn btn-primary" type="submit" value="Cari" /></td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
             </div>
         </div>
+    </div>
+
 
 @stop

@@ -15,6 +15,12 @@ class UserController extends Controller
 
     public function index()
     {
+//        $profiles = null;
         return View('members.index');
+    }
+
+    public function addUser()
+    {
+        return View('members.addUser');
     }
 }
