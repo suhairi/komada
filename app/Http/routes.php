@@ -50,5 +50,9 @@ Route::group(['prefix' => 'members'], function() {
         'uses'  => 'Members\UserController@addUser'
     ]);
 
+    Route::get('/yuran', [
+        'as'    => 'members.yuran',
+        'uses'  => 'Members\YuranController@index'
+    ]);
 
 });

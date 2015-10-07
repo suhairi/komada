@@ -13,11 +13,6 @@ use Request;
 class CarianController extends Controller
 {
 
-//    public function index()
-//    {
-//        return View('members.index', compact('profiles'));
-//    }
-
     public function noAnggota()
     {
         $profiles = Profile::where('no_anggota', Request::get('no_anggota'))

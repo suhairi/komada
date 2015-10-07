@@ -17,7 +17,7 @@ class CreateYuranTable extends Migration
             $table->string('no_anggota');
             $table->string('bulan_tahun');
             $table->float('jumlah', 7, 2);
-            $table->tinyInteger('yuranTambahan_id');
+            $table->tinyInteger('yuran_tambahan_id');
             $table->timestamps();
         });
     }

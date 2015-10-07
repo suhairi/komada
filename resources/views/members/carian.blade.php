@@ -31,9 +31,9 @@
         @forelse($profiles as $profile)
             <ul class="nav nav-tabs">
                 <li role="presentation" class="active">
-                    <a data-toggle="tab" href="#home"><i class="glyphicon glyphicon-user"></i>Profil</a>
+                    <a data-toggle="tab" href="#profil"><i class="glyphicon glyphicon-user"></i>Profil</a>
                 </li>
-                <li role="presentation"><a data-toggle="tab" href="#menu1">Yuran</a></li>
+                <li role="presentation"><a data-toggle="tab" href="#yuran">Yuran</a></li>
                 <li role="presentation" class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                         Pinjaman <span class="caret"></span>
@@ -45,29 +45,31 @@
                     </ul>
                 </li>
             </ul>
+
+            <div class="tab-content">
+                <div id="profil" class="tab-pane fade in active">
+                    @include('profiles._profile')
+                </div>
+                <div id="yuran" class="tab-pane fade">
+                    @include('profiles._yuran')
+                </div>
+                <div id="menu2" class="tab-pane fade">
+                    <h3>Menu 2</h3>
+                    <p>Some content in menu 2.</p>
+                </div>
+            </div>
         @empty
             <table class="table">
                 <tbody>
                 <tr>
-                    <td>Tiada data.</td>
+                    <td class="alert-danger">Tiada data.</td>
                 </tr>
                 </tbody>
             </table>
         @endforelse
     @endif
 
-    <div class="tab-content">
-        <div id="home" class="tab-pane fade in active">
-            @include('profiles._profile')
-        </div>
-        <div id="menu1" class="tab-pane fade">
-            @include('profiles._yuran')
-        </div>
-        <div id="menu2" class="tab-pane fade">
-            <h3>Menu 2</h3>
-            <p>Some content in menu 2.</p>
-        </div>
-    </div>
+
 
 
 @stop

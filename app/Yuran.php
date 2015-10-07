@@ -8,7 +8,7 @@ class Yuran extends Model
 {
     protected $table = 'yuran';
     protected $primaryKey = 'id';
-    protected $fillable = ['no_anggota', 'bulan_tahun', 'jumlah', 'yuranTambahan_id'];
+    protected $fillable = ['no_anggota', 'bulan_tahun', 'jumlah', 'yuran_tambahan_id'];
 
     public function Profile()
     {
@@ -17,6 +17,6 @@ class Yuran extends Model
 
     public function yuranTambahan()
     {
-        return $this->hasOne('App\yuranTambahan', 'id', 'yuranTambahan_id');
+        return $this->belongsTo('App\Yurantambahan');
     }
 }
