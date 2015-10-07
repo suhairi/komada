@@ -1,5 +1,5 @@
 <div class="panel panel-info">
-    <div class="panel-heading"><h5>Maklumat Anggota</h5></div>
+    <div class="panel-heading"><h4>Maklumat Anggota</h4></div>
     <div class="panel-body">
         <table class="table table-hover">
             <tr>
@@ -28,7 +28,7 @@
             </tr>
             <tr>
                 <th>Alamat 1 / Alamat 2</th>
-                <td>{{ $profile->alamat1 }} {{ $profile->alamat2 }}</td>
+                <td>{{ $profile->alamat1 }}, {{ $profile->alamat2 }}</td>
             </tr>
             <tr>
                 <th>Jawatan</th>

@@ -14,7 +14,7 @@ class CreatePenamaTable extends Migration
     {
         Schema::create('penama', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('no_anggota', false, false);
+            $table->string('no_anggota');
             $table->string('nama1');
             $table->bigInteger('noKP1', false, true);
             $table->text('alamat1');

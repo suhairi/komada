@@ -10,4 +10,9 @@ class Yurantambahan extends Model
     protected $primaryKey = 'id';
     protected $fillable = ['nama', 'jumlah', 'catatan', 'created_at', 'updated_at'];
 
+    public function yuran()
+    {
+        return $this->belongsTo('App\Yuran', 'id');
+    }
+
 }

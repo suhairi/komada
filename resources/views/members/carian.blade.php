@@ -47,13 +47,6 @@
             </ul>
         @empty
             <table class="table">
-                <thead>
-                <tr>
-                    <th>No Anggota</th>
-                    <th>Nama</th>
-                    <th>No KP</th>
-                </tr>
-                </thead>
                 <tbody>
                 <tr>
                     <td>Tiada data.</td>
@@ -68,8 +61,7 @@
             @include('profiles._profile')
         </div>
         <div id="menu1" class="tab-pane fade">
-            <h3>Menu 1</h3>
-            <p>Some content in menu 1.</p>
+            @include('profiles._yuran')
         </div>
         <div id="menu2" class="tab-pane fade">
             <h3>Menu 2</h3>

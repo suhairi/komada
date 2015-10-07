@@ -17,6 +17,6 @@ class Yuran extends Model
 
     public function yuranTambahan()
     {
-        return $this->hasOne('App\Yurantambahan', 'id', 'yuranTambahan_id');
+        return $this->hasOne('App\yuranTambahan', 'id', 'yuranTambahan_id');
     }
 }

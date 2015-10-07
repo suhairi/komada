@@ -14,7 +14,7 @@ class CreatePotonganTable extends Migration
     {
         Schema::create('potongan', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('no_anggota', false);
+            $table->string('no_anggota');
             $table->float('jumlah', 7, 2);
             $table->tinyInteger('tempoh', false, false);
             $table->float('baki', 7, 2);

@@ -14,7 +14,7 @@ class CreateYuranTable extends Migration
     {
         Schema::create('yuran', function (Blueprint $table) {
             $table->increments('id');
-            $table->tinyInteger('no_anggota', false, false);
+            $table->string('no_anggota');
             $table->string('bulan_tahun');
             $table->float('jumlah', 7, 2);
             $table->tinyInteger('yuranTambahan_id');
