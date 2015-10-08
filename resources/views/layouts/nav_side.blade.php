@@ -13,7 +13,7 @@
         <li><a href="">More navigation</a></li>
     </ul>
     <ul class="nav nav-sidebar">
-        <li><a href="">Laporan Yuran</a></li>
+        <li><a href="{{ route('members.laporan.yuran') }}">Laporan Yuran</a></li>
         <li><a href="">Laporan Pinjaman</a></li>
         <li><a href="">Laporan Komisyen</a></li>
     </ul>

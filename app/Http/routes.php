@@ -60,4 +60,12 @@ Route::group(['prefix' => 'members'], function() {
         'uses'  => 'Members\YuranController@yuranProcess'
     ]);
 
+    Route::group(['prefix' => '/laporan'], function() {
+
+        Route::get('yuran', [
+            'as'    => 'members.laporan.yuran',
+            'uses'  => 'Members\Laporan\YuranController@index'
+        ]);
+    });
+
 });
