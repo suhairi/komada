@@ -27,7 +27,8 @@
     </ul>
     <ul class="nav nav-sidebar">
         <li><a href="{{ route('members.laporan.carian') }}">Laporan Yuran</a></li>
-        <li><a href="">Laporan Pinjaman</a></li>
-        <li><a href="">Laporan Komisyen</a></li>
+        <li><a href="{{ route('members.laporan.yuran') }}">Laporan Yuran</a></li>
+        <li><a href="#">Laporan Pinjaman</a></li>
+        <li><a href="#">Laporan Komisyen</a></li>
     </ul>
 </div>
