@@ -11,16 +11,7 @@
                 </div>
                 <div class="panel-body">
                     <form method="post" action="{{ route('members.carian') }}">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
-                        <table class="table">
-                            <tr>
-                                <th>No Anggota : </th>
-                                <td><input class="form-control" name="no_anggota" type="no_anggota" placeholder="No Anggota" autofocus="" /></td>
-                            </tr>
-                            <tr>
-                                <td colspan="2" align="right"><input class="btn btn-primary" type="submit" value="Cari" /></td>
-                            </tr>
-                        </table>
+                        @include('forms._carian')
                     </form>
                 </div>
             </div>
@@ -39,9 +30,13 @@
                         Pinjaman <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li role="presentation"><a data-toggle="tab" href="#menu2"> Insurans</a></li>
-                        <li role="presentation"><a href="#">Tayar / Bateri</a></li>
-                        <li role="presentation"><a href="#">Buku Sekolah</a></li>
+                        {{--<li role="presentation"><a data-toggle="tab" href="#menu2"> Insurans</a></li>--}}
+                        {{--<li role="presentation"><a href="#">Tayar / Bateri</a></li>--}}
+                        {{--<li role="presentation"><a href="#">Buku Sekolah</a></li>--}}
+                        <li><a href="#">Pinjaman Biasa</a></li>
+                        <li><a href="#">Insurans</a></li>
+                        <li><a href="#">Tayar / Bateri</a></li>
+                        <li><a href="#">Buku Sekolah</a></li>
                     </ul>
                 </li>
             </ul>

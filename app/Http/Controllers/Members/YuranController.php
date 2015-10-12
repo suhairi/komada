@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Members;
 
+use Illuminate\Support\Facades\Redirect;
 use Request;
 
 use App\Profile;
@@ -40,6 +41,21 @@ class YuranController extends Controller
         return View('members.yuran', compact('yuranTambahans', 'yuranBulanans', 'count'));
     }
 
+    public function yuranTambahan()
+    {
+        $tarikh = explode('-', Request::get('bulan_tahun'));
+        $created_at = $tarikh[1] . '-' . $tarikh[0] . '-01 00:00:00';
+
+        Yurantambahan::create([
+            'nama'          => Request::get('nama'),
+            'jumlah'        => Request::get('jumlah'),
+            'catatan'       => Request::get('catatan'),
+            'created_at'    => $created_at
+        ]);
+
+        return redirect()->route('members.yuran');
+    }
+
     public function yuranProcess()
     {
         $tarikh = explode('-', Request::get('bulan_tahun'));
@@ -52,12 +68,21 @@ class YuranController extends Controller
 
         foreach($profiles as $profile)
         {
-            Yuran::create([
-                'no_anggota'        => $profile->no_anggota,
-                'bulan_tahun'       => Request::get('bulan_tahun'),
-                'jumlah'            => $profile->jumlah_yuran_bulanan,
-                'yuran_tambahan_id' => $yuranTambahan->id
-            ]);
+            $yuran = Yuran::where('bulan_tahun', Request::get('bulan_tahun'))
+                ->where('no_anggota', $profile->no_anggota)
+                ->first();
+
+            if(empty($yuran))
+            {
+                Yuran::create([
+                    'no_anggota'        => $profile->no_anggota,
+                    'bulan_tahun'       => Request::get('bulan_tahun'),
+                    'jumlah'            => $profile->jumlah_yuran_bulanan,
+                    'yuran_tambahan_id' => $yuranTambahan->id
+                ]);
+            }
+
+
         }
 
         $yuranTambahans = Yurantambahan::where('created_at', 'like', Carbon::now()->format('Y') . '%')

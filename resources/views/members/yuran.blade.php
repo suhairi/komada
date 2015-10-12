@@ -18,10 +18,10 @@
                         </tr>
                         </thead>
                         <tbody>
+                        @include('forms._yuranTambahan')
                     @forelse($yuranTambahans as $yuranTambahan)
                         @include('yuran._yuranTambahan')
                     @empty
-                        @include('forms._yuranTambahan')
                         @include('yuran._yuranTambahan')
                     @endforelse
                         </tbody>

@@ -1,4 +1,5 @@
-<form method="post" action="#">
+<form method="post" action="{{ route('members.yurantambahan') }}">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}"
     <div class="form-group">
         <label for="bulan_tahun">Bulan / Tahun</label>
         <input class="form-control" type="text" name="bulan_tahun" value="{{ Carbon\Carbon::now()->format('m-Y') }}" placeholder="Contoh: 01/2015" />
@@ -13,7 +14,7 @@
     </div>
     <div class="form-group">
         <label for="bulan_tahun">Catatan</label>
-        <input class="form-control" type="text" placeholder="Contoh: En. Ali bin Abu" />
+        <input class="form-control" type="text" name="catatan" placeholder="Contoh: En. Ali bin Abu" />
     </div>
 
     <div align="right">

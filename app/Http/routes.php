@@ -55,9 +55,33 @@ Route::group(['prefix' => 'members'], function() {
         'uses'  => 'Members\YuranController@index'
     ]);
 
+    Route::post('/yuran/tambahan', [
+        'as'    => 'members.yurantambahan',
+        'uses'  => 'Members\YuranController@yuranTambahan'
+    ]);
+
     Route::post('/yuran/process', [
         'as'    => 'members.yuran.process',
         'uses'  => 'Members\YuranController@yuranProcess'
     ]);
+
+    // LAPORAN
+
+    Route::group(['prefix' => 'laporan'], function() {
+
+        Route::get('carian', [
+            'as'    => 'members.laporan.carian',
+            'uses'  => 'Members\LaporanController@carian'
+        ]);
+
+        Route::post('carian', [
+            'as'    => 'members.laporan.carianPost',
+            'uses'  => 'Members\LaporanController@carianPost'
+        ]);
+
+
+
+
+    });
 
 });

@@ -15,7 +15,7 @@ class CreateProfileTable extends Migration
         Schema::create('profile', function (Blueprint $table) {
             $table->increments('id');
             $table->string('no_anggota');
-            $table->float('jumlah_yuran_bulanan', 2);
+            $table->float('jumlah_yuran_bulanan', 7, 2);
             $table->string('nama');
             $table->string('nokp', 15)->nullable;
             $table->string('jantina', 10);
@@ -25,6 +25,7 @@ class CreateProfileTable extends Migration
             $table->text('alamat1');
             $table->text('alamat2');
             $table->date('tarikh_khidmat');
+            $table->date('tarikh_ahli');
             $table->string('jawatan');
             $table->string('taraf_jawatan');
             $table->tinyInteger('status', false, true)->default(1);

@@ -13,12 +13,12 @@
             <ul class="nav navbar-nav navbar-right">
                 {{--<li><a href="#">Dashboard</a></li>--}}
                 {{--<li><a href="#">Settings</a></li>--}}
-                {{--<li><a href="#">Profile</a></li>--}}
+                <li><a href="#">Tukar Kata Laluan</a></li>
                 <li><a href="{{ route('logout') }}">Logout</a></li>
             </ul>
-            <form class="navbar-form navbar-right">
-                <input type="text" class="form-control" placeholder="Search...">
-            </form>
+            {{--<form class="navbar-form navbar-right">--}}
+                {{--<input type="text" class="form-control" placeholder="Search...">--}}
+            {{--</form>--}}
         </div>
     </div>
 </nav>
