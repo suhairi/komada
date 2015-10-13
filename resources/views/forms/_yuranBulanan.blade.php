@@ -6,6 +6,6 @@
     </div>
 
     <div align="right">
-        <input class="btn btn-primary" type="submit" value="Proses Yuran" />
+        @include('buttons._kemaskini')
     </div>
 </form>

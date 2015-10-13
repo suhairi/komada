@@ -28,7 +28,7 @@ Route::get('/logout', [
     'uses'      => 'LoginController@logout'
 ]);
 
-Route::group(['prefix' => 'members'], function() {
+Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
 
     Route::get('index', [
         'as' => 'members.index',
@@ -42,28 +42,34 @@ Route::group(['prefix' => 'members'], function() {
         'uses'  => 'Members\CarianController@index'
     ]);
 
+
     // Profile
 
-    Route::get('/profile/{id}', [
-        'as'    => 'members.profile.edit',
-        'uses'  => 'Members\ProfileController@edit'
-    ]);
+    Route::group(['prefix' => 'profiles'], function() {
 
-    Route::get('profile/update/{id}', [
-        'as'    => 'members.profile.update',
-        'uses'  => 'Members\ProfileController@update'
-    ]);
+        Route::get('daftar', [
+            'as'    => 'members.profiles.addUser',
+            'uses'  => 'Members\ProfileController@addUser'
+        ]);
+
+        Route::get('edit/{id}', [
+            'as'    => 'members.profiles.edit',
+            'uses'  => 'Members\ProfileController@edit'
+        ]);
+
+        Route::patch('update/{id}', [
+            'as'    => 'members.profiles.update',
+            'uses'  => 'Members\ProfileController@update'
+        ]);
+
+    });
+
 
     //Yuran
 
     Route::post('/carian', [
         'as'    => 'members.carian',
         'uses'  => 'Members\CarianController@noAnggota'
-    ]);
-
-    Route::get('/daftar', [
-        'as'    => 'members.addUser',
-        'uses'  => 'Members\UserController@addUser'
     ]);
 
     Route::get('/yuran', [

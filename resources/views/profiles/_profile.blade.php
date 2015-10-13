@@ -36,7 +36,7 @@
             </tr>
             <tr>
                 <th>Tarikh Mula Berkhidmat</th>
-                <td>{{ $profile->tarikh_khidmat }}</td>
+                <td>{{ $profile->tarikh_khidmat->format('d M Y') }}</td>
             </tr>
             <tr>
                 <th>Status</th>
@@ -50,8 +50,8 @@
             </tr>
             <tr>
                 <td colspan="2" align="right">
-                    <a href="{{ route('members.profile.edit', ['id' => $profile->no_anggota]) }}"
-                    <button class="btn btn-success">Kemaskini</button>
+                    <a href="{{ route('members.profiles.edit', ['id' => $profile->no_anggota]) }}"
+                    <button class="btn btn-success"><i class="glyphicon glyphicon-floppy-save"> </i> Kemaskini</button>
                 </td>
             </tr>
         </table>

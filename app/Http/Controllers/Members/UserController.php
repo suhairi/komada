@@ -8,18 +8,11 @@ use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
-    public function __contruct()
-    {
-        $this->middleware('auth');
-    }
 
     public function index()
     {
         return View('members.index');
     }
 
-    public function addUser()
-    {
-        return View('members.addUser');
-    }
+
 }

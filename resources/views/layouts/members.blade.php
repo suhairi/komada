@@ -8,8 +8,14 @@
     <title>KOMADA - e-Accounting</title>
 
     <!-- Bootstrap -->
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-theme.min.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}" >
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -25,6 +31,7 @@
     <div class="row">
         @include('layouts.nav_side')
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        @include('notify/notifications')
         @yield('content')
     </div>
 </div>
@@ -33,7 +40,7 @@
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+{{--<script src="{{ asset('js/bootstrap.min.js') }}"></script>--}}
 
 </body>
 </html>

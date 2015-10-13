@@ -21,12 +21,12 @@
     @forelse($profiles as $profile)
         <ul class="nav nav-tabs">
             <li role="presentation" class="active">
-                <a data-toggle="tab" href="#profil"><i class="glyphicon glyphicon-user"></i>Profil</a>
+                <a data-toggle="tab" href="#profil"><i class="glyphicon glyphicon-user"></i> Profil</a>
             </li>
-            <li role="presentation"><a data-toggle="tab" href="#yuran">Yuran</a></li>
+            <li role="presentation"><a data-toggle="tab" href="#yuran"><i class="glyphicon glyphicon-credit-card"></i> Yuran</a></li>
             <li role="presentation" class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                    Pinjaman <span class="caret"></span>
+                    <i class="glyphicon glyphicon-usd"></i> Pinjaman <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
                     <li><a href="#">Pinjaman Biasa</a></li>

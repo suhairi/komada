@@ -1,7 +1,7 @@
 <div class="col-sm-3 col-md-2 sidebar">
     <ul class="nav nav-sidebar">
         <li><a href="{{ route('members.index') }}">UTAMA <span class="sr-only">(current)</span></a></li>
-        <li><a href="{{ route('members.addUser') }}">Daftar Anggota</a></li>
+        <li><a href="{{ route('members.profiles.addUser') }}">Daftar Anggota</a></li>
         <li><a href="#">Kad Ahli</a></li>
         <li><a href="#">Export</a></li>
     </ul>
