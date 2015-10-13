@@ -38,6 +38,20 @@
                 <th>Tarikh Mula Berkhidmat</th>
                 <td>{{ $profile->tarikh_khidmat }}</td>
             </tr>
+            <tr>
+                <th>Status</th>
+                <td>
+                    @if($profile->status == 1)
+                        AKTIF
+                    @else
+                        TIDAK AKTIF
+                    @endif
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="right"><button class="btn btn-success">Kemaskini</button></td>
+            </tr>
         </table>
+
     </div>
 </div>

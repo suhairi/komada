@@ -1,8 +1,8 @@
 <div class="col-sm-3 col-md-2 sidebar">
     <ul class="nav nav-sidebar">
-        <li class="active"><a href="{{ route('members.index') }}">Home <span class="sr-only">(current)</span></a></li>
+        <li><a href="{{ route('members.index') }}">UTAMA <span class="sr-only">(current)</span></a></li>
         <li><a href="{{ route('members.addUser') }}">Daftar Anggota</a></li>
-        <li><a href="#">Analytics</a></li>
+        <li><a href="#">Kad Ahli</a></li>
         <li><a href="#">Export</a></li>
     </ul>
     <ul class="nav nav-sidebar">

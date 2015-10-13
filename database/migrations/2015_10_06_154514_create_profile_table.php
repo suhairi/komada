@@ -14,7 +14,7 @@ class CreateProfileTable extends Migration
     {
         Schema::create('profile', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('no_anggota');
+            $table->string('no_anggota', 10);
             $table->float('jumlah_yuran_bulanan', 7, 2);
             $table->string('nama');
             $table->string('nokp', 15)->nullable;

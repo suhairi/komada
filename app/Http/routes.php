@@ -35,35 +35,49 @@ Route::group(['prefix' => 'members'], function() {
         'uses' => 'Members\UserController@index'
     ]);
 
+    // Carian
+
     Route::get('/carian', [
-        'as' => 'members.carian',
-        'uses' => 'Members\CarianController@index'
+        'as'    => 'members.carian',
+        'uses'  => 'Members\CarianController@index'
     ]);
 
+    // Profile
+
+    Route::get('/profile/{id}', [
+        'as'    => 'members.profile',
+        'uses'  => 'Members\ProfileController@edit'
+    ]);
+
+    //Yuran
+
     Route::post('/carian', [
-        'as' => 'members.carian',
-        'uses' => 'Members\CarianController@noAnggota'
+        'as'    => 'members.carian',
+        'uses'  => 'Members\CarianController@noAnggota'
     ]);
 
     Route::get('/daftar', [
-        'as' => 'members.addUser',
-        'uses' => 'Members\UserController@addUser'
+        'as'    => 'members.addUser',
+        'uses'  => 'Members\UserController@addUser'
     ]);
 
     Route::get('/yuran', [
-        'as' => 'members.yuran',
-        'uses' => 'Members\YuranController@index'
+        'as'    => 'members.yuran',
+        'uses'  => 'Members\YuranController@index'
     ]);
 
     Route::post('/yuran/tambahan', [
-        'as' => 'members.yurantambahan',
-        'uses' => 'Members\YuranController@yuranTambahan'
+        'as'    => 'members.yurantambahan',
+        'uses'  => 'Members\YuranController@yuranTambahan'
     ]);
 
     Route::post('/yuran/process', [
-        'as' => 'members.yuran.process',
-        'uses' => 'Members\YuranController@yuranProcess'
+        'as'    => 'members.yuran.process',
+        'uses'  => 'Members\YuranController@yuranProcess'
     ]);
+
+
+
 
 
     // LAPORAN
@@ -71,18 +85,18 @@ Route::group(['prefix' => 'members'], function() {
     Route::group(['prefix' => 'laporan'], function () {
 
         Route::get('carian', [
-            'as' => 'members.laporan.carian',
-            'uses' => 'Members\LaporanController@carian'
+            'as'    => 'members.laporan.carian',
+            'uses'  => 'Members\LaporanController@carian'
         ]);
 
         Route::post('carian', [
-            'as' => 'members.laporan.carianPost',
-            'uses' => 'Members\LaporanController@carianPost'
+            'as'    => 'members.laporan.carianPost',
+            'uses'  => 'Members\LaporanController@carianPost'
         ]);
 
         Route::get('yuran', [
-            'as' => 'members.laporan.yuran',
-            'uses' => 'Members\Laporan\YuranController@index'
+            'as'    => 'members.laporan.yuran',
+            'uses'  => 'Members\Laporan\YuranController@index'
         ]);
 
     }); //end group['laporan']
