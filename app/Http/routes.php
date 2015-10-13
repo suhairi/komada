@@ -45,8 +45,13 @@ Route::group(['prefix' => 'members'], function() {
     // Profile
 
     Route::get('/profile/{id}', [
-        'as'    => 'members.profile',
+        'as'    => 'members.profile.edit',
         'uses'  => 'Members\ProfileController@edit'
+    ]);
+
+    Route::get('profile/update/{id}', [
+        'as'    => 'members.profile.update',
+        'uses'  => 'Members\ProfileController@update'
     ]);
 
     //Yuran

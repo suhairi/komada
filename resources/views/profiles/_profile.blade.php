@@ -49,7 +49,10 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="2" align="right"><button class="btn btn-success">Kemaskini</button></td>
+                <td colspan="2" align="right">
+                    <a href="{{ route('members.profile.edit', ['id' => $profile->no_anggota]) }}"
+                    <button class="btn btn-success">Kemaskini</button>
+                </td>
             </tr>
         </table>
 
