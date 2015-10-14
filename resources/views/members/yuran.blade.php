@@ -18,10 +18,14 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @include('forms._yuranTambahan')
                     @forelse($yuranTambahans as $yuranTambahan)
                         @include('yuran._yuranTambahan')
                     @empty
+                        @if($count['totalAnggotaAktif'] == $count['totalYuran'])
+                            <tr>
+                                <td colspan="4" class="alert-warning">Yuran Tambahan ini telah ditutup kerana yuran bulanan telah diproses</td>
+                            </tr>
+                        @endif
                         <tr>
                             <td colspan="4">Tiada data bulan ini.</td>
                         </tr>
