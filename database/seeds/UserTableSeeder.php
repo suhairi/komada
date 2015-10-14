@@ -1,6 +1,7 @@
 <?php
 
 use App\Perkhidmatan;
+use App\Startup;
 use App\Yuran;
 use App\Yurantambahan;
 use Illuminate\Database\Seeder;

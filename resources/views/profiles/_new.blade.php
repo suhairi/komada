@@ -1,6 +1,6 @@
 <div class="form-group">
     <label for="no_anggota">No Anggota</label>
-    {!! Form::text('no_anggota', null, ['class' => 'form-control', 'placeholder' => 'Contoh : 132']) !!}
+    {!! Form::text('no_anggota', $anggota['no_akhir'] + 1, ['class' => 'form-control', 'placeholder' => 'Contoh : 132']) !!}
 </div>
 
 <div class="form-group">

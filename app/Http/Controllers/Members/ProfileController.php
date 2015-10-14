@@ -15,7 +15,27 @@ class ProfileController extends Controller
 
     public function addUser()
     {
-        return View('members.profile.addUser');
+        $anggota = [];
+
+        $profiles = Profile::where('status', 1)->count();
+        $active = $profiles;
+
+        $profiles = Profile::all();
+        $keseluruhan = $profiles->count();
+
+        $max = 0;
+
+        foreach($profiles as $profile)
+        {
+            $profile->no_anggota = (int)$profile->no_anggota;
+
+            if($profile->no_anggota != 0 && $profile->no_anggota > $max)
+                $max = $profile->no_anggota;
+        }
+
+        $anggota = ['keseluruhan' => $keseluruhan, 'aktif' => $active, 'no_akhir' => $max];
+
+        return View('members.profile.addUser', compact('anggota'));
     }
 
     public function edit($id)
