@@ -6,32 +6,35 @@
         <div class="col-xs-6">
 
             <div class="panel panel-primary">
-                <div class="panel-heading"><h4>Yuran Tambahan</h4></div>
+                <div class="panel-heading"><h4>Sumbangan Tambahan</h4></div>
                 <div class="panel-body">
-                    <table class="table table-responsive">
-                        <thead>
-                        <tr>
-                            <th>Bulan / Tahun</th>
-                            <th>Keterangan Sumbangan</th>
-                            <th>Catatan</th>
-                            <th>Jumlah (RM)</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                    @forelse($yuranTambahans as $yuranTambahan)
-                        @include('yuran._yuranTambahan')
-                    @empty
-                        @if($count['totalAnggotaAktif'] == $count['totalYuran'])
+
+                    @if($count['totalYuran'] > 0)
+                        <div class="alert alert-info">Yuran Tambahan ini telah ditutup kerana yuran bulanan telah diproses</div>
+
+                    @else
+                        @include('forms._yuranTambahan')
+                        <table class="table table-responsive">
+                            <thead>
                             <tr>
-                                <td colspan="4" class="alert-warning">Yuran Tambahan ini telah ditutup kerana yuran bulanan telah diproses</td>
+                                <th>Bulan / Tahun</th>
+                                <th>Keterangan Sumbangan</th>
+                                <th>Catatan</th>
+                                <th>Jumlah (RM)</th>
                             </tr>
-                        @endif
-                        <tr>
-                            <td colspan="4">Tiada data bulan ini.</td>
-                        </tr>
-                    @endforelse
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                            @forelse($yuranTambahans as $yuranTambahan)
+                                @include('yuran._yuranTambahan')
+                            @empty
+                                <tr>
+                                    <td colspan="4">Tiada data bulan ini.</td>
+                                </tr>
+                            @endforelse
+                            </tbody>
+                        </table>
+                    @endif
+
                 </div>
             </div>
         </div>

@@ -1,1 +1,1 @@
-<button class="btn btn-success"><i class="glyphicon glyphicon-edit"></i> Kemaskini</button>
+<button class="btn btn-success"><i class="glyphicon glyphicon-edit"></i> {{ $value }}</button>

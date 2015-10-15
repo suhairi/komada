@@ -21,9 +21,9 @@
         </li>
     </ul>
     <ul class="nav nav-sidebar">
-        <li><a href="{{ route('members.laporan.carian') }}"><i class="glyphicon glyphicon-paperclip"></i> Laporan Yuran</a></li>
-        <li><a href="{{ route('members.laporan.yuran') }}"><i class="glyphicon glyphicon-paperclip"></i> Laporan Yuran</a></li>
-        <li><a href="#"><i class="glyphicon glyphicon-paperclip"></i> Laporan Pinjaman</a></li>
-        <li><a href="#"><i class="glyphicon glyphicon-paperclip"></i> Laporan Komisyen</a></li>
+        <li><a href="{{ route('members.laporan.carian') }}"><i class="glyphicon glyphicon-file"></i> Laporan Yuran</a></li>
+        <li><a href="{{ route('members.laporan.yuran') }}"><i class="glyphicon glyphicon-file"></i> Laporan Yuran</a></li>
+        <li><a href="#"><i class="glyphicon glyphicon-file"></i> Laporan Pinjaman</a></li>
+        <li><a href="#"><i class="glyphicon glyphicon-file"></i> Laporan Komisyen</a></li>
     </ul>
 </div>

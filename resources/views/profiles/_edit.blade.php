@@ -32,6 +32,6 @@
 
 <div class="form-group">
     <div align="right">
-        @include('buttons._kemaskini')
+        @include('buttons._kemaskini', ['value' => 'Kemaskini Profile'])
     </div>
 </div>

@@ -8,7 +8,7 @@ class Inactive extends Model
 {
     protected $table = 'inactive';
     protected $primaryKey = 'no_anggota';
-    protected $fillable = ['no_anggota', 'catatan'];
+    protected $fillable = ['no_anggota', 'catatan', 'status'];
 
     public function profile()
     {

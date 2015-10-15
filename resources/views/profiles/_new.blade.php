@@ -50,5 +50,5 @@
 </div>
 
 <div class="form-group" align="right">
-    <button class="btn btn-success">Daftar Anggota Baru</button>
+    @include('buttons._submit', ['value' => 'Daftar Anggota baru'])
 </div>

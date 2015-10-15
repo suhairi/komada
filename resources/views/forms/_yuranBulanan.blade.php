@@ -6,6 +6,6 @@
     </div>
 
     <div align="right">
-        @include('buttons._kemaskini')
+        @include('buttons._kemaskini', ['value' => 'Proses bayaran Bulanan'])
     </div>
 </form>

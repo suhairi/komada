@@ -16,6 +16,7 @@ class CreateInactiveTable extends Migration
             $table->string('no_anggota', 10);
             $table->primary('no_anggota');
             $table->string('catatan');
+            $table->tinyInteger('status', false, false);
             $table->timestamps();
         });
     }
