@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Members;
 
+use App\Tka;
 use Illuminate\Support\Facades\Redirect;
 use Request;
 
@@ -75,13 +76,15 @@ class YuranController extends Controller
                 ->where('no_anggota', $profile->no_anggota)
                 ->first();
 
+            $tka = Tka::where('status', 1)->first();
+
             if(empty($yuran))
             {
                 Yuran::create([
                     'no_anggota'        => $profile->no_anggota,
                     'bulan_tahun'       => Request::get('bulan_tahun'),
                     'jumlah'            => $profile->jumlah_yuran_bulanan,
-//                    'yuran_tambahan_id' => $yuranTambahan->id
+                    'tka'               => $tka->jumlah
                 ]);
             }
 

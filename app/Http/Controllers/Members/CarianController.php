@@ -46,8 +46,6 @@ class CarianController extends Controller
                 ]);
         }
 
-//        dd($yuranTambahan);
-
         return View('members.carian', compact('profiles', 'yurans', 'yuranTambahan'));
     }
 }

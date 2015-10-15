@@ -13,11 +13,11 @@ class CreateYuranTable extends Migration
     public function up()
     {
         Schema::create('yuran', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('no_anggota');
             $table->string('bulan_tahun');
             $table->float('jumlah', 7, 2);
-            $table->tinyInteger('yuran_tambahan_id');
+            $table->float('tka', 7, 2);
             $table->timestamps();
         });
     }
