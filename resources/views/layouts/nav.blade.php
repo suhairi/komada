@@ -13,7 +13,7 @@
             <ul class="nav navbar-nav navbar-right">
                 {{--<li><a href="#">Dashboard</a></li>--}}
                 {{--<li><a href="#">Settings</a></li>--}}
-                <li><a href="#">Tukar Kata Laluan</a></li>
+                <li><a href="{{ route('members.password') }}">Tukar Kata Laluan</a></li>
                 <li><a href="{{ route('logout') }}">Logout</a></li>
             </ul>
             {{--<form class="navbar-form navbar-right">--}}

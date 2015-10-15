@@ -52,15 +52,11 @@ class ProfileController extends Controller
     {
         $inactive = false;
 
-//        return Request::all();
-
         $profile = Profile::where('no_anggota', Request::get('no_anggota'))
             ->first();
 
         if($profile->status == 1)
             $inactive = true;
-
-//        $profile->fill(Request::all());
 
         $profile->nama = strtoupper(Request::get('nama'));
         $profile->email = strtoupper(Request::get('email'));

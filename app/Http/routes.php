@@ -35,11 +35,29 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
         'uses' => 'Members\UserController@index'
     ]);
 
-    // Carian
+    // HOME - Carian
 
     Route::get('/carian', [
         'as'    => 'members.carian',
         'uses'  => 'Members\CarianController@index'
+    ]);
+
+    // Change Password
+    Route::get('password', [
+        'as'    => 'members.password',
+        'uses'  => 'Members\PasswordController@password'
+    ]);
+
+    Route::post('password', [
+        'as'    => 'members.password.change',
+        'uses'  => 'Members\PasswordController@change'
+    ]);
+
+    // Kad Ahli
+
+    Route::get('kadahli', [
+        'as'    => 'members.kadahli',
+        'uses'  => 'Members\KadahliController@kadahli'
     ]);
 
 
