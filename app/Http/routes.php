@@ -35,13 +35,6 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
         'uses'  => 'Members\UserController@index'
     ]);
 
-    // FAKER data. 3 years Yuran
-
-    Route::get('fakers', [
-        'as'    => 'members.fakers',
-        'uses'  => 'Members\FakerController@index'
-    ]);
-
     // HOME - Carian
 
     Route::get('/carian', [

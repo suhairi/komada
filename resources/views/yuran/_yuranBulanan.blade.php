@@ -12,7 +12,7 @@
     </tr>
 </table>
 
-@if($count['totalAnggotaAktif'] != $count['totalYuran'])
+@if($count['totalAnggotaAktif'] != $count['totalYuran'] && $count['totalYuran'] == 0)
     @include('forms._yuranBulanan')
 @else
     <table class="table">

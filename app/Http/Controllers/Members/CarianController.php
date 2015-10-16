@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Members;
 
-//use Illuminate\Http\Request;
-//use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Profile;
 use App\Yuran;
@@ -13,6 +11,10 @@ use Request;
 
 class CarianController extends Controller
 {
+    public function index()
+    {
+        return View('members.index');
+    }
 
     public function noAnggota()
     {
@@ -41,7 +43,8 @@ class CarianController extends Controller
                 array_push($yuranTambahan, [
                     'bulan' => $bulan,
                     'nama' => $tambahan->nama,
-                    'catatan' => $tambahan->catatan,
+                    'catatan' => $tambahan->sumbangan->nama,
+                    'penerima' => $tambahan->penerima,
                     'jumlah' => $tambahan->jumlah
                 ]);
         }

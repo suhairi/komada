@@ -1,8 +1,11 @@
 <?php
 
 use App\Inactive;
+use App\Tka;
 use Illuminate\Database\Seeder;
 use App\Profile;
+use Carbon\Carbon;
+use App\Yuran;
 
 class UserTableSeeder4 extends Seeder
 {
@@ -56,7 +59,32 @@ class UserTableSeeder4 extends Seeder
         // Yuran
         for($i=Carbon::now()->format('Y') - 3; $i<=Carbon::now()->format('Y'); $i++)
         {
-            $profile = Profile::all();
+            $profiles = Profile::where('status', 1)->get();
+            $tka = Tka::where('status', 1)->first();
+
+            foreach($profiles as $profile) {
+                if ($profile->profile_category_id == 1) {
+                    for ($j = 1; $j <= 12; $j++)
+                    {
+                        if ($j <= 9)
+                            $bulan_tahun = '0' . $j . '-' . $i;
+                        else
+                            $bulan_tahun = $j . '-' . $i;
+
+                        if($bulan_tahun != '11-2015')
+                        {
+                            Yuran::create([
+                                'no_anggota'    => $profile->no_anggota,
+                                'bulan_tahun'   => $bulan_tahun,
+                                'jumlah'        => $profile->jumlah_yuran_bulanan,
+                                'tka'           => $tka->jumlah,
+                                'created_at'    => Carbon::createFromDate($i, $j, '25'),
+                                'updated_at'    => Carbon::createFromDate($i, $j, '25')
+                            ]);
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -14,7 +14,6 @@
                 {{--<li><a href="#">Dashboard</a></li>--}}
                 {{--<li><a href="#">Settings</a></li>--}}
                 <li><a href="{{ route('members.password') }}">Tukar Kata Laluan</a></li>
-                <li><a href="{{ route('members.fakers') }}">*Faker Data - Yuran last 3 Years</a></li>
                 <li><a href="{{ route('logout') }}">Logout</a></li>
             </ul>
             {{--<form class="navbar-form navbar-right">--}}

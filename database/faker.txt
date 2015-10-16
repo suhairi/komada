@@ -18,6 +18,8 @@
 
 UNTUK KOMADA
 
-1. no_anggota redunduncy
+KEMASKINI
+1. no_anggota yang redundunt
 2. tarikh khidmat 0000-00-00
-3.
+3. status keanggotaan
+4.

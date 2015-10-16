@@ -7,7 +7,7 @@
 
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h4>Carian Anggota</h4>
+                    <h4>Carian Anggota...</h4>
                 </div>
                 <div class="panel-body">
                     <form method="post" action="{{ route('members.carian') }}">
@@ -45,8 +45,7 @@
                 @include('profiles._yuran')
             </div>
             <div id="menu2" class="tab-pane fade">
-                <h3>Menu 2</h3>
-                <p>Some content in menu 2.</p>
+                {{-- here --}}
             </div>
         </div>
     @empty

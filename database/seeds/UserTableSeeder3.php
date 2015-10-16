@@ -32,31 +32,36 @@ class UserTableSeeder3 extends Seeder
             if($no_anggota != 0)
             {
                 $profile->profile_category_id = 1;
+                $profile->save();
             }
 
-            if(strpos($profile->no_anggota, 'Y') === true)
+            if(strpos($profile->no_anggota, 'Y') !== false)
             {
                 $profile->profile_category_id = 3;
+                $profile->save();
             }
 
-            if(strpos($profile->no_anggota, 'S') === true)
+            if(strpos($profile->no_anggota, 'S') !== false)
             {
                 $profile->profile_category_id = 4;
+                $profile->save();
             }
 
-            if(strpos($profile->no_anggota, 'PM') === true)
+            if(strpos($profile->no_anggota, 'PM') !== false)
             {
                 $profile->profile_category_id = 6;
+                $profile->save();
             }
 
             if(
-                strpos($profile->no_anggota, 'A') === true ||
-                strpos($profile->no_anggota, 'B') === true ||
-                strpos($profile->no_anggota, 'C') === true ||
-                strpos($profile->no_anggota, 'F') === true
+                strpos($profile->no_anggota, 'A') !== false ||
+                strpos($profile->no_anggota, 'B') !== false ||
+                strpos($profile->no_anggota, 'C') !== false ||
+                strpos($profile->no_anggota, 'F') !== false
             )
             {
                 $profile->profile_category_id = 2;
+                $profile->save();
             }
 
         }

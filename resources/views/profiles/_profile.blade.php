@@ -15,7 +15,7 @@
                 <td>{{ $profile->nama }}</td>
             </tr>
             <tr>
-                <th>Jantina</th>
+                <th>Jantina...</th>
                 <td>{{ $profile->jantina }}</td>
             </tr>
             <tr>
