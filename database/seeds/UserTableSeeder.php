@@ -1,10 +1,10 @@
 <?php
 
 use App\Perkhidmatan;
+use App\ProfileCategory;
 use App\Startup;
 use App\Tka;
-use App\Yuran;
-use App\Yurantambahan;
+use App\Sumbangan;
 use Illuminate\Database\Seeder;
 use App\User;
 
@@ -33,6 +33,14 @@ class UserTableSeeder extends Seeder
         Startup::create(['id' => 6, 'nama' => 'INSURANS', 'nilai' => '00.00', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()]);
 
         Tka::create(['id' => 1, 'jumlah' => 6.00, 'status' => 1, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()]);
+
+        Sumbangan::create(['id' => 1, 'nama' => 'Sumbangan Kematian']);
+        Sumbangan::create(['id' => 2, 'nama' => 'Sumbangan IPTA']);
+        Sumbangan::create(['id' => 3, 'nama' => 'Sumbangan Bencana']);
+
+
+
+
 
     }
 }

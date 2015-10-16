@@ -1,9 +1,9 @@
 1. Yuran            - sample yuran - bulanan sehingga 3 tahun ke belakang
 
 2. Inactive         - 15 profile inactive
-                    - 5 in year 3 years back - 2012
+   (Done)           - 5 in year 3 years back - 2012 (
                     - 6 in 2 years back - 2013
-                    - 2 in a year back - 2014
+                    - 2 in a year back - 2014 (303, 796)
                     - 2 in this year - 2015
 
 3. YuranTambahan    - 4 datas in 2012 (Jan, April, June, December)
@@ -11,4 +11,13 @@
                     - 3 datas in 2014 (Feb, July, Oct)
                     - 2 datas in 2015 (Jan, Feb)
 
-4. 
+4.
+
+
+
+
+UNTUK KOMADA
+
+1. no_anggota redunduncy
+2. tarikh khidmat 0000-00-00
+3.

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePenamaTable extends Migration
+class CreateProfileCategoryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,10 @@ class CreatePenamaTable extends Migration
      */
     public function up()
     {
-        Schema::create('penama', function (Blueprint $table) {
+        Schema::create('profile_category', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('no_anggota', 10);
             $table->string('nama');
-            $table->bigInteger('noKP', false, true);
-            $table->text('alamat');
-            $table->timestamps();
+            $table->string('catatan');
         });
     }
 
@@ -29,6 +26,6 @@ class CreatePenamaTable extends Migration
      */
     public function down()
     {
-        Schema::drop('penama');
+        Schema::drop('profile_category');
     }
 }

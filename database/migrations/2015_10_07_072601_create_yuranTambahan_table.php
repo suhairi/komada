@@ -16,7 +16,10 @@ class CreateYuranTambahanTable extends Migration
             $table->increments('id');
             $table->string('nama');
             $table->float('jumlah', 7, 2);
-            $table->text('catatan');
+            $table->tinyInteger('sumbangan_id', false, false);
+            $table->string('penerima');
+            $table->string('no_anggota', 20);
+            $table->string('tarikh');
             $table->timestamps();
         });
     }

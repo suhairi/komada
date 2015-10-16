@@ -28,6 +28,7 @@ class CreateProfileTable extends Migration
             $table->string('tarikh_ahli', 15);
             $table->string('jawatan');
             $table->string('taraf_jawatan');
+            $table->tinyInteger('profile_category_id', false, false);
             $table->tinyInteger('status', false, true)->default(1);
         });
     }
