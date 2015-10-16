@@ -147,6 +147,8 @@ return [
 
         Collective\Html\HtmlServiceProvider::class,
 
+        Flatten\FlattenServiceProvider::class,
+
     ],
 
     /*
@@ -198,6 +200,8 @@ return [
 
         'Form'      => Collective\Html\FormFacade::class,
         'Html'      => Collective\Html\HtmlFacade::class,
+
+        'Flatten' => Flatten\Facades\Flatten::class,
 
     ],
 

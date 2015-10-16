@@ -8,6 +8,7 @@ use App\Yuran;
 use App\Yurantambahan;
 use Carbon\Carbon;
 use Request;
+use Flatten\Facades\Flatten;
 
 class CarianController extends Controller
 {

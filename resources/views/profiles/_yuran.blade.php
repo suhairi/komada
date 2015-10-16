@@ -24,10 +24,10 @@
                             @endif
                         @endforeach
                     </td>
-                    <td>
+                    <td> {{ dd(yuranTambahan) }}
                         @foreach($yuranTambahan as $tambahan)
                             @if(strpos($yuran->bulan_tahun, $tambahan['bulan'] . '-') !== false)
-                                {{ $tambahan['catatan'] }} - {{ $tambahan['nama'] }} <br />
+                                {{ $tambahan['catatan'] }} - {{ $tambahan['nama'] }} - {{ $tambahan['penerima'] }} <br />
                             @endif
                         @endforeach
                     </td>
