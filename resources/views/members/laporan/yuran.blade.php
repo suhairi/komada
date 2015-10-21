@@ -2,6 +2,6 @@
 
 @section('content')
 
-    here;
+    Laporan Yuran
 
 @stop

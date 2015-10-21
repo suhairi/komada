@@ -11,7 +11,7 @@
                 </div>
                 <div class="panel-body">
                     <form method="post" action="{{ route('members.carian') }}">
-                        {{--@include('forms._carian')--}}
+                        @include('forms._carian')
                     </form>
                 </div>
             </div>
@@ -39,10 +39,10 @@
 
         <div class="tab-content">
             <div id="profil" class="tab-pane fade in active">
-                @include('profiles._profile...')
+                @include('profiles._profile')
             </div>
             <div id="yuran" class="tab-pane fade">
-                @include('profiles._yuran..')
+                @include('profiles._yuran_')
             </div>
             <div id="menu2" class="tab-pane fade">
                 {{-- here --}}

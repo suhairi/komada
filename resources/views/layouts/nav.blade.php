@@ -14,7 +14,7 @@
                 {{--<li><a href="#">Dashboard</a></li>--}}
                 {{--<li><a href="#">Settings</a></li>--}}
                 <li><a href="{{ route('members.password') }}">Tukar Kata Laluan</a></li>
-                <li><a href="{{ route('logout') }}">Logout</a></li>
+                <li><a href="{{ route('logout') }}"><i class="glyphicon glyphicon-log-out"></i> Logout</a></li>
             </ul>
             {{--<form class="navbar-form navbar-right">--}}
                 {{--<input type="text" class="form-control" placeholder="Search...">--}}

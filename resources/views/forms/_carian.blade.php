@@ -1,4 +1,4 @@
-<input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+{{ csrf_field() }}
 <table class="table">
     <tr>
         <th>No Anggota : </th>

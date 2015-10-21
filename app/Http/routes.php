@@ -42,6 +42,11 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
         'uses'  => 'Members\CarianController@index'
     ]);
 
+    Route::post('/carian', [
+        'as'    => 'members.carian',
+        'uses'  => 'Members\CarianController@noAnggota'
+    ]);
+
     // Change Password
     Route::get('password', [
         'as'    => 'members.password',
@@ -80,15 +85,20 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
             'uses'  => 'Members\ProfileController@update'
         ]);
 
+        Route::get('jadual', [
+            'as'    => 'members.profile.jadual',
+            'uses'  => 'Members\JadualController@carian'
+        ]);
+
+        Route::post('jadual/result', [
+            'as'    => 'members.profile.jadual.result',
+            'uses'  => 'Members\JadualController@result'
+        ]);
+
     });
 
 
     //Yuran
-
-    Route::post('/carian', [
-        'as'    => 'members.carian',
-        'uses'  => 'Members\CarianController@noAnggota'
-    ]);
 
     Route::get('/yuran', [
         'as'    => 'members.yuran',
@@ -104,6 +114,23 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
         'as'    => 'members.yuran.process',
         'uses'  => 'Members\YuranController@yuranProcess'
     ]);
+
+    // PINJAMAN
+
+    Route::group(['prefix' => 'pinjaman'], function() {
+
+        Route::get('index', [
+            'as'    => 'members.pinjaman.index',
+            'uses'  => 'Members\PinjamanController@index'
+        ]);
+
+        Route::post('index', [
+            'as'    => 'members.pinjaman.proses',
+            'uses'  => 'Members\PinjamanController@proses'
+        ]);
+
+
+    });
 
 
     // LAPORAN
@@ -122,7 +149,7 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
 
         Route::get('yuran', [
             'as'    => 'members.laporan.yuran',
-            'uses'  => 'Members\Laporan\YuranController@index'
+            'uses'  => 'Members\YuranController@index'
         ]);
 
     }); //end group['laporan']
