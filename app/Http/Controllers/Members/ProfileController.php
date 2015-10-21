@@ -117,4 +117,5 @@ class ProfileController extends Controller
 
         return Redirect::route('members.profiles.edit', Request::get('no_anggota'));
     }
+
 }

@@ -29,7 +29,9 @@
                     <i class="glyphicon glyphicon-usd"></i> Pinjaman <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Pinjaman Biasa</a></li>
+                    <li>
+                        <a data-toggle="tab" href="#biasa">Pinjaman Biasa</a>
+                    </li>
                     <li><a href="#">Insurans</a></li>
                     <li><a href="#">Tayar / Bateri</a></li>
                     <li><a href="#">Buku Sekolah</a></li>
@@ -44,8 +46,8 @@
             <div id="yuran" class="tab-pane fade">
                 @include('profiles._yuran_')
             </div>
-            <div id="menu2" class="tab-pane fade">
-                {{-- here --}}
+            <div id="biasa" class="tab-pane fade">
+                @include('profiles._biasa')
             </div>
         </div>
     @empty

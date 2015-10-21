@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Members;
 
+use App\AkaunPotongan;
 use App\Http\Controllers\Controller;
 use App\Profile;
 use App\Yuran;
@@ -50,6 +51,10 @@ class CarianController extends Controller
                 ]);
         }
 
-        return View('members.profile', compact('profiles', 'yurans', 'yuranTambahan'));
+        $bil = 1;
+        $biasas = AkaunPotongan::where('no_anggota', Request::get('no_anggota'))
+            ->get();
+
+        return View('members.profile', compact('bil', 'profiles', 'yurans', 'yuranTambahan', 'biasas'));
     }
 }

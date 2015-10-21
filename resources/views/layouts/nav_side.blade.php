@@ -1,6 +1,6 @@
 <div class="col-sm-3 col-md-2 sidebar">
     <ul class="nav nav-sidebar">
-        <li><a href="{{ route('members.index') }}">UTAMA <span class="sr-only">(current)</span></a></li>
+        <li><a href="{{ route('members.index') }}"><i class="glyphicon glyphicon-search"></i> Carian </a></li>
         <li><a href="{{ route('members.profiles.addUser') }}"><i class="glyphicon glyphicon-user"></i> Daftar Anggota</a></li>
         <li><a href="{{ route('members.kadahli') }}"><i class="glyphicon glyphicon-paperclip"></i> Kad Ahli</a></li>
         <li><a href="{{ route('members.profile.jadual') }}"><i class="glyphicon glyphicon-paperclip"></i> Jadual Bayaran</a></li>
@@ -14,7 +14,7 @@
                 <i class="glyphicon glyphicon-usd"></i> Pinjaman <span class="glyphicon glyphicon-menu-down"></span></a>
             <ul class="dropdown-menu">
 
-                <li><a href="{{ route('members.pinjaman.index') }}">Pinjaman Biasa</a></li>
+                <li><a href="#">Pinjaman Biasa</a></li>
                 <li><a href="#">Insurans</a></li>
                 <li><a href="#">Tayar / Bateri</a></li>
                 <li><a href="#">Buku Sekolah</a></li>

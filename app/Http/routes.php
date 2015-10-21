@@ -47,6 +47,11 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
         'uses'  => 'Members\CarianController@noAnggota'
     ]);
 
+    Route::get('pinjaman/biasa', [
+        'as'    => 'members.profiles.pinjaman.biasa',
+        'uses'  => 'Members\ProfileController@biasa'
+    ]);
+
     // Change Password
     Route::get('password', [
         'as'    => 'members.password',
@@ -94,6 +99,8 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
             'as'    => 'members.profile.jadual.result',
             'uses'  => 'Members\JadualController@result'
         ]);
+
+
 
     });
 
