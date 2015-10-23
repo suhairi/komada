@@ -23,9 +23,10 @@ class PinjamanController extends Controller
     public function proses()
     {
         $validation = Validator::make(Request::all(), [
-            'no_anggota'        => 'required|numeric',
+            'no_gaji'        => 'required|numeric',
             'perkhidmatan_id'   => 'required|numeric',
-            'jumlah'            => 'required|numeric'
+            'jumlah'            => 'required|numeric',
+            'tempoh'            => 'required|numeric'
         ]);
 
         if($validation->fails())
@@ -37,7 +38,7 @@ class PinjamanController extends Controller
                 ->withErrors($validation);
         }
 
-        $profile = Profile::where('no_anggota', Request::get('no_anggota'))
+        $profile = Profile::where('no_gaji', Request::get('no_gaji'))
             ->first();
 
         if(empty($profile))
@@ -51,9 +52,10 @@ class PinjamanController extends Controller
 //        return Request::all();
 
         AkaunPotongan::create([
-            'no_anggota'        => Request::get('no_anggota'),
+            'no_gaji'        => Request::get('no_gaji'),
             'perkhidmatan_id'   => Request::get('perkhidmatan_id'),
-            'jumlah'            => Request::get('jumlah')
+            'jumlah'            => Request::get('jumlah'),
+            'tempoh'            => Request::get('tempoh')
         ]);
 
         Session::flash('success', 'Berjaya. Proses Pinjaman telah direkodkan.');

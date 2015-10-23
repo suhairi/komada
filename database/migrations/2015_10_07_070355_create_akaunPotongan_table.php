@@ -14,9 +14,12 @@ class CreateAkaunPotonganTable extends Migration
     {
         Schema::create('akaunPotongan', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('no_anggota', 10);
+            $table->string('no_gaji', 10);
             $table->tinyInteger('perkhidmatan_id', false, false);
             $table->float('jumlah', 7, 2);
+            $table->tinyInteger('tempoh', false, false);
+            $table->float('baki', 7, 2);
+            $table->tinyInteger('status', false, false);
             $table->timestamps();
         });
     }

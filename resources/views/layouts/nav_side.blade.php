@@ -14,7 +14,7 @@
                 <i class="glyphicon glyphicon-usd"></i> Pinjaman <span class="glyphicon glyphicon-menu-down"></span></a>
             <ul class="dropdown-menu">
 
-                <li><a href="#">Pinjaman Biasa</a></li>
+                <li><a href="{{ route('members.pinjaman.index') }}">Pinjaman Biasa</a></li>
                 <li><a href="#">Insurans</a></li>
                 <li><a href="#">Tayar / Bateri</a></li>
                 <li><a href="#">Buku Sekolah</a></li>
@@ -27,7 +27,7 @@
     <ul class="nav nav-sidebar">
         <li><a href="{{ route('members.laporan.carian') }}"><i class="glyphicon glyphicon-file"></i> Laporan Yuran</a></li>
         <li><a href="{{ route('members.laporan.yuran') }}"><i class="glyphicon glyphicon-file"></i> Laporan Yuran</a></li>
-        <li><a href="#"><i class="glyphicon glyphicon-file"></i> Laporan Pinjaman</a></li>
+        <li><a href="{{ route('members.penyata.potongan') }}"><i class="glyphicon glyphicon-file"></i> Penyata Potongan</a></li>
         <li><a href="#"><i class="glyphicon glyphicon-file"></i> Laporan Komisyen</a></li>
     </ul>
 

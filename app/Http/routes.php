@@ -161,5 +161,13 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
 
     }); //end group['laporan']
 
+    Route::group(['prefix' =>'penyata'], function() {
+
+        Route::get('potongan/{id}', [
+            'as'    => 'members.penyata.potongan',
+            'uses'  => 'Members\PenyataController@potongan'
+        ]);
+    });
+
 
 });// end group ['members']

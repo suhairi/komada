@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePotonganTable extends Migration
+class CreateJantinaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,9 @@ class CreatePotonganTable extends Migration
      */
     public function up()
     {
-        Schema::create('potongan', function (Blueprint $table) {
+        Schema::create('jantina', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('no_gaji', 10);
-            $table->float('jumlah', 7, 2);
-            $table->timestamps();
+            $table->string('name', 2);
         });
     }
 
@@ -27,6 +25,6 @@ class CreatePotonganTable extends Migration
      */
     public function down()
     {
-        Schema::drop('potongan');
+        Schema::drop('jantina');
     }
 }

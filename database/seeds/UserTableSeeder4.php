@@ -76,9 +76,10 @@ class UserTableSeeder4 extends Seeder
                             Yuran::create([
                                 'no_gaji'       => $profile->no_gaji,
                                 'bulan_tahun'   => $bulan_tahun,
-                                'yuran'        => $profile->jumlah_yuran_bulanan,
+                                'yuran'         => $profile->jumlah_yuran_bulanan,
                                 'tka'           => $tka->jumlah,
                                 'takaful'       => '10.00',
+                                'zon_gaji_id'   => $profile->zon_gaji_id,
                                 'created_at'    => Carbon::createFromDate($i, $j, '25'),
                                 'updated_at'    => Carbon::createFromDate($i, $j, '25')
                             ]);

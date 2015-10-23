@@ -1,7 +1,7 @@
 {{ csrf_field() }}
 <table class="table">
     <tr>
-        <th>No Anggota : </th>
+        <th>No Gaji : </th>
         <td><input class="form-control" name="no_gaji" type="text" placeholder="No Gaji" autofocus="" /></td>
     </tr>
     <tr>

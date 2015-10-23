@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Members;
 
+use App\Jantina;
+use App\Zon;
 use Carbon\Carbon;
 use Request;
 use App\Inactive;
@@ -82,26 +84,31 @@ class ProfileController extends Controller
 
         $status = ['1' => 'AKTIF', '0' => 'TIDAK AKTIF'];
 
-        return View('members.profile.edit', compact('profile', 'status', 'anggota'));
+        $zon = Zon::lists('nama', 'kod');
+
+        $jantina = Jantina::lists('nama', 'id');
+
+        return View('members.profile.edit', compact('profile', 'status', 'anggota', 'zon', 'jantina'));
     }
 
     public function update($id)
     {
-        $inactive = false;
-
         $profile = Profile::where('no_anggota', Request::get('no_anggota'))
             ->first();
 
-        if($profile->status == 1)
-            $inactive = true;
+        if(Request::get('status') == 0)
+            $profile->status = 0;
 
-        $profile->nama = strtoupper(Request::get('nama'));
-        $profile->email = strtoupper(Request::get('email'));
-        $profile->status = 0;
+        $profile->nama          = strtoupper(Request::get('nama'));
+        $profile->nokp          = Request::get('nokp');
+        $profile->email         = strtoupper(Request::get('email'));
+        $profile->zon_gaji_id   = Request::get('zon_gaji_id');
+
+
 
         if($profile->save())
         {
-            if(Request::get('status') == 0 && $inactive == true)
+            if(Request::get('status') == 0)
             {
                 Inactive::create([
                     'no_anggota'    => Request::get('no_anggota'),

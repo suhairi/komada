@@ -19,7 +19,7 @@ class CreateProfileTable extends Migration
             $table->float('jumlah_yuran_bulanan', 7, 2);
             $table->string('nama');
             $table->string('nokp', 15)->nullable;
-            $table->string('jantina', 10);
+            $table->tinyInteger('jantina_id', false, false);
             $table->string('bangsa');
             $table->string('agama', 15);
             $table->string('email', 100);

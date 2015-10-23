@@ -68,18 +68,22 @@ class YuranController extends Controller
         foreach($profiles as $profile)
         {
             $yuran = Yuran::where('bulan_tahun', $bulan_tahun)
-                ->where('no_anggota', $profile->no_anggota)
+                ->where('no_gaji', $profile->no_gaji)
                 ->first();
 
             $tka = Tka::where('status', 1)->first();
 
+//            return $profile->zon_gaji_id;
+
             if(empty($yuran))
             {
                 Yuran::create([
-                    'no_anggota'        => $profile->no_anggota,
-                    'bulan_tahun'       => Request::get('bulan_tahun'),
-                    'jumlah'            => $profile->jumlah_yuran_bulanan,
-                    'tka'               => $tka->jumlah
+                    'no_gaji'       => $profile->no_gaji,
+                    'bulan_tahun'   => Request::get('bulan_tahun'),
+                    'yuran'         => $profile->jumlah_yuran_bulanan,
+                    'tka'           => $tka->jumlah,
+                    'takaful'       => '10.00',
+                    'zon_gaji_id'   => $profile->zon_gaji_id
                 ]);
             }
 

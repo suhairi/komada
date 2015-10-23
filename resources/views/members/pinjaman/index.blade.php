@@ -12,8 +12,8 @@
                     {!! Form::open(['route' => 'members.pinjaman.proses', 'method' => 'POST']) !!}
 
                     <div class="form-group">
-                        <label for="no_anggota">No Anggota</label>
-                        {!! Form::text('no_anggota', null, ['class' => 'form-control']) !!}
+                        <label for="no_anggota">No Gaji</label>
+                        {!! Form::text('no_gaji', null, ['class' => 'form-control']) !!}
                     </div>
                     
                     <div class="form-group">
@@ -22,8 +22,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="jumlah">Tempoh (bulan)</label>
-                        {!! Form::number('jumlah', null, ['min' => '0', 'class' => 'form-control', 'placeholder' => 'TEMPOH BAYARAN']) !!}
+                        <label for="tempoh">Tempoh (bulan)</label>
+                        {!! Form::number('tempoh', null, ['min' => '0', 'class' => 'form-control', 'placeholder' => 'TEMPOH BAYARAN']) !!}
                     </div>
 
                     <div class="form-group">

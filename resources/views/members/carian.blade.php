@@ -7,11 +7,11 @@
 
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h4>Carian Anggota</h4>
+                    <h4>Carian Profil Anggota</h4>
                 </div>
                 <div class="panel-body">
                     <form method="post" action="{{ route('members.carian') }}">
-                        {{--@include('forms._carian')--}}
+                        @include('forms._carian')
                     </form>
                 </div>
             </div>

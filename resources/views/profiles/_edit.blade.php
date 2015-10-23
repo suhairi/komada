@@ -1,4 +1,9 @@
 <div class="form-group">
+    <label for="no_anggota">No Gaji</label>
+    {!! Form::text('no_gaji', null, ['class' => 'form-control', 'readonly' => 'true']) !!}
+</div>
+
+<div class="form-group">
     <label for="no_anggota">No Anggota</label>
     {!! Form::text('no_anggota', null, ['class' => 'form-control', 'readonly' => 'true']) !!}
 </div>
@@ -14,9 +19,22 @@
 </div>
 
 <div class="form-group">
+    <label for="jantina">Jantina</label>
+    {!! Form::select('jantina', $jantina, null, ['class' => 'form-control']) !!}
+</div>
+
+
+
+<div class="form-group">
     <label for="email">Email</label>
     {!! Form::text('email', null, ['class' => 'form-control']) !!}
 </div>
+
+<div class="form-group">
+    <label for="zon">Zon Pembayaran Gaji</label>
+    {!! Form::select('zon_gaji_id', $zon, null, ['class' => 'form-control']) !!}
+</div>
+
 
 @if($profile->status != 0)
     <div class="form-group">

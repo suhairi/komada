@@ -24,8 +24,6 @@ class CarianController extends Controller
         $profiles = Profile::where('no_gaji', Request::get('no_gaji'))
             ->get();
 
-//        dd($profiles);
-
         $yurans = Yuran::where('no_gaji', Request::get('no_gaji'))
             ->where('bulan_tahun', 'like', '%' . Carbon::now()->format('Y'))
             ->orderBy('bulan_tahun', 'asc')
@@ -35,6 +33,7 @@ class CarianController extends Controller
 
         for($i=1; $i<=12; $i++)
         {
+
             if($i < 10)
                 $bulan = '0' . $i;
             else
@@ -52,13 +51,14 @@ class CarianController extends Controller
                     'penerima' => $tambahan->penerima,
                     'jumlah' => $tambahan->jumlah
                 ]);
+
+            if($i == Carbon::now()->format('m') - 1)
+                $i = 13;
         }
 
         $bil = 1;
-        $biasas = AkaunPotongan::where('no_anggota', Request::get('no_anggota'))
+        $biasas = AkaunPotongan::where('no_gaji', Request::get('no_gaji'))
             ->get();
-
-//        dd($biasas);
 
         return View('members.profile', compact('bil', 'profiles', 'yurans', 'yuranTambahan', 'biasas'));
     }

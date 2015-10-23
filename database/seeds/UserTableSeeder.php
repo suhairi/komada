@@ -20,7 +20,7 @@ class UserTableSeeder extends Seeder
     {
         User::create(array('name' => 'Suhairi Abdul Hamid', 'email' => 'suhairi81@gmail.com', 'password' => Hash::make('suhairi')));
 
-        Perkhidmatan::create(array("nama" => "BIASA"));
+        Perkhidmatan::create(array("nama" => "WANG TUNAI"));
         Perkhidmatan::create(array("nama" => "CUKAI JALAN"));
         Perkhidmatan::create(array("nama" => "PERTARUHAN"));
         Perkhidmatan::create(array("nama" => "TAYAR / BATERI"));

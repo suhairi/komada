@@ -20,7 +20,7 @@
                     <td align="right">{{ number_format($yuran->yuran, 2) }}</td>
                     <td align="right">{{ number_format($yuran->tka, 2) }}</td>
                     <td align="right">{{ number_format($yuran->takaful, 2) }}</td>
-
+                    <?php $total += $yuran->yuran + $yuran->tka + $yuran->takaful; ?>
                     <td align="right">
                         @foreach($yuranTambahan as $tambahan)
                             @if(strpos($yuran->bulan_tahun, $tambahan['bulan'] . '-') !== false)
@@ -38,7 +38,7 @@
                             @endif
                         @endforeach
                     </td>
-                    <td align="right">{{ number_format($total + $yuran->yuran + $yuran->tka + $yuran->takaful, 2) }}</td>
+                    <td align="right">{{ number_format($total, 2) }}</td>
                     <?php $grandTotal += $total + $yuran->jumlah; ?>
                 </tr>
             @endforeach

@@ -8,7 +8,7 @@ class AkaunPotongan extends Model
 {
     protected $table = 'akaunpotongan';
     protected $primaryKey = 'id';
-    protected $fillable = ['no_anggota', 'perkhidmatan_id', 'jumlah'];
+    protected $fillable = ['no_gaji', 'perkhidmatan_id', 'jumlah', 'tempoh'];
 
     public function perkhidmatan()
     {
