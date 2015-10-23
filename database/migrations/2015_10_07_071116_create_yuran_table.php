@@ -14,10 +14,12 @@ class CreateYuranTable extends Migration
     {
         Schema::create('yuran', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('no_anggota', 10);
+            $table->string('no_gaji', 10);
             $table->string('bulan_tahun');
-            $table->float('jumlah', 7, 2);
+            $table->float('yuran', 7, 2);
             $table->float('tka', 7, 2);
+            $table->float('takaful', 7, 2);
+            $table->string('zon_gaji_id', 2);
             $table->timestamps();
         });
     }

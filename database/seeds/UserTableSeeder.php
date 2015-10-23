@@ -7,6 +7,7 @@ use App\Tka;
 use App\Sumbangan;
 use Illuminate\Database\Seeder;
 use App\User;
+use App\Zon;
 
 class UserTableSeeder extends Seeder
 {
@@ -38,9 +39,19 @@ class UserTableSeeder extends Seeder
         Sumbangan::create(['id' => 2, 'nama' => 'Sumbangan IPTA']);
         Sumbangan::create(['id' => 3, 'nama' => 'Sumbangan Bencana']);
 
-
-
-
-
+        Zon::create(['kod' => '01', 'nama' => 'BAHAGIAN KHIDMAT PENGURUSAN']);
+        Zon::create(['kod' => '02', 'nama' => 'BAHAGIAN INDUSTRI PADI']);
+        Zon::create(['kod' => '03', 'nama' => 'BAHAGIAN INDUSTRI PADI DAN BUKAN PADI']);
+        Zon::create(['kod' => '04', 'nama' => 'BAHAGIAN PENGURUSAN INSTITUSI LADANG']);
+        Zon::create(['kod' => '05', 'nama' => 'BAHAGIAN PERANCANGAN DAN TEKNOLOGI MAKLUMAT']);
+        Zon::create(['kod' => '06', 'nama' => 'BAHAGIAN PENGURUSAN EMPANGAN DAN SUMBER AIR']);
+        Zon::create(['kod' => '07', 'nama' => 'BAHAGIAN PENGAIRAN DAN SALIRAN']);
+        Zon::create(['kod' => '08', 'nama' => 'BAHAGIAN KHIDMAT MEKANIKAL DAN INFRASTRUKTUR']);
+        Zon::create(['kod' => '09', 'nama' => 'PERKHIDMATAN MEKANIKAL']);
+        Zon::create(['kod' => '10', 'nama' => 'BAHAGIAN PENGURUSAN WILAYAH']);
+        Zon::create(['kod' => '11', 'nama' => 'WILAYAH 1']);
+        Zon::create(['kod' => '12', 'nama' => 'WILAYAH 2']);
+        Zon::create(['kod' => '13', 'nama' => 'WILAYAH 3']);
+        Zon::create(['kod' => '14', 'nama' => 'WILAYAH 4']);
     }
 }

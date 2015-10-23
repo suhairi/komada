@@ -15,15 +15,18 @@ class CarianController extends Controller
 {
     public function index()
     {
-        return View('members.index');
+        return View('members.index..');
     }
 
     public function noAnggota()
     {
-        $profiles = Profile::where('no_anggota', Request::get('no_anggota'))
+
+        $profiles = Profile::where('no_gaji', Request::get('no_gaji'))
             ->get();
 
-        $yurans = Yuran::where('no_anggota', Request::get('no_anggota'))
+//        dd($profiles);
+
+        $yurans = Yuran::where('no_gaji', Request::get('no_gaji'))
             ->where('bulan_tahun', 'like', '%' . Carbon::now()->format('Y'))
             ->orderBy('bulan_tahun', 'asc')
             ->get();
@@ -54,6 +57,8 @@ class CarianController extends Controller
         $bil = 1;
         $biasas = AkaunPotongan::where('no_anggota', Request::get('no_anggota'))
             ->get();
+
+//        dd($biasas);
 
         return View('members.profile', compact('bil', 'profiles', 'yurans', 'yuranTambahan', 'biasas'));
     }

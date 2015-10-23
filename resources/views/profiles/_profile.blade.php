@@ -3,6 +3,10 @@
     <div class="panel-body">
         <table class="table table-hover table-striped">
             <tr>
+                <th width="150">No Gaji</th>
+                <td>{{ $profile->no_gaji }}</td>
+            </tr>
+            <tr>
                 <th width="150">No Anggota</th>
                 <td>{{ $profile->no_anggota }}</td>
             </tr>

@@ -9,16 +9,16 @@
     "packages": [
         {
             "name": "anahkiasen/flatten",
-            "version": "1.1.0",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Anahkiasen/flatten.git",
-                "reference": "7a5d3de1f2a5d144dd1433c1ff156927393afcec"
+                "reference": "770391b5179840d882e4d40cad3aca839d7c5412"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Anahkiasen/flatten/zipball/7a5d3de1f2a5d144dd1433c1ff156927393afcec",
-                "reference": "7a5d3de1f2a5d144dd1433c1ff156927393afcec",
+                "url": "https://api.github.com/repos/Anahkiasen/flatten/zipball/770391b5179840d882e4d40cad3aca839d7c5412",
+                "reference": "770391b5179840d882e4d40cad3aca839d7c5412",
                 "shasum": ""
             },
             "require": {
@@ -64,7 +64,7 @@
                 "laravel",
                 "performance"
             ],
-            "time": "2015-09-20 13:02:40"
+            "time": "2015-10-21 14:09:12"
         },
         {
             "name": "classpreloader/classpreloader",
@@ -944,16 +944,16 @@
         },
         {
             "name": "paragonie/random_compat",
-            "version": "1.0.6",
+            "version": "1.0.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paragonie/random_compat.git",
-                "reference": "9a0ce69360aa22413a96f2bf93f61235e2c18486"
+                "reference": "2fa50aa2f17066fa74ba00d943e8cee1a98284af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/9a0ce69360aa22413a96f2bf93f61235e2c18486",
-                "reference": "9a0ce69360aa22413a96f2bf93f61235e2c18486",
+                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/2fa50aa2f17066fa74ba00d943e8cee1a98284af",
+                "reference": "2fa50aa2f17066fa74ba00d943e8cee1a98284af",
                 "shasum": ""
             },
             "require": {
@@ -985,7 +985,7 @@
                 "pseudorandom",
                 "random"
             ],
-            "time": "2015-10-16 03:43:13"
+            "time": "2015-10-23 13:21:37"
         },
         {
             "name": "psr/log",
@@ -2574,16 +2574,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.8.13",
+            "version": "4.8.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "be067d6105286b74272facefc2697038f8807b77"
+                "reference": "625f8c345606ed0f3a141dfb88f4116f0e22978e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/be067d6105286b74272facefc2697038f8807b77",
-                "reference": "be067d6105286b74272facefc2697038f8807b77",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/625f8c345606ed0f3a141dfb88f4116f0e22978e",
+                "reference": "625f8c345606ed0f3a141dfb88f4116f0e22978e",
                 "shasum": ""
             },
             "require": {
@@ -2642,7 +2642,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-10-14 13:49:40"
+            "time": "2015-10-23 06:48:33"
         },
         {
             "name": "phpunit/phpunit-mock-objects",

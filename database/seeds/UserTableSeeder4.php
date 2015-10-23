@@ -57,7 +57,7 @@ class UserTableSeeder4 extends Seeder
         Inactive::create(['no_anggota' => '90', 'catatan' => '', 'status' => 1, 'created_at' => Carbon::createFromDate('2015', '1', '30'), 'updated_at' => Carbon::createFromDate('2015', '1', '30')]);
 
         // Yuran
-        for($i=Carbon::now()->format('Y') - 3; $i<=Carbon::now()->format('Y'); $i++)
+        for($i=Carbon::now()->format('Y') - 1; $i<=Carbon::now()->format('Y'); $i++)
         {
             $profiles = Profile::where('status', 1)->get();
             $tka = Tka::where('status', 1)->first();
@@ -71,17 +71,21 @@ class UserTableSeeder4 extends Seeder
                         else
                             $bulan_tahun = $j . '-' . $i;
 
-                        if($bulan_tahun != '11-2015')
+                        if($bulan_tahun != '10-2015')
                         {
                             Yuran::create([
-                                'no_anggota'    => $profile->no_anggota,
+                                'no_gaji'       => $profile->no_gaji,
                                 'bulan_tahun'   => $bulan_tahun,
-                                'jumlah'        => $profile->jumlah_yuran_bulanan,
+                                'yuran'        => $profile->jumlah_yuran_bulanan,
                                 'tka'           => $tka->jumlah,
+                                'takaful'       => '10.00',
                                 'created_at'    => Carbon::createFromDate($i, $j, '25'),
                                 'updated_at'    => Carbon::createFromDate($i, $j, '25')
                             ]);
                         }
+
+                        if($bulan_tahun == '10-2015')
+                            $j = 13;
                     }
                 }
             }
