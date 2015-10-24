@@ -2,6 +2,18 @@
 @section('content')
         <div class="container">
             <div class="row">
+                <div class="col-xs-10">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading"><h4>Global</h4></div>
+                        <div class="panel-body">
+                            <ul>
+                                <li>+ function Batal Proses Yuran</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-xs-3">
                     <div class="panel panel-primary">
                         <div class="panel-heading"><h4>Anggota</h4></div>
