@@ -10,6 +10,9 @@ class CreatePotonganTable extends Migration
      *
      * @return void
      */
+
+    // This table is for the system to refer amount to deduct from the salary monthly.
+    // It will be updated when a new loan is submitted (Wang Tunai, Tayar Bateri, Roadtax, Insurans etc)
     public function up()
     {
         Schema::create('potongan', function (Blueprint $table) {

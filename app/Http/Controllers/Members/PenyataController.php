@@ -8,13 +8,13 @@ use App\Http\Controllers\Controller;
 
 class PenyataController extends Controller
 {
-    public function potongan($id)
+    public function wangtunai($id)
     {
 
         $akaunPotongan = AkaunPotongan::findOrFail($id);
 
         $akaun = $akaunPotongan->toArray();
 
-        return View('members.penyata.potongan', compact('akaun'));
+        return View('members.penyata.wangtunai', compact('akaun'));
     }
 }

@@ -37,4 +37,9 @@ class LoginController extends Controller
         return Redirect('/');
     }
 
+    public function admin()
+    {
+        return View('todolist');
+    }
+
 }

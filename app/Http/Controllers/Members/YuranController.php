@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Members;
 
+use App\Sumbangan;
 use App\Tka;
 use Illuminate\Support\Facades\Redirect;
 use Request;
@@ -21,10 +22,10 @@ class YuranController extends Controller
             ->orderBy('created_at', 'asc')
             ->get();
 
-//        dd($yuranTambahans);
-
         $yuranBulanans = Yuran::where('bulan_tahun', 'like', Carbon::now()->format('m-Y') . '%')
             ->get();
+
+        $sumbangan = Sumbangan::lists('nama', 'id');
 
         $totalAnggota = Profile::all()->count();
         $totalAnggotaAktif = Profile::where('status', 1)->count();
@@ -39,18 +40,21 @@ class YuranController extends Controller
 
         $totalTambahan = 0.00;
 
-        return View('members.yuran', compact('yuranTambahans', 'yuranBulanans', 'count', 'totalTambahan'));
+        return View('members.yuran', compact('yuranTambahans', 'yuranBulanans', 'count', 'totalTambahan', 'sumbangan'));
     }
 
     public function yuranTambahan()
     {
         $tarikh = explode('-', Request::get('bulan_tahun'));
-        $created_at = $tarikh[1] . '-' . $tarikh[0] . '-01 00:00:00';
+        $created_at = $tarikh[1] . '-' . $tarikh[0] . '-' . Carbon::now()->format('d') .' 00:00:00';
+
+//        return Request::all();
 
         Yurantambahan::create([
-            'nama'          => strtoupper(Request::get('nama')),
             'jumlah'        => Request::get('jumlah'),
-            'catatan'       => strtoupper(Request::get('catatan')),
+            'sumbangan_id'  => Request::get('sumbangan_id'),
+            'no_gaji'       => Request::get('no_gaji'),
+            'penerima'      => strtoupper(Request::get('penerima')),
             'created_at'    => $created_at
         ]);
 

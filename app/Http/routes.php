@@ -30,6 +30,11 @@ Route::get('/logout', [
 
 Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
 
+    Route::get('todo', [
+        'as'    => 'members.admin.todolist',
+        'uses'  => 'LoginController@admin'
+    ]);
+
     Route::get('index', [
         'as'    => 'members.index',
         'uses'  => 'Members\UserController@index'
@@ -165,7 +170,7 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
 
         Route::get('potongan/{id}', [
             'as'    => 'members.penyata.potongan',
-            'uses'  => 'Members\PenyataController@potongan'
+            'uses'  => 'Members\PenyataController@wangtunai'
         ]);
     });
 

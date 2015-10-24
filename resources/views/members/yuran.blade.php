@@ -19,7 +19,7 @@
                             <tr>
                                 <th>Bulan / Tahun</th>
                                 <th>Keterangan Sumbangan</th>
-                                <th>Catatan</th>
+                                <th>Penerima</th>
                                 <th>Jumlah (RM)</th>
                             </tr>
                             </thead>

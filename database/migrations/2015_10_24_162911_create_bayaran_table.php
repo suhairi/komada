@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateYuranTambahanTable extends Migration
+class CreateBayaranTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,10 @@ class CreateYuranTambahanTable extends Migration
      */
     public function up()
     {
-        Schema::create('yuranTambahan', function (Blueprint $table) {
+        Schema::create('bayaran', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('no_gaji', 2);
             $table->float('jumlah', 7, 2);
-            $table->tinyInteger('sumbangan_id', false, false);
-            $table->string('penerima');
-            $table->string('no_gaji', 20);
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreateYuranTambahanTable extends Migration
      */
     public function down()
     {
-        Schema::drop('yuranTambahan');
+        Schema::drop('bayaran');
     }
 }
