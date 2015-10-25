@@ -4,11 +4,14 @@
 </div>
 
 <div class="form-group">
+    <label for="jantina">*Kategori Ahli</label>
+    {!! Form::select('profile_category_id', $category, null, ['class' => 'form-control', 'placeholder' => 'Kategori Ahli']) !!}
+</div>
+
+<div class="form-group">
     <label for="no_gaji">*No Gaji</label>
     {!! Form::text('no_gaji', null, ['class' => 'form-control', 'placeholder' => 'Contoh : 4132']) !!}
 </div>
-
-
 
 <div class="form-group">
     <label for="nama">*Nama</label>

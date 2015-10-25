@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Members;
 
 use App\Jantina;
+use App\ProfileCategory;
 use App\Zon;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
@@ -21,6 +22,7 @@ class ProfileController extends Controller
     {
 
         $zon_gaji = Zon::lists('nama', 'id');
+        $category = ProfileCategory::lists('nama', 'id');
 
         $anggota = [];
 
@@ -50,7 +52,7 @@ class ProfileController extends Controller
 
         $anggota = ['keseluruhan' => $keseluruhan, 'aktif' => $active, 'inactive' => $inactive, 'no_akhir' => $max];
 
-        return View('members.profile.addUser', compact('anggota', 'zon_gaji'));
+        return View('members.profile.addUser', compact('anggota', 'zon_gaji', 'category'));
     }
 
     public function addUserPost()
