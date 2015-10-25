@@ -32,7 +32,12 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
 
     Route::get('todo', [
         'as'    => 'members.admin.todolist',
-        'uses'  => 'LoginController@admin'
+        'uses'  => 'AdminController@admin'
+    ]);
+
+    Route::get('backup', [
+        'as'    => 'members.admin.backup',
+        'uses'  => 'AdminController@backup'
     ]);
 
     Route::get('index', [
@@ -75,6 +80,15 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
         'uses'  => 'Members\KadahliController@kadahli'
     ]);
 
+    Route::group(['prefix' => 'settings'], function() {
+
+        Route::get('tka', [
+            'as'    => 'members.settings.tka',
+            'uses'  => 'Members\SettingsController@tka'
+        ]);
+
+    });
+
 
     // Profile
 
@@ -83,6 +97,11 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
         Route::get('daftar', [
             'as'    => 'members.profiles.addUser',
             'uses'  => 'Members\ProfileController@addUser'
+        ]);
+
+        Route::post('daftar', [
+            'as'    => 'members.profiles.addUserPost',
+            'uses'  => 'Members\ProfileController@addUserPost'
         ]);
 
         Route::get('edit/{id}', [

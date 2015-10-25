@@ -14,7 +14,7 @@ class CreateJantinaTable extends Migration
     {
         Schema::create('jantina', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 2);
+            $table->string('nama', 2);
         });
     }
 

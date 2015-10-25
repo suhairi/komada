@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Members;
 use App\Jantina;
 use App\Zon;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Validator;
 use Request;
 use App\Inactive;
 use App\Profile;
@@ -18,6 +19,9 @@ class ProfileController extends Controller
 
     public function addUser()
     {
+
+        $zon_gaji = Zon::lists('nama', 'id');
+
         $anggota = [];
 
         // $anggota['aktif']
@@ -46,7 +50,39 @@ class ProfileController extends Controller
 
         $anggota = ['keseluruhan' => $keseluruhan, 'aktif' => $active, 'inactive' => $inactive, 'no_akhir' => $max];
 
-        return View('members.profile.addUser', compact('anggota'));
+        return View('members.profile.addUser', compact('anggota', 'zon_gaji'));
+    }
+
+    public function addUserPost()
+    {
+        $validation = Validator::make(Request::all(), [
+            'no_anggota'    => 'required|numeric',
+            'no_gaji'       => 'required|numeric',
+            'nama'          => 'required',
+            'nokp'          => 'required',
+            'jantina'       => 'required',
+            'bangsa'        => 'required',
+            'jumlah_yuran_bulanan'  => 'required|numeric',
+            'zon_gaji_id'   => 'required|numeric'
+        ]);
+
+        if($validation->fails())
+        {
+            Session::flash('error', 'Sila isikan ruangan dengan format yang betul');
+            return Redirect::back()->withInput()->withErrors($validation);
+        }
+
+//        return Request::all();
+
+        $profile = new Profile();
+        $profile->fill(Request::all());
+
+        if($profile->save())
+            Session::flash('success', 'Berjaya. Anggota baru telah didaftarkan');
+        else
+            Session::flash('error', 'Gagal. Anggota baru gagal didaftarkan');
+
+        return Redirect::route('members.profiles.addUser');
     }
 
     public function edit($id)

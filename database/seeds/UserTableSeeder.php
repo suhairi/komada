@@ -8,6 +8,7 @@ use App\Sumbangan;
 use Illuminate\Database\Seeder;
 use App\User;
 use App\Zon;
+use App\Jantina;
 
 class UserTableSeeder extends Seeder
 {
@@ -53,5 +54,9 @@ class UserTableSeeder extends Seeder
         Zon::create(['kod' => '12', 'nama' => 'WILAYAH 2']);
         Zon::create(['kod' => '13', 'nama' => 'WILAYAH 3']);
         Zon::create(['kod' => '14', 'nama' => 'WILAYAH 4']);
+
+        Jantina::create(['nama' => 'LELAKI']);
+        Jantina::create(['nama' => 'PEREMPUAN']);
+
     }
 }

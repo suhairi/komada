@@ -3,6 +3,14 @@
     <div class="alert alert-danger">
         <i class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></i>
         {{ Session::get('error') }}
+
+        @if ($errors->has())
+            <div class="alert alert-danger">
+                @foreach ($errors->all() as $error)
+                    {{ $error }}<br>
+                @endforeach
+            </div>
+        @endif
     </div>
 @endif
 
