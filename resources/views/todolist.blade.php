@@ -34,6 +34,7 @@
                             <ul>
                                 <li>During register, add jumlah potongan yuran, profile category id, zon gaji.</li>
                                 <li>After Carian Profile, yuran tab does not list along sumbngan lain. </li>
+                                <li>Kemaskini profil tak update jantina</li>
                             </ul>
                         </div>
                     </div>

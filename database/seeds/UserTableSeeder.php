@@ -55,8 +55,8 @@ class UserTableSeeder extends Seeder
         Zon::create(['kod' => '13', 'nama' => 'WILAYAH 3']);
         Zon::create(['kod' => '14', 'nama' => 'WILAYAH 4']);
 
-        Jantina::create(['nama' => 'LELAKI']);
-        Jantina::create(['nama' => 'PEREMPUAN']);
+        Jantina::create(['nama' => 'L']);
+        Jantina::create(['nama' => 'P']);
 
     }
 }

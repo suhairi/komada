@@ -25,7 +25,7 @@
 
 <div class="form-group">
     <label for="jantina">*Jantina</label>
-    {!! Form::select('jantina', ['L' => 'LELAKI', 'P' => 'PEREMPUAN'], null, ['class' => 'form-control', 'placeholder' => 'JANTINA']) !!}
+    {!! Form::select('jantina_id', ['1' => 'LELAKI', '2' => 'PEREMPUAN'], null, ['class' => 'form-control', 'placeholder' => 'JANTINA']) !!}
 </div>
 
 <div class="form-group">

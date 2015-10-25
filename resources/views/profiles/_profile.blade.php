@@ -1,3 +1,5 @@
+{{--{{ dd($profile) }}--}}
+
 <div class="panel panel-info">
     <div class="panel-heading"><h4>Maklumat Anggota</h4></div>
     <div class="panel-body">
@@ -19,8 +21,8 @@
                 <td>{{ $profile->nama }}</td>
             </tr>
             <tr>
-                <th>Jantina...</th>
-                <td>{{ $profile->jantina }}</td>
+                <th>Jantina</th>
+                <td>{{ $profile->jantina->nama }}</td>
             </tr>
             <tr>
                 <th>Bangsa</th>
@@ -32,7 +34,15 @@
             </tr>
             <tr>
                 <th>Alamat 1 / Alamat 2</th>
-                <td>{{ $profile->alamat1 }}, {{ $profile->alamat2 }}</td>
+                <td>
+                    @if(!empty($profile->alamat1))
+                        {{ $profile->alamat1 }}
+                    @endif
+
+                    @if(!empty($profile->alamat2))
+                        , {{ $profile->alamat2 }}
+                    @endif
+                </td>
             </tr>
             <tr>
                 <th>Jawatan</th>

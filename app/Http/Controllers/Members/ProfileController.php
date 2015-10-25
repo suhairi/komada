@@ -57,12 +57,13 @@ class ProfileController extends Controller
 
     public function addUserPost()
     {
+//        return Request::all();
         $validation = Validator::make(Request::all(), [
             'no_anggota'    => 'required|numeric',
             'no_gaji'       => 'required|numeric',
             'nama'          => 'required',
             'nokp'          => 'required',
-            'jantina'       => 'required',
+            'jantina_id'       => 'required',
             'bangsa'        => 'required',
             'jumlah_yuran_bulanan'  => 'required|numeric',
             'zon_gaji_id'   => 'required|numeric'
@@ -74,10 +75,19 @@ class ProfileController extends Controller
             return Redirect::back()->withInput()->withErrors($validation);
         }
 
-//        return Request::all();
+
 
         $profile = new Profile();
         $profile->fill(Request::all());
+        $profile->jumlah_yuran_bulanan = Request::get('jumlah_yuran_bulanan');
+        $profile->nama = strtoupper(Request::get('nama'));
+
+        if(empty(Request::get('alamat1')))
+            $profile->alamat1 = 'nil';
+
+        if(empty(Request::get('alamat2')))
+            $profile->alamat1 = 'nil';
+
 
         if($profile->save())
             Session::flash('success', 'Berjaya. Anggota baru telah didaftarkan');

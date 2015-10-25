@@ -60,6 +60,8 @@ class CarianController extends Controller
         $biasas = AkaunPotongan::where('no_gaji', Request::get('no_gaji'))
             ->get();
 
+//        return 'here';
+
         return View('members.profile', compact('bil', 'profiles', 'yurans', 'yuranTambahan', 'biasas'));
     }
 }
