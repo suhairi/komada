@@ -9,6 +9,7 @@
                             <ul>
                                 <li>+ function Batal Proses Yuran</li>
                                 <li>+ function Backup</li>
+                                <li>icons</li>
                             </ul>
                         </div>
                     </div>
@@ -60,6 +61,7 @@
                         <div class="panel-body">
                             <ul>
                                 <li><strike>Daftar Anggota - +attribute jumlah potongan yuran bulanan</strike></li>
+                                <li>Jadual Pembayaran Pinjaman Wang Tunai (calculator)</li>
                             </ul>
                         </div>
                     </div>

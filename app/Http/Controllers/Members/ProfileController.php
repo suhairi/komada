@@ -57,10 +57,38 @@ class ProfileController extends Controller
 
     public function addUserPost()
     {
-//        return Request::all();
+        $profile = Profile::where('no_gaji', Request::get('no_gaji'))
+            ->first();
+
+        if(!empty($profile))
+        {
+            Session::flash('error', 'Gagal. No gaji *' . Request::get('no_gaji') . '* bertindih.');
+            return Redirect::back()->withInput();
+        }
+
+        $no_anggota = Profile::where('no_anggota', Request::get('no_anggota'))
+            ->first();
+
+        if(!empty($no_anggota))
+        {
+            Session::flash('error', 'Gagal. No anggota *' . Request::get('no_anggota') . '* bertindih.');
+            return Redirect::back()->withInput();
+        }
+
+        $nokp = Profile::where('nokp', Request::get('nokp'))
+            ->first();
+
+        if(!empty($nokp))
+        {
+            Session::flash('error', 'Gagal. No KP *' . Request::get('nokp') . '* telah wujud, dengan No Gaji *' . $nokp->no_gaji . '*.');
+            return Redirect::back()->withInput();
+        }
+
+
         $validation = Validator::make(Request::all(), [
             'no_anggota'    => 'required|numeric',
             'no_gaji'       => 'required|numeric',
+            'profile_category_id' => 'required|numeric',
             'nama'          => 'required',
             'nokp'          => 'required',
             'jantina_id'       => 'required',
@@ -75,18 +103,16 @@ class ProfileController extends Controller
             return Redirect::back()->withInput()->withErrors($validation);
         }
 
-
-
         $profile = new Profile();
         $profile->fill(Request::all());
         $profile->jumlah_yuran_bulanan = Request::get('jumlah_yuran_bulanan');
         $profile->nama = strtoupper(Request::get('nama'));
-
-        if(empty(Request::get('alamat1')))
-            $profile->alamat1 = 'nil';
-
-        if(empty(Request::get('alamat2')))
-            $profile->alamat1 = 'nil';
+        $profile->tarikh_ahli = Carbon::now();
+        $profile->alamat1 = strtoupper(Request::get('alamat1'));
+        $profile->alamat2 = strtoupper(Request::get('alamat2'));
+        $profile->jawatan = strtoupper(Request::get('jawatan'));
+        $profile->email = strtoupper(Request::get('email'));
+        $profile->taraf_jawatan = strtoupper(Request::get('taraf_jawatan'));
 
 
         if($profile->save())

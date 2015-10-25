@@ -80,6 +80,24 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
         'uses'  => 'Members\KadahliController@kadahli'
     ]);
 
+    // Calculator
+    Route::group(['prefix' => 'calculator'], function() {
+
+        Route::get('pwt', [
+            'as'    => 'members.calculator.pwtPost',
+            'uses'  => 'Members\CalculatorController@pwt'
+        ]);
+
+        Route::post('pwt', [
+            'as'    => 'members.calculator.pwt',
+            'uses'  => 'Members\CalculatorController@pwtPost'
+        ]);
+
+
+    });
+
+
+    // Settings
     Route::group(['prefix' => 'settings'], function() {
 
         Route::get('tka', [

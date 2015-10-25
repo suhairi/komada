@@ -34,15 +34,7 @@
             </tr>
             <tr>
                 <th>Alamat 1 / Alamat 2</th>
-                <td>
-                    @if(!empty($profile->alamat1))
-                        {{ $profile->alamat1 }}
-                    @endif
-
-                    @if(!empty($profile->alamat2))
-                        , {{ $profile->alamat2 }}
-                    @endif
-                </td>
+                <td>{{ $profile->alamat1 }}, {{ $profile->alamat2 }}</td>
             </tr>
             <tr>
                 <th>Jawatan</th>

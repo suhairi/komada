@@ -4,7 +4,7 @@
 </div>
 
 <div class="form-group">
-    <label for="jantina">*Kategori Ahli</label>
+    <label for="profile_category_id">*Kategori Ahli</label>
     {!! Form::select('profile_category_id', $category, null, ['class' => 'form-control', 'placeholder' => 'Kategori Ahli']) !!}
 </div>
 
@@ -58,6 +58,13 @@
     <label for="jawatan">Jawatan</label>
     {!! Form::text('jawatan', null, ['class' => 'form-control', 'placeholder' => 'Contoh: Pegawai Pertanian ']) !!}
 </div>
+
+<div class="form-group">
+    <label for="tarikh khidmat">Tarikh Khidmat</label>
+    {!! Form::date('tarikh_khidmat', null, ['class' => 'form-control']) !!}
+</div>
+
+
 
 <div class="form-group">
     <label for="jumlah">*Jumlah Potongan Yuran Bulanan (RM)</label>
