@@ -35,6 +35,7 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
         'uses'  => 'AdminController@admin'
     ]);
 
+
     Route::get('backup', [
         'as'    => 'members.admin.backup',
         'uses'  => 'AdminController@backup'

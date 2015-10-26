@@ -17,11 +17,8 @@
                     <li><a href="{{ route('members.admin.todolist') }}">To do List</a></li>
                 @endif
                 <li><a href="{{ route('members.password') }}">Tukar Kata Laluan</a></li>
-                <li><a href="{{ route('logout') }}"><i class="glyphicon glyphicon-log-out"></i> Logout</a></li>
+                <li><a href="{{ route('logout') }}">Logout <i class="glyphicon glyphicon-log-out"></i></a></li>
             </ul>
-            {{--<form class="navbar-form navbar-right">--}}
-                {{--<input type="text" class="form-control" placeholder="Search...">--}}
-            {{--</form>--}}
         </div>
     </div>
 </nav>

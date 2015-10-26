@@ -13,6 +13,11 @@ class AdminController extends Controller
         return View('todolist');
     }
 
+    public function admin2()
+    {
+        return View('todolist2');
+    }
+
     public function backup()
     {
 
