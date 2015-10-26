@@ -18,7 +18,7 @@
             </tr>
             <tr>
                 <th>Kadar (setahun)</th>
-                <td>{!! Form::number('Kadar', '6.0', ['class' => 'form-control', 'id' => 'kadar_peratus', 'readonly' => true, 'aria-describedby' => 'basic-addon2']) !!}</td>
+                <td>{!! Form::select('Kadar', ['4.0' => '4.0', '5.0' => '5.0', '6.0' => '6.0', '7.0' => '7.0', '8.0' => '8.0', '9.0' => '9.0'], '6.0', ['class' => 'form-control', 'id' => 'kadar_peratus', 'onchange' => 'calc()']) !!}</td>
             </tr>
 
             <tr>

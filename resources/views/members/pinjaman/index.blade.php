@@ -6,7 +6,7 @@
 
         <div class="col-xs-4">
             <div class="panel panel-primary">
-                <div class="panel-heading"><h4>Pinjaman Biasa</h4></div>
+                <div class="panel-heading"><h4>Pinjaman Biasa (PWT)</h4></div>
 
                 <div class="panel-body">
                     {!! Form::open(['route' => 'members.pinjaman.proses', 'method' => 'POST']) !!}

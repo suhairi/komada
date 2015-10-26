@@ -17,6 +17,7 @@ class CreateProfileTable extends Migration
             $table->string('no_gaji');
             $table->string('no_anggota', 10);
             $table->float('jumlah_yuran_bulanan', 7, 2);
+            $table->float('jumlah_pertaruhan', 7, 2);
             $table->string('nama');
             $table->string('nokp', 15)->nullable;
             $table->tinyInteger('jantina_id', false, false);

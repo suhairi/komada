@@ -10,18 +10,9 @@
                     <h4>Carian Profile Anggota</h4>
                 </div>
                 <div class="panel-body">
-                    <form method="post" action="{{ route('members.carian') }}">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
-                        <table class="table">
-                            <tr>
-                                <th>No Gaji : </th>
-                                <td><input class="form-control" name="no_gaji" type="text" placeholder="No Gaji" autofocus="" /></td>
-                            </tr>
-                            <tr>
-                                <td colspan="2" align="right"><button class="btn btn-primary" type="submit"><i class="glyphicon glyphicon-search"> </i> Cari..</button></td>
-                            </tr>
-                        </table>
-                    </form>
+                    {!! Form::open(['route' => 'members.carian', 'method' => 'post']) !!}
+                        @include('forms._carian')
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>

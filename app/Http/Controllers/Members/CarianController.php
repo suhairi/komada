@@ -8,14 +8,15 @@ use App\Profile;
 use App\Yuran;
 use App\Yurantambahan;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Session;
 use Request;
-use Flatten\Facades\Flatten;
+use Illuminate\Support\Facades\Redirect;
 
 class CarianController extends Controller
 {
     public function index()
     {
-        return View('members.index..');
+        return View('members.index');
     }
 
     public function noAnggota()
@@ -23,6 +24,12 @@ class CarianController extends Controller
 
         $profiles = Profile::where('no_gaji', Request::get('no_gaji'))
             ->get();
+
+        if($profiles->isEmpty())
+        {
+            Session::flash('error', 'Gagal. No Gaji * ' . Request::get('no_gaji') . ' * tidak berdaftar sebagai ahli KOMADA.');
+            return Redirect::back()->withInput();
+        }
 
         $yurans = Yuran::where('no_gaji', Request::get('no_gaji'))
             ->where('bulan_tahun', 'like', '%' . Carbon::now()->format('Y'))

@@ -10,7 +10,7 @@ class Profile extends Model
     protected $primaryKey = 'no_anggota';
 
     protected $fillable = [
-        'no_gaji', 'no_anggota', 'nama', 'nokp', 'jantina_id', 'bangsa',
+        'no_gaji', 'no_anggota', 'jumlah_yuran_bulanan', 'jumlah_pertaruhan', 'nama', 'nokp', 'jantina_id', 'bangsa',
         'agama', 'email', 'alamat1', 'alamat2', 'tarikh_khidmat', 'tarikh_ahli',
         'jawatan', 'taraf_jawatan', 'status', 'profile_category_id', 'zon_gaji_id'
     ];

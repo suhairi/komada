@@ -167,6 +167,7 @@ class ProfileController extends Controller
 
     public function update($id)
     {
+//        return Request::all();
         $profile = Profile::where('no_anggota', Request::get('no_anggota'))
             ->first();
 
@@ -177,6 +178,8 @@ class ProfileController extends Controller
         $profile->nokp          = Request::get('nokp');
         $profile->email         = strtoupper(Request::get('email'));
         $profile->zon_gaji_id   = Request::get('zon_gaji_id');
+        $profile->jumlah_yuran_bulanan = number_format(Request::get('jumlah_yuran_bulanan'), 2);
+        $profile->jumlah_pertaruhan = number_format(Request::get('jumlah_pertaruhan'), 2);
 
 
 

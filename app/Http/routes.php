@@ -187,6 +187,22 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
 
     });
 
+    // Road Tax
+    Route::group(['prefix' => 'roadtax'], function() {
+
+        Route::get('index', [
+            'as'    => 'members.roadtax.index',
+            'uses'  => 'Members\RoadtaxController@index'
+        ]);
+
+        Route::post('index', [
+            'as'    => 'members.roadtax.index',
+            'uses'  => 'Members\RoadtaxController@indexPost'
+        ]);
+
+
+    });
+
 
     // LAPORAN
 

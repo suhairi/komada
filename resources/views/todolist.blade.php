@@ -2,12 +2,13 @@
 @section('content')
         <div class="container">
             <div class="row">
-                <div class="col-xs-6">
+                <div class="col-xs-6" id="global">
                     <div class="panel panel-primary">
                         <div class="panel-heading"><h4>Global</h4></div>
                         <div class="panel-body">
                             <ul>
                                 <li>+ function Batal Proses Yuran</li>
+                                <li>+ function Batal Bayaran yuran, pertaruhan</li>
                                 <li>+ function Backup</li>
                                 <li>icons</li>
                                 <li>Favicon</li>
@@ -101,6 +102,12 @@
             </div>
 
         </div>
+
+    <script>
+        $(document).ready(function () {
+            $('.global').hide();
+        });
+    </script>
 
 
 @stop

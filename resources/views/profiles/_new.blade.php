@@ -64,12 +64,16 @@
     {!! Form::date('tarikh_khidmat', null, ['class' => 'form-control']) !!}
 </div>
 
-
-
 <div class="form-group">
     <label for="jumlah">*Jumlah Potongan Yuran Bulanan (RM)</label>
     {!! Form::number('jumlah_yuran_bulanan', null, ['class' => 'form-control', 'placeholder' => 'Contoh: 10.00', 'min' => '0', 'step' => 'any']) !!}
 </div>
+
+<div class="form-group">
+    <label for="jumlah">Jumlah Pertaruhan</label>
+    {!! Form::number('jumlah_pertaruhan', null, ['class' => 'form-control', 'placeholder' => 'Contoh: 10.00', 'min' => '0', 'step' => 'any']) !!}
+</div>
+
 
 <div class="form-group">
     <label for="zon">*Zon Gaji</label>

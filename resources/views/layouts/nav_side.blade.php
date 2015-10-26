@@ -15,6 +15,7 @@
             <ul class="dropdown-menu">
 
                 <li><a href="{{ route('members.pinjaman.index') }}">Pinjaman Biasa</a></li>
+                <li><a href="{{ route('members.roadtax.index') }}">Cukai Jalan (Road Tax)</a></li>
                 <li><a href="#">Insurans</a></li>
                 <li><a href="#">Tayar / Bateri</a></li>
                 <li><a href="#">Buku Sekolah</a></li>

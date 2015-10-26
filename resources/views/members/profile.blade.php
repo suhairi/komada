@@ -32,6 +32,7 @@
                     <li>
                         <a data-toggle="tab" href="#biasa">Pinjaman Biasa</a>
                     </li>
+                    <li><a data-toggle="tab" href="#biasa">Cukai Jalan</a></li>
                     <li><a data-toggle="tab" href="#biasa">Insurans</a></li>
                     <li><a data-toggle="tab" href="#biasa">Tayar / Bateri</a></li>
                     <li><a data-toggle="tab" href="#biasa">Buku Sekolah</a></li>
