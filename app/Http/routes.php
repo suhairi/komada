@@ -105,6 +105,11 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
             'uses'  => 'Members\SettingsController@tka'
         ]);
 
+        Route::post('tka', [
+            'as'    => 'members.settings.tka',
+            'uses'  => 'Members\SettingsController@tkaPost'
+        ]);
+
     });
 
 
