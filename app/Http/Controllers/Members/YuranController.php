@@ -29,12 +29,16 @@ class YuranController extends Controller
 
         $totalAnggota = Profile::all()->count();
         $totalAnggotaAktif = Profile::where('status', 1)->count();
+        $totalAnggotaXAktif = Profile::where('status', 0)->count();
+        $totalAnggotaBaru = Profile::where('status', 1)->where('tarikh_ahli', 'like', Carbon::now()->format('Y-m') . '%')->count();
         $totalYuran = Yuran::where('bulan_tahun', 'like', Carbon::now()->format('m-Y') . '%')
             ->count();
 
         $count = [
             'totalAnggota' => $totalAnggota,
             'totalAnggotaAktif' => $totalAnggotaAktif,
+            'totalAnggotaXAktif'=> $totalAnggotaXAktif,
+            'totalAnggotaBaru'  => $totalAnggotaBaru,
             'totalYuran' => $totalYuran
         ];
 
@@ -65,7 +69,9 @@ class YuranController extends Controller
     {
         $tarikh = explode('-', Request::get('bulan_tahun'));
         $bulan_tahun = $tarikh[1] . '-' . $tarikh[0];
-        $profiles = Profile::where('status', 1)->get();
+        $profiles = Profile::where('status', 1)
+            ->where('tarikh_ahli', 'not like', Carbon::now()->format('Y-m') . '%')
+            ->get();
         $yuranTambahan = Yurantambahan::where('created_at', 'like', $bulan_tahun . '%')
             ->get();
 
@@ -85,6 +91,7 @@ class YuranController extends Controller
                     'no_gaji'       => $profile->no_gaji,
                     'bulan_tahun'   => Request::get('bulan_tahun'),
                     'yuran'         => $profile->jumlah_yuran_bulanan,
+                    'pertaruhan'    => $profile->jumlah_pertaruhan,
                     'tka'           => $tka->jumlah,
                     'takaful'       => '10.00',
                     'zon_gaji_id'   => $profile->zon_gaji_id
@@ -93,25 +100,7 @@ class YuranController extends Controller
 
         }
 
-        $yuranTambahans = Yurantambahan::where('created_at', 'like', Carbon::now()->format('Y') . '%')
-            ->orderBy('created_at', 'asc')
-            ->get();
-
-        $yuranBulanans = Yuran::where('bulan_tahun', 'like', Carbon::now()->format('m-Y') . '%')
-            ->first();
-
-        $totalAnggota = Profile::all()->count();
-        $totalAnggotaAktif = Profile::where('status', 1)->count();
-        $totalYuran = Yuran::where('bulan_tahun', 'like', Carbon::now()->format('m-Y') . '%')
-            ->count();
-
-        $count = [
-            'totalAnggota' => $totalAnggota,
-            'totalAnggotaAktif' => $totalAnggotaAktif,
-            'totalYuran' => $totalYuran
-        ];
-
-        return View('members.yuran', compact('yuranTambahans', 'yuranBulanans', 'count'));
+        return Redirect::route('members.yuran.index');
     }
 
 

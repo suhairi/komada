@@ -98,6 +98,17 @@
                     </div>
                 </div>
 
+                <div class="col-xs-3">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading"><h4>Soalan</h4></div>
+                        <div class="panel-body">
+                            <ul>
+                                <li>Adakah tempoh PWT fixed(12,24,36...60)?</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
 
             </div>
 

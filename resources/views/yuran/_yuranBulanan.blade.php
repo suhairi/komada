@@ -1,14 +1,25 @@
 <table class="table table-bordered">
     <tr>
         <th>Jumlah Anggota</th>
-        <th>Jumlah Anggota Aktif</th>
-        <th>Jumlah Anggota Yang telah Membuat Bayaran Yuran</th>
+        <td>{{ $count['totalAnggota'] }}</td>
     </tr>
     <tr>
-        <td>{{ $count['totalAnggota'] }}</td>
+        <th>Jumlah Anggota Aktif</th>
         <td>{{ $count['totalAnggotaAktif'] }}</td>
-        <td>{{ $count['totalYuran'] }}</td>
+    </tr>
+    <tr>
+        <th>Jumlah Anggota Tidak Aktif</th>
+        <td>{{ $count['totalAnggotaXAktif'] }}</td>
+    </tr>
 
+    <tr>
+        <th>Jumlah Anggota Bulan ini</th>
+        <td>{{ $count['totalAnggotaBaru'] }}</td>
+    </tr>
+
+    <tr>
+        <th>Jumlah Anggota Yang telah Membuat Bayaran Yuran</th>
+        <td>{{ $count['totalYuran'] }}</td>
     </tr>
 </table>
 

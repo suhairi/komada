@@ -17,6 +17,7 @@ class CreateYuranTable extends Migration
             $table->string('no_gaji', 10);
             $table->string('bulan_tahun');
             $table->float('yuran', 7, 2);
+            $table->float('pertaruhan', 7, 2);
             $table->float('tka', 7, 2);
             $table->float('takaful', 7, 2);
             $table->string('zon_gaji_id', 2);
