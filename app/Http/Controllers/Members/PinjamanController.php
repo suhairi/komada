@@ -22,11 +22,19 @@ class PinjamanController extends Controller
 
     public function proses()
     {
+        return Request::all();
+
         $validation = Validator::make(Request::all(), [
-            'no_gaji'        => 'required|numeric',
+            'no_gaji'           => 'required|numeric',
             'perkhidmatan_id'   => 'required|numeric',
             'jumlah'            => 'required|numeric',
-            'tempoh'            => 'required|numeric'
+            'tempoh'            => 'required|numeric',
+            'kadar'             => 'required|numeric',
+            'kadar_bulanan'     => 'required|numeric',
+            'byrn_perkhidmatan' => 'required|numeric',
+            'insurans'          => 'required|numeric',
+            'byrn_bulanan'      => 'required|numeric',
+            'jumlah_keseluruhan'=> 'required|numeric'
         ]);
 
         if($validation->fails())

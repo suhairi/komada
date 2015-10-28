@@ -2,7 +2,9 @@
     <div class="panel-heading"><h4>Maklumat Pinjaman (Kali Pertama)</h4></div>
     <div class="panel-body">
 
-        {!! Form::open() !!}
+        {!! Form::open(['route' => 'members.pinjaman.proses', 'method' => 'POST']) !!}
+
+        {!! Form::hidden('no_gaji', Session::get('no_gaji')) !!}
         <table class="table table-condensed table-hover">
             <tr>
                 <th>Jenis Pinjaman</th>
@@ -10,20 +12,20 @@
             </tr>
             <tr>
                 <th><div class="input-group">Jumlah Pinjaman (RM)</div></th>
-                <td>{!! Form::number('jumlah', '0.00', ['class' => 'form-control', 'step' => 'any', 'id' => 'jumlah', 'onkeyup' => 'calc()']) !!}</td>
+                <td>{!! Form::number('jumlah', '0.00', ['class' => 'form-control', 'step' => 'any', 'id' => 'jumlah', 'onkeyup' => 'calc()', 'required' => 'true']) !!}</td>
             </tr>
             <tr>
                 <th>Tempoh</th>
-                <td>{!! Form::select('Tempoh', ['12' => '12', '24' => '24', '36' => '36', '48' => '48', '60' => '60'], null, ['class' => 'form-control', 'id' => 'tempoh', 'placeholder' => 'Kadar', 'onchange' => 'calc()']) !!}</td>
+                <td>{!! Form::select('tempoh', ['12' => '12', '24' => '24', '36' => '36', '48' => '48', '60' => '60'], null, ['class' => 'form-control', 'id' => 'tempoh', 'placeholder' => 'Tempoh', 'onchange' => 'calc()', 'required' => 'true']) !!}</td>
             </tr>
             <tr>
                 <th>Kadar (setahun)</th>
-                <td>{!! Form::select('Kadar', ['4.0' => '4.0', '5.0' => '5.0', '6.0' => '6.0', '7.0' => '7.0', '8.0' => '8.0', '9.0' => '9.0'], '6.0', ['class' => 'form-control', 'id' => 'kadar_peratus', 'onchange' => 'calc()']) !!}</td>
+                <td>{!! Form::select('kadar', ['4.0' => '4.0', '5.0' => '5.0', '6.0' => '6.0', '7.0' => '7.0', '8.0' => '8.0', '9.0' => '9.0'], '6.0', ['class' => 'form-control', 'id' => 'kadar_peratus', 'onchange' => 'calc()']) !!}</td>
             </tr>
 
             <tr>
                 <th>Kadar Bulanan (RM)</th>
-                <td>{!! Form::number('Kadar', '0.00', ['class' => 'form-control', 'id' => 'kadar_bulanan', 'readonly' => true]) !!}</td>
+                <td>{!! Form::number('kadar_bulanan', '0.00', ['class' => 'form-control', 'id' => 'kadar_bulanan', 'readonly' => true]) !!}</td>
             </tr>
 
             <tr>
@@ -47,8 +49,8 @@
                 <th>Bayaran Bulanan</th>
                 <td>{!! Form::number('byrn_bulanan', '0.00', ['class' => 'form-control', 'id' => 'byrn_bulanan', 'readonly' => true]) !!}</td>
             </tr>
-
         </table>
+        <div align="right">@include('buttons._submit', ['value' => 'Proses Pinjaman'])</div>
         {!! Form::close() !!}
 
     </div>

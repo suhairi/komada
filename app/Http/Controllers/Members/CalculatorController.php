@@ -48,6 +48,8 @@ class CalculatorController extends Controller
             return Redirect::back()->withInput();
         }
 
+        Session::flash('no_gaji', Request::get('no_gaji'));
+
         return View('members.calculator.pwt_calculator', compact('akaun', 'found'));
     }
 }

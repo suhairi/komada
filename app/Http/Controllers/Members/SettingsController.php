@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Members;
 
+use App\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
@@ -59,4 +61,51 @@ class SettingsController extends Controller
         }
 
     }
+
+    public function pengguna()
+    {
+        $bil = 1;
+        $users = User::all();
+
+        return View('members.pengguna', compact('bil', 'users'));
+    }
+
+    public function penggunaPost()
+    {
+        $user = new User();
+
+        $user->name = Request::get('name');
+        $user->email = Request::get('email');
+        $user->password = Hash::make(Request::get('password'));
+
+        if($user->save())
+        {
+            Session::flash('success', 'Berjaya. Pengguna *' . Request::get('name') . '* berjaya didaftarkan.');
+            return Redirect::route('members.settings.pengguna');
+        }else {
+            Session::flash('fail', 'Gagal. Pengguna *' . Request::get('name') . '* gagal didaftarkan.');
+            return Redirect::back()->withInput();
+        }
+
+
+        return Request::all();
+    }
+
+    public function penggunaDelete($id)
+    {
+
+        $user = User::find($id);
+
+        if($user->delete())
+        {
+            Session::flash('success', 'Berjaya. Pengguna *' . $user->name . '* berjaya dihapus.');
+            return Redirect::route('members.settings.pengguna');
+        }else {
+            Session::flash('fail', 'Gagal. Pengguna *' . $user->name . '* gagal dihapus.');
+            return Redirect::back();
+        }
+        return $id;
+    }
+
+
 }

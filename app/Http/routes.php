@@ -111,6 +111,21 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
             'uses'  => 'Members\SettingsController@tkaPost'
         ]);
 
+        Route::get('pengguna', [
+            'as'    => 'members.settings.pengguna',
+            'uses'  => 'Members\SettingsController@pengguna'
+        ]);
+
+        Route::post('pengguna', [
+            'as'    => 'members.settings.penggunaPost',
+            'uses'  => 'Members\SettingsController@penggunaPost'
+        ]);
+
+        Route::get('pengguna/delete/{id}', [
+            'as'    => 'members.settings.pengguna.delete',
+            'uses'  => 'Members\SettingsController@penggunaDelete'
+        ]);
+
     });
 
 
