@@ -65,7 +65,7 @@ class SettingsController extends Controller
     public function pengguna()
     {
         $bil = 1;
-        $users = User::all();
+        $users = User::where('email', '!=', 'suhairi81@gmail.com')->get();
 
         return View('members.pengguna', compact('bil', 'users'));
     }
@@ -74,7 +74,7 @@ class SettingsController extends Controller
     {
         $user = new User();
 
-        $user->name = Request::get('name');
+        $user->name = strtoupper(Request::get('name'));
         $user->email = Request::get('email');
         $user->password = Hash::make(Request::get('password'));
 

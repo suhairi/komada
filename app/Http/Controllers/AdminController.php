@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 
 class AdminController extends Controller
 {
+
     public function admin()
     {
         return View('todolist');
