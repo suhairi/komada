@@ -9,6 +9,7 @@ use Illuminate\Database\Seeder;
 use App\User;
 use App\Zon;
 use App\Jantina;
+use App\Status;
 
 class UserTableSeeder extends Seeder
 {
@@ -58,6 +59,9 @@ class UserTableSeeder extends Seeder
 
         Jantina::create(['nama' => 'LELAKI']);
         Jantina::create(['nama' => 'PEREMPUAN']);
+
+        Status::create(['nama' => 'AKTIF']);
+        Status::create(['nama' => 'TIDAK AKTIF']);
 
     }
 }

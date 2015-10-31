@@ -9,6 +9,8 @@
                 <th>Tarikh Pinjaman</th>
                 <th>Jenis Pinjaman</th>
                 <th><div align="center">Jumlah</div></th>
+                <th>Kadar</th>
+                <th><div align="right">Jumlah Keseluruhan</div></th>
                 <th><div align="center">Pilihan</div></th>
             </tr>
             </thead>
@@ -19,6 +21,8 @@
                 <td>{{ $biasa->created_at->format('d M Y') }}</td>
                 <td>{{ $biasa->perkhidmatan->nama }}</td>
                 <td align="right">{{ number_format($biasa->jumlah, 2) }}</td>
+                <td align="right">{{ number_format($biasa->kadar, 2) }}</td>
+                <td align="right">{{ number_format($biasa->jumlah_keseluruhan, 2) }}</td>
                 <td align="center"><a href="{{ route('members.penyata.potongan', ['id' => $biasa->id]) }}"><button class="btn btn-default">Details</button></a></td>
             </tr>
         @empty

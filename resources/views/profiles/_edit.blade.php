@@ -20,7 +20,7 @@
 
 <div class="form-group">
     <label for="jantina">Jantina</label>
-    {!! Form::select('jantina', $jantina, null, ['class' => 'form-control']) !!}
+    {!! Form::select('jantina_id', $jantina, null, ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">
@@ -43,20 +43,33 @@
     {!! Form::select('zon_gaji_id', $zon, null, ['class' => 'form-control']) !!}
 </div>
 
-@if($profile->status != 0)
-    <div class="form-group">
-        <label for="status">Status</label>
-        {!! Form::select('status', $status, $profile->status, ['class' => 'form-control']) !!}
-    </div>
 
-    <div class="form-group">
-        <label for="catatan">Catatan</label>
-        {!! Form::textarea('catatan', null, ['class' => 'form-control', 'rows' => 4, 'placeholder' => 'Sila isi jika mengubah status kepada TIDAK AKTIF. Contoh : BERSARA']) !!}
-    </div>
-@endif
+<div class="form-group">
+    <label for="status">Status</label>
+    {!! Form::select('status', $status, $profile->status, ['class' => 'form-control', 'id' => 'status']) !!}
+</div>
+
+<div class="form-group" id="catatan">
+    <label for="catatan">*Catatan</label>
+    {!! Form::textarea('catatan', null, ['class' => 'form-control', 'rows' => 4, 'placeholder' => 'Sila isi jika mengubah status kepada TIDAK AKTIF. Contoh : BERSARA']) !!}
+</div>
+
 
 <div class="form-group">
     <div align="right">
         @include('buttons._kemaskini', ['value' => 'Kemaskini Profile'])
     </div>
 </div>
+
+<script>
+
+    $('#catatan').hide();
+
+    $(function(){
+
+        $('#status').change(function() {
+            $('#catatan').show();
+        });
+
+    });
+</script>

@@ -8,7 +8,6 @@
             <div class="panel panel-primary">
                 <div class="panel-heading"><h4>Ringkasan Potongan Bulanan</h4></div>
                 <div class="panel-body">
-                    {{--{{ dd($akaun) }}--}}
                     <table class="table table-bordered">
                         <tr class="alert alert-info">
                             <th>Keterangan</th>
@@ -16,24 +15,23 @@
                         </tr>
                         <tr>
                             <th>Tarikh Pinjaman</th>
-                            <?php //$tarikh = Carbon\Carbon::createFromFormat('d m Y', $akaun['created_at']); ?>
-                            <td>{{ $akaun['created_at'] }}</td>
+                            <td>{{ $akaunPotongan->created_at->format('d-m-Y') }}</td>
                         </tr>
                         <tr>
                             <th>Jumlah</th>
-                            <td>{{ $akaun['jumlah'] }}</td>
+                            <td>{{ $akaunPotongan->jumlah }}</td>
                         </tr>
                         <tr>
                             <th>Tempoh (bulan)</th>
-                            <td>{{ $akaun['tempoh'] }}</td>
+                            <td>{{ $akaunPotongan->tempoh }}</td>
                         </tr>
                         <tr>
                             <th>Jumlah Bayaran (RM)</th>
-                            <td>0.00</td>
+                            <td>{{ $akaunPotongan->jumlah_keseluruhan }}</td>
                         </tr>
                         <tr>
                             <th>Baki (RM)</th>
-                            <td>{{ $akaun['jumlah'] }}</td>
+                            <td>{{ $akaunPotongan->baki }}</td>
                         </tr>
                     </table>
 
@@ -55,6 +53,13 @@
                             <th>Bayaran (RM)</th>
                         </tr>
                         </thead>
+                        <tbody>
+                        <tr>
+                            <td>1.</td>
+                            <td>10 2015</td>
+                            <td>RM 55.00</td>
+                        </tr>
+                        </tbody>
                     </table>
                 </div>
             </div>

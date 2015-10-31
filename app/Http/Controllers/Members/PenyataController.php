@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Members;
 
 use App\AkaunPotongan;
+use App\Potongan;
 use Request;
 use App\Http\Controllers\Controller;
 
@@ -13,8 +14,9 @@ class PenyataController extends Controller
 
         $akaunPotongan = AkaunPotongan::findOrFail($id);
 
-        $akaun = $akaunPotongan->toArray();
+        $potongan = Potongan::where('no_gaji', $akaunPotongan->no_gaji)
+            ->first();
 
-        return View('members.penyata.wangtunai', compact('akaun'));
+        return View('members.penyata.wangtunai', compact('akaunPotongan', 'potongan'));
     }
 }

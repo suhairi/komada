@@ -20,11 +20,11 @@ class CalculatorController extends Controller
     {
 
         $found = false;
-        $akaun = AkaunPotongan::where('no_gaji', Request::get('no_gaji'))
+        $akaunPotongan = AkaunPotongan::where('no_gaji', Request::get('no_gaji'))
             ->where('status', 1)
             ->get();
 
-        if(!$akaun->isEmpty())
+        if(!$akaunPotongan->isEmpty())
             $found = true;
 
         // check if the no_gaji one of ahli komada
@@ -50,6 +50,6 @@ class CalculatorController extends Controller
 
         Session::flash('no_gaji', Request::get('no_gaji'));
 
-        return View('members.calculator.pwt_calculator', compact('akaun', 'found'));
+        return View('members.calculator.pwt_calculator', compact('akaunPotongan', 'found'));
     }
 }

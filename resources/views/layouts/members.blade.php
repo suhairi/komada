@@ -16,16 +16,7 @@
     {{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">--}}
 
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}" >
-
-<!-- ##################################################### -->
-
-
-    <script src="{{ asset('js/react/vendor.js') }}"></script>
-    <script src="{{ asset('js/react/app.js') }}"></script>
-    <script>
-        require("initialize");
-    </script>
-<!-- ##################################################### -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -48,7 +39,7 @@
 
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 

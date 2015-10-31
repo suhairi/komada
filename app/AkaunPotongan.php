@@ -25,4 +25,9 @@ class AkaunPotongan extends Model
     {
         return $this->hasOne('App\Perkhidmatan', 'id', 'perkhidmatan_id');
     }
+
+    public function getStatus()
+    {
+        return $this->hasOne('App\Status', 'id', 'status');
+    }
 }

@@ -108,6 +108,7 @@ class ProfileController extends Controller
         $profile->jumlah_yuran_bulanan = Request::get('jumlah_yuran_bulanan');
         $profile->nama = strtoupper(Request::get('nama'));
         $profile->tarikh_ahli = Carbon::now();
+        $profile->jantina_id = Request::get('jantina_id');
         $profile->alamat1 = strtoupper(Request::get('alamat1'));
         $profile->alamat2 = strtoupper(Request::get('alamat2'));
         $profile->jawatan = strtoupper(Request::get('jawatan'));
@@ -171,32 +172,32 @@ class ProfileController extends Controller
         $profile = Profile::where('no_anggota', Request::get('no_anggota'))
             ->first();
 
-        if(Request::get('status') == 0)
+        if (Request::get('status') == 0)
             $profile->status = 0;
 
-        $profile->nama          = strtoupper(Request::get('nama'));
-        $profile->nokp          = Request::get('nokp');
-        $profile->email         = strtoupper(Request::get('email'));
-        $profile->zon_gaji_id   = Request::get('zon_gaji_id');
+        $profile->nama = strtoupper(Request::get('nama'));
+        $profile->nokp = Request::get('nokp');
+        $profile->email = strtoupper(Request::get('email'));
+        $profile->jantina_id = Request::get('jantina_id');
+        $profile->zon_gaji_id = Request::get('zon_gaji_id');
         $profile->jumlah_yuran_bulanan = number_format(Request::get('jumlah_yuran_bulanan'), 2);
         $profile->jumlah_pertaruhan = number_format(Request::get('jumlah_pertaruhan'), 2);
+        $profile->status = Request::get('status');
 
 
-
-        if($profile->save())
+        if ($profile->save())
         {
-            if(Request::get('status') == 0)
-            {
+            Session::flash('success', 'Berjaya. Profile berjaya dikemaskini');
+            if (Request::get('status') == 0 && Request::get('status') != '') {
                 Inactive::create([
-                    'no_anggota'    => Request::get('no_anggota'),
-                    'status'        => 1,
-                    'catatan'       => strtoupper(Request::get('catatan'))
+                    'no_anggota' => Request::get('no_anggota'),
+                    'status' => 1,
+                    'catatan' => strtoupper(Request::get('catatan'))
                 ]);
+                Session::flash('error', 'Gagal. Status gagal di kemaskini. Pastikan ruangan catatan telah diisi');
             }
-
-            Session::flash('success', 'Berjaya. Kemaskini Profil');
         } else {
-            Session::flash('error', 'Gagal. Kemaskini Profil');
+            Session::flash('error', 'Gagal. Kemaskini Profil gagal dikemaskini.');
         }
 
         return Redirect::route('members.profiles.edit', Request::get('no_anggota'));
