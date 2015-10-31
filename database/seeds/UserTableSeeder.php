@@ -10,6 +10,7 @@ use App\User;
 use App\Zon;
 use App\Jantina;
 use App\Status;
+use App\Takaful;
 
 class UserTableSeeder extends Seeder
 {
@@ -62,6 +63,8 @@ class UserTableSeeder extends Seeder
 
         Status::create(['nama' => 'AKTIF']);
         Status::create(['nama' => 'TIDAK AKTIF']);
+
+        Takaful::create(['jumlah' => '10.00', 'status' => 1]);
 
     }
 }

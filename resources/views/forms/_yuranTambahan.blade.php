@@ -24,6 +24,6 @@
     </div>
 
     <div align="right">
-        @include('buttons._submit', ['value' => "Daftar Yuran Tambahan"])
+        @include('buttons._submit', ['value' => "Daftar Sumbangan"])
     </div>
 {!! Form::close() !!}

@@ -39,6 +39,7 @@
                                 <li><strike>During register, add jumlah potongan yuran, profile category id, zon gaji.</strike></li>
                                 <li><strike>After Carian Profile, yuran tab does not list along sumbngan lain.</strike></li>
                                 <li><strike>Kemaskini profil tak update jantina</strike></li>
+                                <li>Adakah Anggota yg masuk bulan semasa perlu terus byr yuran?</li>
                             </ul>
                         </div>
                     </div>

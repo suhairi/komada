@@ -8,7 +8,7 @@ class Yuran extends Model
 {
     protected $table = 'yuran';
     protected $primaryKey = 'id';
-    protected $fillable = ['no_gaji', 'bulan_tahun', 'yuran', 'tka', 'takaful', 'zon_gaji_id'];
+    protected $fillable = ['no_gaji', 'bulan_tahun', 'yuran', 'tka', 'takaful', 'potongan', 'zon_gaji_id'];
 
     public function Profile()
     {

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Members;
 
+use App\Potongan;
 use App\Sumbangan;
 use App\Tka;
+use App\Takaful;
 use Illuminate\Support\Facades\Redirect;
 use Request;
 
@@ -67,25 +69,22 @@ class YuranController extends Controller
 
     public function yuranProcess()
     {
-        $tarikh = explode('-', Request::get('bulan_tahun'));
-        $bulan_tahun = $tarikh[1] . '-' . $tarikh[0];
+
         $profiles = Profile::where('status', 1)
             ->where('tarikh_ahli', 'not like', Carbon::now()->format('Y-m') . '%')
-            ->get();
-        $yuranTambahan = Yurantambahan::where('created_at', 'like', $bulan_tahun . '%')
             ->get();
 
         foreach($profiles as $profile)
         {
-            $yuran = Yuran::where('bulan_tahun', $bulan_tahun)
-                ->where('no_gaji', $profile->no_gaji)
-                ->first();
-
+            $jumlahPotongan = '0.00';
             $tka = Tka::where('status', 1)->first();
+            $takaful = Takaful::where('status', 1)->first();
+            $potongan = Potongan::where('no_gaji', $profile->no_gaji)->first();
 
-//            return $profile->zon_gaji_id;
+            if(!empty($potongan))
+                $jumlahPotongan = (float)number_format($potongan->jumlah, 2);
 
-            if(empty($yuran))
+            if(!$this->checkPotongan($profile->no_gaji))
             {
                 Yuran::create([
                     'no_gaji'       => $profile->no_gaji,
@@ -93,7 +92,8 @@ class YuranController extends Controller
                     'yuran'         => $profile->jumlah_yuran_bulanan,
                     'pertaruhan'    => $profile->jumlah_pertaruhan,
                     'tka'           => $tka->jumlah,
-                    'takaful'       => '10.00',
+                    'takaful'       => $takaful->jumlah,
+                    'potongan'      => $jumlahPotongan,
                     'zon_gaji_id'   => $profile->zon_gaji_id
                 ]);
             }
@@ -103,5 +103,23 @@ class YuranController extends Controller
         return Redirect::route('members.yuran.index');
     }
 
+    // Check Potongan Bulan semasa telah dibuat atau belum
+    protected function checkPotongan($no_gaji)
+    {
+        $bulan = Carbon::now()->format('m');
+        $tahun = Carbon::now()->format('Y');
+
+        if($bulan < 10)
+            $bulan = '0' . $bulan;
+
+        $yuran = Yuran::where('bulan_tahun', $bulan . '-' . $tahun)
+            ->where('no_gaji', $no_gaji)
+            ->get();
+
+        if($yuran->isEmpty())
+            return false;
+        else
+            return true;
+    }
 
 }
