@@ -20,6 +20,7 @@ class CreateYuranTable extends Migration
             $table->float('pertaruhan', 7, 2);
             $table->float('tka', 7, 2);
             $table->float('takaful', 7, 2);
+            $table->float('potongan', 7, 2);
             $table->string('zon_gaji_id', 2);
             $table->timestamps();
         });

@@ -7,7 +7,7 @@
     </ul>
 
     <ul class="nav nav-sidebar">
-        <li><a href="{{ route('members.yuran') }}"><i class="glyphicon glyphicon-credit-card"></i> Yuran</a></li>
+        <li><a href="{{ route('members.yuran.index') }}"><i class="glyphicon glyphicon-credit-card"></i> Yuran</a></li>
         <li><a href="#"><i class="glyphicon glyphicon-credit-card"></i> Pinjaman</a></li>
         <li class="dropdown-menu-left">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -22,8 +22,6 @@
             </ul>
         </li>
     </ul>
-
-
 
     <ul class="nav nav-sidebar">
         <li><a href="{{ route('members.laporan.carian') }}"><i class="glyphicon glyphicon-file"></i> Laporan Yuran</a></li>

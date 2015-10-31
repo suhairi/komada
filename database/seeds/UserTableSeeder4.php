@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use App\Profile;
 use Carbon\Carbon;
 use App\Yuran;
+use App\Potongan;
 
 class UserTableSeeder4 extends Seeder
 {
@@ -71,6 +72,7 @@ class UserTableSeeder4 extends Seeder
                         else
                             $bulan_tahun = $j . '-' . $i;
 
+
                         if($bulan_tahun != '10-2015')
                         {
                             Yuran::create([
@@ -79,6 +81,7 @@ class UserTableSeeder4 extends Seeder
                                 'yuran'         => $profile->jumlah_yuran_bulanan,
                                 'tka'           => $tka->jumlah,
                                 'takaful'       => '10.00',
+                                'potongan'      => 0.00,
                                 'zon_gaji_id'   => $profile->zon_gaji_id,
                                 'created_at'    => Carbon::createFromDate($i, $j, '25'),
                                 'updated_at'    => Carbon::createFromDate($i, $j, '25')

@@ -171,7 +171,7 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
     //Yuran
 
     Route::get('/yuran', [
-        'as'    => 'members.yuran',
+        'as'    => 'members.yuran.index',
         'uses'  => 'Members\YuranController@index'
     ]);
 

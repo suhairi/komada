@@ -35,7 +35,7 @@
 
             <tr>
                 <th>Bayaran Perkhidmatan</th>
-                <td>{!! Form::number('byrn_perkhidmatan', '0.00', ['class' => 'form-control', 'id' => 'byrn_perkhidmatan', 'readonly' => true]) !!}</td>
+                <td>{!! Form::number('caj_perkhidmatan', '0.00', ['class' => 'form-control', 'id' => 'byrn_perkhidmatan', 'readonly' => true]) !!}</td>
             </tr>
             <tr>
                 <th>Insurans</th>
@@ -43,7 +43,7 @@
             </tr>
             <tr>
                 <th>Jumlah yang Perlu Dibayar</th>
-                <td>{!! Form::number('jumlah_perlu_bayar', '0.00', ['class' => 'form-control', 'readonly' => true, 'id' => 'jumlah_perlu_bayar']) !!}</td>
+                <td>{!! Form::number('jumlah_keseluruhan', '0.00', ['class' => 'form-control', 'readonly' => true, 'id' => 'jumlah_perlu_bayar']) !!}</td>
             </tr>
             <tr>
                 <th>Bayaran Bulanan</th>

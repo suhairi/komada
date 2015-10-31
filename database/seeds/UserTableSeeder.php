@@ -20,6 +20,7 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         User::create(array('name' => 'Suhairi Abdul Hamid', 'email' => 'suhairi81@gmail.com', 'password' => Hash::make('suhairi')));
+        User::create(array('name' => 'Nona Azizah', 'email' => 'azizah@gmail.com', 'password' => Hash::make('azizah')));
 
         Perkhidmatan::create(array("nama" => "WANG TUNAI"));
         Perkhidmatan::create(array("nama" => "CUKAI JALAN"));
@@ -55,8 +56,8 @@ class UserTableSeeder extends Seeder
         Zon::create(['kod' => '13', 'nama' => 'WILAYAH 3']);
         Zon::create(['kod' => '14', 'nama' => 'WILAYAH 4']);
 
-        Jantina::create(['nama' => 'L']);
-        Jantina::create(['nama' => 'P']);
+        Jantina::create(['nama' => 'LELAKI']);
+        Jantina::create(['nama' => 'PEREMPUAN']);
 
     }
 }
