@@ -45,7 +45,7 @@
                 @include('profiles._profile')
             </div>
             <div id="yuran" class="tab-pane fade">
-                @include('profiles._yuran_')
+                @include('profiles._yuran')
             </div>
             <div id="biasa" class="tab-pane fade">
                 @include('profiles._biasa')
