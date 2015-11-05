@@ -9,6 +9,7 @@
                             <ul>
                                 <li>+ function Batal Proses Yuran</li>
                                 <li>+ function Batal Bayaran yuran, pertaruhan</li>
+                                <li>+ function penyelesaian pinjaman awal</li>
                                 <li>+ function Backup</li>
                                 <li>icons</li>
                                 <li>Favicon</li>
