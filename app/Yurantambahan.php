@@ -9,7 +9,8 @@ class Yurantambahan extends Model
 {
     protected $table = 'yurantambahan';
     protected $primaryKey = 'id';
-    protected $fillable = ['jumlah', 'sumbangan_id', 'penerima', 'no_gaji', 'created_at', 'updated_at'];
+    protected $fillable = ['jumlah', 'sumbangan_id', 'tarikh', 'penerima', 'no_gaji', 'created_at', 'updated_at'];
+    protected $dates = ['tarikh'];
 
     public function sumbangan()
     {

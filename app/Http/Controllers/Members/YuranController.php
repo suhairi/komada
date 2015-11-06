@@ -60,11 +60,12 @@ class YuranController extends Controller
             'jumlah'        => Request::get('jumlah'),
             'sumbangan_id'  => Request::get('sumbangan_id'),
             'no_gaji'       => Request::get('no_gaji'),
+            'tarikh'        => Request::get('tarikh'),
             'penerima'      => strtoupper(Request::get('penerima')),
             'created_at'    => $created_at
         ]);
 
-        return redirect()->route('members.yuran');
+        return redirect()->route('members.yuran.index');
     }
 
     public function yuranProcess()

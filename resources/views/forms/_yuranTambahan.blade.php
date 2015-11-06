@@ -19,6 +19,13 @@
     </div>
 
     <div class="form-group">
+        <label for="tarikhKematian">Tarikh Kematian / Bencana / Daftar IPT</label>
+        {!! Form::date('tarikh', null, ['class' => 'form-control', 'placeholder' => 'Contoh : 10.00']) !!}
+    </div>
+
+
+
+    <div class="form-group">
         <label for="Nama Penerima">Nama Penerima</label>
         {!! Form::text('penerima', null, ['class' => 'form-control', 'placeholder' => 'Contoh : Ahmad bin Abdullah']) !!}
     </div>
