@@ -8,9 +8,9 @@
                 <th>Bil</th>
                 <th>Tarikh Pinjaman</th>
                 <th>Jenis Pinjaman</th>
-                <th><div align="center">Jumlah</div></th>
-                <th>Kadar</th>
-                <th><div align="right">Jumlah Keseluruhan</div></th>
+                <th><div align="right">Jumlah Pinjaman (RM)</div></th>
+                <th><div align="right">Kadar (%)</div></th>
+                <th><div align="right">Jumlah Keseluruhan (RM)</div></th>
                 <th><div align="center">Pilihan</div></th>
             </tr>
             </thead>
@@ -27,7 +27,7 @@
             </tr>
         @empty
             <tr>
-                <td colspan="5" class="alert alert-danger">Tiada Pinjaman Wang Tunai</td>
+                <td colspan="7" class="alert alert-danger">Tiada Pinjaman Wang Tunai</td>
             </tr>
         @endforelse
             </tbody>

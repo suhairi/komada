@@ -63,6 +63,16 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
         'uses'  => 'Members\ProfileController@biasa'
     ]);
 
+    Route::get('pertaruhan', [
+        'as'    => 'members.pertaruhan.index',
+        'uses'  => 'Members\PertaruhanController@index'
+    ]);
+
+    Route::post('pertaruhan', [
+        'as'    => 'members.pertaruhan.index',
+        'uses'  => 'Members\PertaruhanController@indexPost'
+    ]);
+
     // Change Password
     Route::get('password', [
         'as'    => 'members.password',
