@@ -22,5 +22,11 @@ class LaporanController extends Controller
         return View('members.laporan.kadAhli', compact('bil', 'profile'));
     }
 
+    public function potonganGaji()
+    {
+
+        return View('members.laporan.potonganGaji');
+    }
+
 
 }

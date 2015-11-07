@@ -35,16 +35,6 @@
                             @endif
                         @endforeach
                     </td>
-                    {{--<td>--}}
-                        {{--<!-- looping for keterangan sumbangan tambahan -->--}}
-                        {{--@foreach($yuranTambahan as $tambahan)--}}
-                            {{--@if(strpos($yuran->bulan_tahun, $tambahan['bulan'] . '-') !== false)--}}
-                                {{--<strong>{{ $tambahan['catatan'] }} </strong> - {{ $tambahan['nama'] }} <br />--}}
-                                {{--(<strong>Penerima : </strong>{{ $tambahan['penerima'] }}) <br />--}}
-                            {{--@endif--}}
-                        {{--@endforeach--}}
-                    {{--</td>--}}
-
                     <td align="right">{{ number_format($total, 2) }}</td>
                     <?php $grandTotal += $total + $yuran->jumlah; ?>
                 </tr>

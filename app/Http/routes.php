@@ -239,9 +239,9 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
 
     Route::group(['prefix' => 'laporan'], function () {
 
-        Route::get('carian', [
-            'as'    => 'members.laporan.carian',
-            'uses'  => 'Members\LaporanController@carian'
+        Route::get('potonganGaji', [
+            'as'    => 'members.laporan.potonganGaji',
+            'uses'  => 'Members\LaporanController@potonganGaji'
         ]);
 
         Route::post('carian', [
