@@ -7,9 +7,10 @@
                 <th width="150"><div align="right">Yuran (RM)</div></th>
                 <th width="150"><div align="right">TKA (RM)</div></th>
                 <th width="150"><div align="right">Takaful (RM)</div></th>
+                <th width="150"><div align="right">Pertaruhan (RM)</div></th>
                 <th width="150"><div align="right">Potongan (RM)</div></th>
                 <th width="150"><div align="right">Yuran Tambahan (RM)</div></th>
-                <th><div align="center">Keterangan</div></th>
+                {{--<th><div align="center">Keterangan</div></th>--}}
                 <th width="150"><div align="center">JUMLAH</div></th>
 
             </tr>
@@ -21,25 +22,28 @@
                     <td align="right">{{ number_format($yuran->yuran, 2) }}</td>
                     <td align="right">{{ number_format($yuran->tka, 2) }}</td>
                     <td align="right">{{ number_format($yuran->takaful, 2) }}</td>
+                    <td align="right">{{ number_format($yuran->pertaruhan, 2) }}</td>
                     <td align="right">{{ number_format($yuran->potongan, 2) }}</td>
                     <?php $total += $yuran->yuran + $yuran->tka + $yuran->takaful + $yuran->potongan; ?>
                     <td align="right">
                         @foreach($yuranTambahan as $tambahan)
                             @if(strpos($yuran->bulan_tahun, $tambahan['bulan'] . '-') !== false)
-                                {{ number_format($tambahan['jumlah'], 2) }} <br /><br />
+                                <span title="Kematian : {{ $tambahan['nama'] }} ({{ $tambahan['no_gaji'] }}); Penerima : {{ $tambahan['penerima'] }}">
+                                    {{ number_format($tambahan['jumlah'], 2) }}
+                                </span> <br /><br />
                                 <?php $total += $tambahan['jumlah']; ?>
                             @endif
                         @endforeach
                     </td>
-                    <td>
-                        <!-- looping for keterangan sumbangan tambahan -->
-                        @foreach($yuranTambahan as $tambahan)
-                            @if(strpos($yuran->bulan_tahun, $tambahan['bulan'] . '-') !== false)
-                                <strong>{{ $tambahan['catatan'] }} </strong> - {{ $tambahan['nama'] }} <br />
-                                (<strong>Penerima : </strong>{{ $tambahan['penerima'] }}) <br />
-                            @endif
-                        @endforeach
-                    </td>
+                    {{--<td>--}}
+                        {{--<!-- looping for keterangan sumbangan tambahan -->--}}
+                        {{--@foreach($yuranTambahan as $tambahan)--}}
+                            {{--@if(strpos($yuran->bulan_tahun, $tambahan['bulan'] . '-') !== false)--}}
+                                {{--<strong>{{ $tambahan['catatan'] }} </strong> - {{ $tambahan['nama'] }} <br />--}}
+                                {{--(<strong>Penerima : </strong>{{ $tambahan['penerima'] }}) <br />--}}
+                            {{--@endif--}}
+                        {{--@endforeach--}}
+                    {{--</td>--}}
 
                     <td align="right">{{ number_format($total, 2) }}</td>
                     <?php $grandTotal += $total + $yuran->jumlah; ?>

@@ -46,20 +46,22 @@ class CarianController extends Controller
             else
                 $bulan = $i;
 
-            $yuranTambahans = Yurantambahan::where('created_at', 'like', Carbon::now()->format('Y-') . $bulan . '%')
+            $yuranTambahans = Yurantambahan::where('created_at', 'like', Carbon::now()->format('Y') . '-' . $bulan . '%')
                 ->orderBy('created_at', 'asc')
                 ->get();
 
             foreach($yuranTambahans as $tambahan)
                 array_push($yuranTambahan, [
-                    'bulan' => $bulan,
-                    'nama' => $tambahan->nama,
-                    'catatan' => $tambahan->sumbangan->nama,
-                    'penerima' => $tambahan->penerima,
-                    'jumlah' => $tambahan->jumlah
+                    'bulan'     => $bulan,
+                    'no_gaji'   => $tambahan->no_gaji,
+                    'nama'      => $tambahan->profileName($tambahan->no_gaji),
+                    'catatan'   => $tambahan->sumbangan->nama,
+                    'penerima'  => $tambahan->penerima,
+                    'tarikh'    => $tambahan->tarikh,
+                    'jumlah'    => $tambahan->jumlah
                 ]);
 
-            if($i == Carbon::now()->format('m') - 1)
+            if($i == Carbon::now()->format('m'))
                 $i = 13;
         }
 
@@ -67,7 +69,7 @@ class CarianController extends Controller
         $biasas = AkaunPotongan::where('no_gaji', Request::get('no_gaji'))
             ->get();
 
-//        return 'here';
+//        dd($yuranTambahan);
 
         return View('members.profile', compact('bil', 'profiles', 'yurans', 'yuranTambahan', 'biasas'));
     }

@@ -7,6 +7,7 @@ use App\Sumbangan;
 use App\Tka;
 use App\Takaful;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 use Request;
 
 use App\Profile;
@@ -49,6 +50,7 @@ class YuranController extends Controller
         return View('members.yuran', compact('yuranTambahans', 'yuranBulanans', 'count', 'totalTambahan', 'sumbangan'));
     }
 
+    // Merekod Yuran Tambahan
     public function yuranTambahan()
     {
         $tarikh = explode('-', Request::get('bulan_tahun'));
@@ -64,6 +66,12 @@ class YuranController extends Controller
             'penerima'      => strtoupper(Request::get('penerima')),
             'created_at'    => $created_at
         ]);
+
+        $profile = Profile::where('no_gaji', Request::get('no_gaji'))->first();
+        $profile->status = 0;
+        $profile->save();
+
+        Session::flash('success', 'Berjaya. Yuran Tambahan berjaya didaftarkan dan Anggota telah di nyah-aktifkan.');
 
         return redirect()->route('members.yuran.index');
     }
@@ -85,16 +93,17 @@ class YuranController extends Controller
             if(!empty($potongan))
                 $jumlahPotongan = (float)number_format($potongan->jumlah, 2);
 
+
             if(!$this->checkPotongan($profile->no_gaji))
             {
                 Yuran::create([
                     'no_gaji'       => $profile->no_gaji,
                     'bulan_tahun'   => Request::get('bulan_tahun'),
-                    'yuran'         => $profile->jumlah_yuran_bulanan,
-                    'pertaruhan'    => $profile->jumlah_pertaruhan,
-                    'tka'           => $tka->jumlah,
-                    'takaful'       => $takaful->jumlah,
-                    'potongan'      => $jumlahPotongan,
+                    'yuran'         => number_format($profile->jumlah_yuran_bulanan, 2),
+                    'pertaruhan'    => number_format($profile->jumlah_pertaruhan, 2),
+                    'tka'           => number_format($tka->jumlah, 2),
+                    'takaful'       => number_format($takaful->jumlah, 2),
+                    'potongan'      => number_format($jumlahPotongan, 2),
                     'zon_gaji_id'   => $profile->zon_gaji_id
                 ]);
             }

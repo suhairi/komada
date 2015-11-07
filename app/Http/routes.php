@@ -73,6 +73,12 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
         'uses'  => 'Members\PertaruhanController@indexPost'
     ]);
 
+    Route::post('pertaruhan/daftar', [
+        'as'    => 'members.pertaruhan.daftarPost',
+        'uses'  => 'Members\PertaruhanController@daftarPost'
+    ]);
+
+
     // Change Password
     Route::get('password', [
         'as'    => 'members.password',
