@@ -15,7 +15,6 @@ class UserController extends Controller
 
     public function index()
     {
-//        $profiles = null;
         return View('members.index');
     }
 

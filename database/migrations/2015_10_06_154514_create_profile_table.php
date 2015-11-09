@@ -25,7 +25,7 @@ class CreateProfileTable extends Migration
             $table->text('alamat1');
             $table->text('alamat2');
             $table->date('tarikh_khidmat');
-            $table->date('tarikh_ahli');
+            $table->string('tarikh_ahli', 15);
             $table->string('jawatan');
             $table->string('taraf_jawatan');
             $table->tinyInteger('status', false, true)->default(1);

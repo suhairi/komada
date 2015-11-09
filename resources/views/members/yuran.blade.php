@@ -22,7 +22,9 @@
                     @forelse($yuranTambahans as $yuranTambahan)
                         @include('yuran._yuranTambahan')
                     @empty
-                        @include('yuran._yuranTambahan')
+                        <tr>
+                            <td colspan="4">Tiada data bulan ini.</td>
+                        </tr>
                     @endforelse
                         </tbody>
                     </table>

@@ -32,7 +32,7 @@
             </tr>
             <tr>
                 <th>Jawatan</th>
-                <td>{{ $profile->nama }}<br /> {{ $profile->taraf_jawatan }}</td>
+                <td>{{ $profile->taraf_jawatan }} - {{ $profile->jawatan }}</td>
             </tr>
             <tr>
                 <th>Tarikh Mula Berkhidmat</th>

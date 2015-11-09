@@ -10,7 +10,7 @@
     </div>
     <div class="form-group">
         <label for="bulan_tahun">Jumlah</label>
-        <input class="form-control" type="text" name="jumlah" placeholder="Contoh: 10.00" />
+        <input class="form-control" type="text" name="jumlah" value="10.00" placeholder="Contoh: 10.00" />
     </div>
     <div class="form-group">
         <label for="bulan_tahun">Catatan</label>

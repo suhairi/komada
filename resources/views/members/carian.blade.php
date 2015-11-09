@@ -18,51 +18,46 @@
         </div>
     </div>
 
-    @if($profiles)
-        @forelse($profiles as $profile)
-            <ul class="nav nav-tabs">
-                <li role="presentation" class="active">
-                    <a data-toggle="tab" href="#profil"><i class="glyphicon glyphicon-user"></i>Profil</a>
-                </li>
-                <li role="presentation"><a data-toggle="tab" href="#yuran">Yuran</a></li>
-                <li role="presentation" class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                        Pinjaman <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        {{--<li role="presentation"><a data-toggle="tab" href="#menu2"> Insurans</a></li>--}}
-                        {{--<li role="presentation"><a href="#">Tayar / Bateri</a></li>--}}
-                        {{--<li role="presentation"><a href="#">Buku Sekolah</a></li>--}}
-                        <li><a href="#">Pinjaman Biasa</a></li>
-                        <li><a href="#">Insurans</a></li>
-                        <li><a href="#">Tayar / Bateri</a></li>
-                        <li><a href="#">Buku Sekolah</a></li>
-                    </ul>
-                </li>
-            </ul>
+    @forelse($profiles as $profile)
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="active">
+                <a data-toggle="tab" href="#profil"><i class="glyphicon glyphicon-user"></i>Profil</a>
+            </li>
+            <li role="presentation"><a data-toggle="tab" href="#yuran">Yuran</a></li>
+            <li role="presentation" class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    Pinjaman <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Pinjaman Biasa</a></li>
+                    <li><a href="#">Insurans</a></li>
+                    <li><a href="#">Tayar / Bateri</a></li>
+                    <li><a href="#">Buku Sekolah</a></li>
+                </ul>
+            </li>
+        </ul>
 
-            <div class="tab-content">
-                <div id="profil" class="tab-pane fade in active">
-                    @include('profiles._profile')
-                </div>
-                <div id="yuran" class="tab-pane fade">
-                    @include('profiles._yuran')
-                </div>
-                <div id="menu2" class="tab-pane fade">
-                    <h3>Menu 2</h3>
-                    <p>Some content in menu 2.</p>
-                </div>
+        <div class="tab-content">
+            <div id="profil" class="tab-pane fade in active">
+                @include('profiles._profile')
             </div>
-        @empty
-            <table class="table">
-                <tbody>
-                <tr>
-                    <td class="alert-danger">Tiada data.</td>
-                </tr>
-                </tbody>
-            </table>
-        @endforelse
-    @endif
+            <div id="yuran" class="tab-pane fade">
+                @include('profiles._yuran')
+            </div>
+            <div id="menu2" class="tab-pane fade">
+                <h3>Menu 2</h3>
+                <p>Some content in menu 2.</p>
+            </div>
+        </div>
+    @empty
+        <table class="table">
+            <tbody>
+            <tr>
+                <td class="alert-danger">Tiada data.</td>
+            </tr>
+            </tbody>
+        </table>
+    @endforelse
 
 
 

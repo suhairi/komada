@@ -20,12 +20,15 @@ class YuranController extends Controller
 
     public function index()
     {
+
         $yuranTambahans = Yurantambahan::where('created_at', 'like', Carbon::now()->format('Y') . '%')
             ->orderBy('created_at', 'asc')
             ->get();
 
+//        dd($yuranTambahans);
+
         $yuranBulanans = Yuran::where('bulan_tahun', 'like', Carbon::now()->format('m-Y') . '%')
-            ->first();
+            ->get();
 
         $totalAnggota = Profile::all()->count();
         $totalAnggotaAktif = Profile::where('status', 1)->count();
@@ -38,7 +41,9 @@ class YuranController extends Controller
             'totalYuran' => $totalYuran
         ];
 
-        return View('members.yuran', compact('yuranTambahans', 'yuranBulanans', 'count'));
+        $totalTambahan = 0.00;
+
+        return View('members.yuran', compact('yuranTambahans', 'yuranBulanans', 'count', 'totalTambahan'));
     }
 
     public function yuranTambahan()
@@ -47,9 +52,9 @@ class YuranController extends Controller
         $created_at = $tarikh[1] . '-' . $tarikh[0] . '-01 00:00:00';
 
         Yurantambahan::create([
-            'nama'          => Request::get('nama'),
+            'nama'          => strtoupper(Request::get('nama')),
             'jumlah'        => Request::get('jumlah'),
-            'catatan'       => Request::get('catatan'),
+            'catatan'       => strtoupper(Request::get('catatan')),
             'created_at'    => $created_at
         ]);
 
@@ -62,13 +67,11 @@ class YuranController extends Controller
         $bulan_tahun = $tarikh[1] . '-' . $tarikh[0];
         $profiles = Profile::where('status', 1)->get();
         $yuranTambahan = Yurantambahan::where('created_at', 'like', $bulan_tahun . '%')
-            ->first();
-
-//        dd($yuranTambahan->id);
+            ->get();
 
         foreach($profiles as $profile)
         {
-            $yuran = Yuran::where('bulan_tahun', Request::get('bulan_tahun'))
+            $yuran = Yuran::where('bulan_tahun', $bulan_tahun)
                 ->where('no_anggota', $profile->no_anggota)
                 ->first();
 
@@ -78,10 +81,9 @@ class YuranController extends Controller
                     'no_anggota'        => $profile->no_anggota,
                     'bulan_tahun'       => Request::get('bulan_tahun'),
                     'jumlah'            => $profile->jumlah_yuran_bulanan,
-                    'yuran_tambahan_id' => $yuranTambahan->id
+//                    'yuran_tambahan_id' => $yuranTambahan->id
                 ]);
             }
-
 
         }
 
@@ -105,4 +107,6 @@ class YuranController extends Controller
 
         return View('members.yuran', compact('yuranTambahans', 'yuranBulanans', 'count'));
     }
+
+
 }

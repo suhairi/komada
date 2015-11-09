@@ -15,12 +15,9 @@ class CreatePenamaTable extends Migration
         Schema::create('penama', function (Blueprint $table) {
             $table->increments('id');
             $table->string('no_anggota');
-            $table->string('nama1');
-            $table->bigInteger('noKP1', false, true);
-            $table->text('alamat1');
-            $table->string('nama2');
-            $table->bigInteger('noKP2', false, true);
-            $table->text('alamat2');
+            $table->string('nama');
+            $table->bigInteger('noKP', false, true);
+            $table->text('alamat');
             $table->timestamps();
         });
     }
