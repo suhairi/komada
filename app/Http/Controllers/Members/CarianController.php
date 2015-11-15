@@ -24,14 +24,30 @@ class CarianController extends Controller
             ->orderBy('bulan_tahun', 'asc')
             ->get();
 
-//        dd($yurans);
+        $yuranTambahan = [];
 
-        $yuranTambahans = Yurantambahan::where('created_at', 'like', Carbon::now()->format('Y') . '%')
-            ->orderBy('created_at', 'asc')
-            ->get();
+        for($i=1; $i<=12; $i++)
+        {
+            if($i < 10)
+                $bulan = '0' . $i;
+            else
+                $bulan = $i;
 
-        $total = 0.00;
+            $yuranTambahans = Yurantambahan::where('created_at', 'like', Carbon::now()->format('Y-') . $bulan . '%')
+                ->orderBy('created_at', 'asc')
+                ->get();
 
-        return View('members.carian', compact('profiles', 'yurans', 'yuranTambahans', 'total'));
+            foreach($yuranTambahans as $tambahan)
+                array_push($yuranTambahan, [
+                    'bulan' => $bulan,
+                    'nama' => $tambahan->nama,
+                    'catatan' => $tambahan->catatan,
+                    'jumlah' => $tambahan->jumlah
+                ]);
+        }
+
+//        dd($yuranTambahan);
+
+        return View('members.carian', compact('profiles', 'yurans', 'yuranTambahan'));
     }
 }

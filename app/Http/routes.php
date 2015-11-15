@@ -31,8 +31,15 @@ Route::get('/logout', [
 Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
 
     Route::get('index', [
-        'as' => 'members.index',
-        'uses' => 'Members\UserController@index'
+        'as'    => 'members.index',
+        'uses'  => 'Members\UserController@index'
+    ]);
+
+    // FAKER data. 3 years Yuran
+
+    Route::get('fakers', [
+        'as'    => 'members.fakers',
+        'uses'  => 'Members\FakerController@index'
     ]);
 
     // HOME - Carian
@@ -104,9 +111,6 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
         'as'    => 'members.yuran.process',
         'uses'  => 'Members\YuranController@yuranProcess'
     ]);
-
-
-
 
 
     // LAPORAN
