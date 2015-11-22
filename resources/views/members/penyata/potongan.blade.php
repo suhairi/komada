@@ -6,7 +6,7 @@
         <div class="col-xs-4">
 
             <div class="panel panel-primary">
-                <div class="panel-heading"><h4>Ringkasan Potongan Bulanan</h4></div>
+                <div class="panel-heading"><h4>Ringkasan Potongan Bulanan..</h4></div>
                 <div class="panel-body">
                     <table class="table table-bordered">
                         <tr class="alert alert-info">
@@ -64,6 +64,8 @@
                 </div>
             </div>
         </div>
+
+        @include('buttons._kembali')
 
     </div>
 
