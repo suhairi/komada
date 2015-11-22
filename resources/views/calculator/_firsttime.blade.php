@@ -20,6 +20,10 @@
                     <td>{!! Form::select('tempoh', ['12' => '12', '24' => '24', '36' => '36', '48' => '48', '60' => '60'], null, ['class' => 'form-control', 'id' => 'tempoh', 'placeholder' => 'Tempoh', 'onchange' => 'calc()', 'required' => 'true']) !!}</td>
                 </tr>
                 <tr>
+                    <th>Insurans</th>
+                    <td>{!! Form::number('insurans', '0.00', ['class' => 'form-control', 'id' => 'insurans', 'onkeyup' => 'calc()',]) !!}</td>
+                </tr>
+                <tr>
                     <th>Kadar (setahun)</th>
                     <td>{!! Form::select('kadar', ['4.0' => '4.0', '5.0' => '5.0', '6.0' => '6.0', '7.0' => '7.0', '8.0' => '8.0', '9.0' => '9.0'], '6.0', ['class' => 'form-control', 'id' => 'kadar_peratus', 'onchange' => 'calc()']) !!}</td>
                 </tr>
@@ -37,10 +41,6 @@
                 <tr>
                     <th>Bayaran Perkhidmatan</th>
                     <td>{!! Form::number('caj_perkhidmatan', '0.00', ['class' => 'form-control', 'id' => 'byrn_perkhidmatan', 'readonly' => true]) !!}</td>
-                </tr>
-                <tr>
-                    <th>Insurans</th>
-                    <td>{!! Form::number('insurans', '0.00', ['class' => 'form-control', 'id' => 'insurans', 'readonly' => true]) !!}</td>
                 </tr>
                 <tr>
                     <th>Jumlah yang Perlu Dibayar</th>
@@ -79,7 +79,7 @@
 
 
         document.getElementById('jumlah_perlu_bayar').value = (parseFloat(jumlah) + parseFloat(document.getElementById('byrn_perkhidmatan').value)
-        + (tempoh * document.getElementById('kadar_bulanan').value)).toFixed(2);
+        + (tempoh * document.getElementById('kadar_bulanan').value) + parseFloat(insurans)).toFixed(2);
 
         document.getElementById('byrn_bulanan').value = (parseFloat(document.getElementById('jumlah_perlu_bayar').value) / parseInt(tempoh)).toFixed(2);
     }
