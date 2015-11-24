@@ -27,15 +27,15 @@
                 <table class="table table-condensed table-striped">
                     <tr>
                         <th>Baki Pinjaman</th>
-                        <td align="right">RM 4200.00</td>
+                        <td align="right">RM {{ number_format($info[0], 2) }} / {{ number_format($akaun->jumlah_keseluruhan, 2) }}</td>
                     </tr>
                     <tr>
                         <th>Baki Tempoh</th>
-                        <td align="right">60 bulan</td>
+                        <td align="right">{{ $info[1] }} / {{ $akaun->tempoh }} bulan</td>
                     </tr>
                     <tr>
                         <th>Jumlah Langsai</th>
-                        <td align="right">RM 3600.00</td>
+                        <td align="right">RM {{ number_format($info[2], 2) }}</td>
                     </tr>
                 </table>
             </div>
