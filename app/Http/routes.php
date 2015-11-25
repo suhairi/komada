@@ -215,6 +215,11 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
             'uses'  => 'Members\PinjamanController@proses'
         ]);
 
+        Route::post('overlap', [
+            'as'    => 'members.pinjaman.overlap.process',
+            'uses'  => 'Members\PinjamanController@overlapProcess'
+        ]);
+
 
     });
 

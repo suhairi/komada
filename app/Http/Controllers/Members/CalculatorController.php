@@ -25,8 +25,30 @@ class CalculatorController extends Controller
             ->where('status', 1)
             ->get();
 
+        $info = [];
+        $kelayakan = true;
+
         if(!$akaunPotongan->isEmpty())
+        {
+            $baki = $this->getBaki(Request::get('no_gaji'));
+            $tempoh = $this->getBakiTempoh(Request::get('no_gaji'));
+
+            // LANGSAI
+            // Formula :-
+            // Langsai = (baki - lebihan kadar) + 6 bulan kadar
+
+            $langsai = $this->getBaki(Request::get('no_gaji')) - $this->getLebihanKadar(Request::get('no_gaji')) + $this->getTambahanKadar(Request::get('no_gaji'));
+
+            $layak = $this->getJumlahLayak(Request::get('no_gaji'));
+
+            $info = [$baki, $tempoh, $langsai, $layak];
+
+            if($layak < $langsai)
+                $kelayakan = false;
+
+
             $found = true;
+        }
 
         // check if the no_gaji one of ahli komada
         $profile = Profile::where('no_gaji', Request::get('no_gaji'))
@@ -55,21 +77,8 @@ class CalculatorController extends Controller
             ->where('status', 1)
             ->first();
 
-        $baki = $this->getBaki(Request::get('no_gaji'));
-        $tempoh = $this->getBakiTempoh(Request::get('no_gaji'));
-
-        // LANGSAI
-        // Formula :-
-        // langsai = (baki - lebihan kadar) + 6 bulan kadar
-
-        $langsai = $this->getBaki(Request::get('no_gaji')) - $this->getLebihanKadar(Request::get('no_gaji')) + $this->getTambahanKadar(Request::get('no_gaji'));
-
-        $info = [$baki, $tempoh, $langsai];
-
-        return View('members.calculator.pwt_calculator', compact('akaunPotongan', 'found', 'info', 'akaun'));
+        return View('members.calculator.pwt_calculator', compact('akaunPotongan', 'found', 'info', 'akaun', 'kelayakan'));
     }
-
-
 
 
     // Helper Functions
@@ -135,6 +144,21 @@ class CalculatorController extends Controller
         $lebihanKadar = 6 * $kadarSebulan;
 
         return $lebihanKadar;
+    }
+
+    protected function getJumlahLayak($no_gaji)
+    {
+        $jumlah = Yuran::where('no_gaji', $no_gaji)
+            ->sum('yuran');
+
+        // missing => $jumlah = $jumlah + jumlah_caruman_lama
+
+        if($jumlah < 10000)
+            $layak = 2 * $jumlah;
+        else
+            $layak = 0.8 * $jumlah;
+
+        return $layak;
     }
 
 

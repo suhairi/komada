@@ -84,6 +84,16 @@ class PinjamanController extends Controller
         return Redirect::back();
     }
 
+    public function overlapProcess()
+    {
+        return Request::all();
+    }
+
+
+
+
+    // Helper Function
+
     protected function checkAccounts($noGaji)
     {
         $accounts = AkaunPotongan::where('no_gaji', $noGaji)
