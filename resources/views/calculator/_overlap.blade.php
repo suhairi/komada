@@ -61,7 +61,7 @@
                 {!! Form::close() !!}
             @else
                 <div class="alert alert-danger">Gagal. Tidak Layak Overlap.<br />
-                    <strong>Jumlah Layak RM {{ number_format($info[3], 2) }}, Jumlah Langsai RM {{ number_format($info[2], 2) }}</strong></div>
+                    <strong>Jumlah Layak Pinjam : RM {{ number_format($info[3], 2) }}, Jumlah Langsai : RM {{ number_format($info[2], 2) }}</strong></div>
             @endif
 
             </div>
