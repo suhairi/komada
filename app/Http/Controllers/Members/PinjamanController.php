@@ -57,9 +57,11 @@ class PinjamanController extends Controller
         }
 
         if($this->checkAccounts(Request::get('no_gaji')))
+        {
+            // deactivate AkaunPotongan here
             $baki = '100.00';
-        else
-            $baki = 0.00;
+        }else
+            $baki = Request::get('jumlah_keseluruhan');
 
         AkaunPotongan::create([
             'no_gaji'           => Request::get('no_gaji'),

@@ -21,12 +21,31 @@ class CalculatorController extends Controller
     {
 
         $found = false;
+        $info = [];
+
         $akaunPotongan = AkaunPotongan::where('no_gaji', Request::get('no_gaji'))
             ->where('status', 1)
             ->get();
 
         if(!$akaunPotongan->isEmpty())
+        {
+            $akaun = AkaunPotongan::where('no_gaji', Request::get('no_gaji'))
+                ->where('status', 1)
+                ->first();
+
+            $baki = $this->getBaki(Request::get('no_gaji'));
+            $tempoh = $this->getBakiTempoh(Request::get('no_gaji'));
+
+            // LANGSAI
+            // Formula :-
+            // langsai = (baki - lebihan kadar) + 6 bulan kadar
+
+            $langsai = $this->getBaki(Request::get('no_gaji')) - $this->getLebihanKadar(Request::get('no_gaji')) + $this->getTambahanKadar(Request::get('no_gaji'));
+
+            $info = [$baki, $tempoh, $langsai];
             $found = true;
+        }
+
 
         // check if the no_gaji one of ahli komada
         $profile = Profile::where('no_gaji', Request::get('no_gaji'))
@@ -51,20 +70,7 @@ class CalculatorController extends Controller
 
         Session::flash('no_gaji', Request::get('no_gaji'));
 
-        $akaun = AkaunPotongan::where('no_gaji', Request::get('no_gaji'))
-            ->where('status', 1)
-            ->first();
 
-        $baki = $this->getBaki(Request::get('no_gaji'));
-        $tempoh = $this->getBakiTempoh(Request::get('no_gaji'));
-
-        // LANGSAI
-        // Formula :-
-        // langsai = (baki - lebihan kadar) + 6 bulan kadar
-
-        $langsai = $this->getBaki(Request::get('no_gaji')) - $this->getLebihanKadar(Request::get('no_gaji')) + $this->getTambahanKadar(Request::get('no_gaji'));
-
-        $info = [$baki, $tempoh, $langsai];
 
         return View('members.calculator.pwt_calculator', compact('akaunPotongan', 'found', 'info', 'akaun'));
     }
