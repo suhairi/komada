@@ -27,8 +27,12 @@ class CalculatorController extends Controller
             ->where('status', 1)
             ->get();
 
+        $info = [];
+        $kelayakan = true;
+
         if(!$akaunPotongan->isEmpty())
         {
+
             $akaun = AkaunPotongan::where('no_gaji', Request::get('no_gaji'))
                 ->where('status', 1)
                 ->first();
@@ -38,11 +42,17 @@ class CalculatorController extends Controller
 
             // LANGSAI
             // Formula :-
-            // langsai = (baki - lebihan kadar) + 6 bulan kadar
+            // Langsai = (baki - lebihan kadar) + 6 bulan kadar
 
             $langsai = $this->getBaki(Request::get('no_gaji')) - $this->getLebihanKadar(Request::get('no_gaji')) + $this->getTambahanKadar(Request::get('no_gaji'));
 
-            $info = [$baki, $tempoh, $langsai];
+            $layak = $this->getJumlahLayak(Request::get('no_gaji'));
+
+            $info = [$baki, $tempoh, $langsai, $layak];
+
+            if($layak < $langsai)
+                $kelayakan = false;
+
             $found = true;
         }
 
@@ -68,14 +78,12 @@ class CalculatorController extends Controller
             return Redirect::back()->withInput();
         }
 
-        Session::flash('no_gaji', Request::get('no_gaji'));
+        $layakPinjam = $this->getJumlahLayak(Request::get('no_gaji'));
 
+        Session::put('no_gaji', Request::get('no_gaji'));
 
-
-        return View('members.calculator.pwt_calculator', compact('akaunPotongan', 'found', 'info', 'akaun'));
+        return View('members.calculator.pwt_calculator', compact('akaunPotongan', 'found', 'info', 'akaun', 'kelayakan', 'layakPinjam'));
     }
-
-
 
 
     // Helper Functions
@@ -141,6 +149,21 @@ class CalculatorController extends Controller
         $lebihanKadar = 6 * $kadarSebulan;
 
         return $lebihanKadar;
+    }
+
+    protected function getJumlahLayak($no_gaji)
+    {
+        $jumlah = Yuran::where('no_gaji', $no_gaji)
+            ->sum('yuran');
+
+        // missing => $jumlah = $jumlah + jumlah_caruman_lama
+
+        if($jumlah < 10000)
+            $layak = 2 * $jumlah;
+        else
+            $layak = 0.8 * $jumlah;
+
+        return $layak;
     }
 
 
