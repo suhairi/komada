@@ -20,6 +20,14 @@
                         <th><div class="input-group">Jumlah Pinjaman (RM)</div></th>
                         <td>{!! Form::number('jumlah', '0.00', ['class' => 'form-control', 'step' => 'any', 'min' => $info[2], 'id' => 'jumlah', 'onkeyup' => 'calc()', 'required' => 'true']) !!}</td>
                     </tr>
+                    <tr>
+                        <th><div class="input-group">Jumlah Langsai (RM)</div></th>
+                        <td>{!! Form::number('langsai', $info[2], ['class' => 'form-control', 'id' => 'langsai', 'readonly' => true]) !!}</td>
+                    </tr>
+                    <tr>
+                        <th><div class="input-group">Jumlah Di Tangan (RM)</div></th>
+                        <td>{!! Form::number('jumlahDitangan', '0.00', ['class' => 'form-control', 'id' => 'jumlahDitangan', 'readonly' => true]) !!}</td>
+                    </tr>
 
                     <tr>
                         <th>Tempoh</th>
@@ -73,6 +81,10 @@
             <div class="panel-heading"><h4>Maklumat Pinjaman</h4></div>
             <div class="panel-body">
                 <table class="table table-condensed table-striped">
+                    <tr class="danger">
+                        <th>Layak Pinjam</th>
+                        <td align="right">RM {{ number_format($layakPinjam, 2) }}</td>
+                    </tr>
                     <tr>
                         <th>Baki Pinjaman</th>
                         <td align="right">RM {{ number_format($info[0], 2) }} / {{ number_format($akaun->jumlah_keseluruhan, 2) }}</td>
@@ -100,6 +112,7 @@
         kadar_peratus = document.getElementById('kadar_peratus').value
         tempoh = document.getElementById('tempoh').value
         insurans = document.getElementById('insurans').value
+        langsai = document.getElementById('langsai').value;
 
         if(jumlah >= 1000)
             document.getElementById('byrn_perkhidmatan').value = '50.00';
@@ -116,5 +129,6 @@
         + (tempoh * document.getElementById('kadar_bulanan').value) + parseFloat(insurans)).toFixed(2);
 
         document.getElementById('byrn_bulanan').value = (parseFloat(document.getElementById('jumlah_perlu_bayar').value) / parseInt(tempoh)).toFixed(2);
+        document.getElementById('jumlahDitangan').value = (parseFloat(jumlah - langsai));
     }
 </script>

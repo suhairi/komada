@@ -21,6 +21,8 @@ class CalculatorController extends Controller
     {
 
         $found = false;
+        $info = [];
+
         $akaunPotongan = AkaunPotongan::where('no_gaji', Request::get('no_gaji'))
             ->where('status', 1)
             ->get();
@@ -30,6 +32,11 @@ class CalculatorController extends Controller
 
         if(!$akaunPotongan->isEmpty())
         {
+
+            $akaun = AkaunPotongan::where('no_gaji', Request::get('no_gaji'))
+                ->where('status', 1)
+                ->first();
+
             $baki = $this->getBaki(Request::get('no_gaji'));
             $tempoh = $this->getBakiTempoh(Request::get('no_gaji'));
 
@@ -46,9 +53,9 @@ class CalculatorController extends Controller
             if($layak < $langsai)
                 $kelayakan = false;
 
-
             $found = true;
         }
+
 
         // check if the no_gaji one of ahli komada
         $profile = Profile::where('no_gaji', Request::get('no_gaji'))
@@ -71,13 +78,11 @@ class CalculatorController extends Controller
             return Redirect::back()->withInput();
         }
 
-        Session::flash('no_gaji', Request::get('no_gaji'));
+        $layakPinjam = $this->getJumlahLayak(Request::get('no_gaji'));
 
-        $akaun = AkaunPotongan::where('no_gaji', Request::get('no_gaji'))
-            ->where('status', 1)
-            ->first();
+        Session::put('no_gaji', Request::get('no_gaji'));
 
-        return View('members.calculator.pwt_calculator', compact('akaunPotongan', 'found', 'info', 'akaun', 'kelayakan'));
+        return View('members.calculator.pwt_calculator', compact('akaunPotongan', 'found', 'info', 'akaun', 'kelayakan', 'layakPinjam'));
     }
 
 
