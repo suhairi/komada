@@ -3,7 +3,15 @@
         <li><a href="{{ route('members.index') }}"><i class="glyphicon glyphicon-search"></i> Carian Profil </a></li>
         <li><a href="{{ route('members.profiles.addUser') }}"><i class="glyphicon glyphicon-user"></i> Daftar Anggota</a></li>
         <li><a href="{{ route('members.pertaruhan.index') }}"><i class="glyphicon glyphicon-paperclip"></i> Daftar Pertaruhan</a></li>
-        <li><a href="{{ route('members.calculator.pwt') }}"><i class="glyphicon glyphicon-paperclip"></i> Calculator PWT</a></li>
+    </ul>
+
+    <ul class="nav nav-sidebar">
+        <li><a href="{{ route('members.calculator.pwt') }}"><i class="glyphicon glyphicon-usd"></i> Pinjaman Wang Tunai</a></li>
+        <li><a href="{{ route('members.bukusekolah.index') }}"><i class="glyphicon glyphicon-usd"></i> Buku Sekolah</a></li>
+        <li><a href="{{ route('members.calculator.pwt') }}"><i class="glyphicon glyphicon-usd"></i> Kecemasan</a></li>
+        <li><a href="{{ route('members.calculator.pwt') }}"><i class="glyphicon glyphicon-usd"></i> Tayar / Bateri</a></li>
+        <li><a href="{{ route('members.calculator.pwt') }}"><i class="glyphicon glyphicon-usd"></i> Cukai Jalan</a></li>
+        <li><a href="{{ route('members.calculator.pwt') }}"><i class="glyphicon glyphicon-usd"></i> Insurans</a></li>
     </ul>
 
     <ul class="nav nav-sidebar">

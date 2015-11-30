@@ -97,7 +97,7 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
         'uses'  => 'Members\KadahliController@kadahli'
     ]);
 
-    // Calculator
+    // Calculator - Pinjaman Wang Tunai
     Route::group(['prefix' => 'calculator'], function() {
 
         Route::get('pwt', [
@@ -108,6 +108,44 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
         Route::post('pwt', [
             'as'    => 'members.calculator.pwt',
             'uses'  => 'Members\CalculatorController@pwtPost'
+        ]);
+
+
+    });
+
+    // Buku Sekolah
+    Route::group(['prefix' => 'bukusekolah'], function() {
+
+        Route::get('index', [
+            'as'    => 'members.bukusekolah.index',
+            'uses'  => 'Members\BukusekolahController@index'
+        ]);
+
+        Route::post('index', [
+            'as'    => 'members.bukusekolah.indexPost',
+            'uses'  => 'Members\BukusekolahController@indexPost'
+        ]);
+
+        Route::get('proses', [
+            'as'    => 'members.bukusekolah.proses',
+            'uses'  => 'Members\BukusekolahController@proses'
+        ]);
+
+
+
+    });
+
+    // Roadtax
+    Route::group(['prefix' => 'roadtax'], function() {
+
+        Route::get('index', [
+            'as'    => 'members.roadtax.index',
+            'uses'  => 'Members\RoadtaxController@index'
+        ]);
+
+        Route::post('index', [
+            'as'    => 'members.roadtax.index',
+            'uses'  => 'Members\RoadtaxController@indexPost'
         ]);
 
 
@@ -224,20 +262,7 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
     });
 
     // Road Tax
-    Route::group(['prefix' => 'roadtax'], function() {
 
-        Route::get('index', [
-            'as'    => 'members.roadtax.index',
-            'uses'  => 'Members\RoadtaxController@index'
-        ]);
-
-        Route::post('index', [
-            'as'    => 'members.roadtax.index',
-            'uses'  => 'Members\RoadtaxController@indexPost'
-        ]);
-
-
-    });
 
 
     // LAPORAN
