@@ -59,7 +59,8 @@ class PinjamanController extends Controller
         if($this->checkAccounts(Request::get('no_gaji')))
         {
             // deactivate AkaunPotongan here
-            $baki = '100.00';
+            $this->deactivated(Request::get('no_gaji'));
+            $baki = '0.00';
         }else
             $baki = Request::get('jumlah_keseluruhan');
 
@@ -150,9 +151,11 @@ class PinjamanController extends Controller
 
     // Helper Function
     // Check wether account exists in table AkaunPotongan
-    protected function checkAccounts($noGaji)
+    protected function checkAccounts($no_gaji)
     {
-        $accounts = AkaunPotongan::where('no_gaji', $noGaji)
+        $accounts = AkaunPotongan::where('no_gaji', $no_gaji)
+            ->where('status', 1)
+            ->where('perkhidmatan_id',1)
             ->get();
 
         if($accounts->isEmpty())
@@ -180,6 +183,7 @@ class PinjamanController extends Controller
     {
         AkaunPotongan::where('no_gaji', $no_gaji)
             ->where('status', 1)
+            ->where('perkhidmatan_id', 1)
             ->update(['status' => 0, 'baki' => '0.00']);
     }
 
