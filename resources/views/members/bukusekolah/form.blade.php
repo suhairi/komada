@@ -42,6 +42,11 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="keseluruhan">Jumlah Keseluruhan</label>
+                            <input class="form-control" type="number" name="jumlah_keseluruhan" id="keseluruhan" readonly />
+                        </div>
+
+                        <div class="form-group">
                             <label for="bulanan">Bayaran Bulanan</label>
                             <input class="form-control" type="number" name="bulanan" id="bulanan" readonly />
                         </div>
@@ -65,6 +70,7 @@
             jumlahKadar = parseFloat((jumlah * kadar / 100) / 12 * tempoh);
             jumlahKeseluruhan = parseFloat(jumlah) + parseFloat(jumlahKadar);
 
+            document.getElementById('keseluruhan').value = jumlahKeseluruhan.toFixed(2);
 
             bulanan = parseFloat(jumlahKeseluruhan / tempoh);
 

@@ -79,6 +79,18 @@ class YuranController extends Controller
     public function yuranProcess()
     {
 
+        // check for repeated payment for the selected month
+
+        $doneMonth = Yuran::where('bulan_tahun', Request::get('bulan_tahun'))
+            ->first();
+
+        if(!empty($doneMonth))
+        {
+            Session::flash('error', 'Gagal. Bulan yang dipilih telah dibuat potongan.');
+            return Redirect::back();
+        }
+
+
         $profiles = Profile::where('status', 1)
             ->where('tarikh_ahli', 'not like', Carbon::now()->format('Y-m') . '%')
             ->get();

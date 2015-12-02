@@ -64,6 +64,22 @@ class BukusekolahController extends Controller
                 ->where('perkhidmatan_id', 2)
                 ->where('status', 1)
                 ->first();
+
+            if($akaunPotongan->isEmpty())
+            {
+                AkaunPotongan::create([
+                    'no_gaji'               => Request::get('no_gaji'),
+                    'perkhidmatan_id'       => Request::get('2'),
+                    'jumlah'                => Request::get('jumlah'),
+                    'tempoh'                => Request::get('tempoh'),
+                    'kadar'                 => Request::get('kadar'),
+                    'caj_perkhidmatan'      => '0.00',
+                    'insurans'              => '0.00',
+                    'jumlah_keseluruhan'    => Request::get('jumlah_keseluruhan'),
+                    'baki'                  => Request::get('jumlah_keseluruhan'),
+                    'status'                => 1
+                ]);
+            }
         }
 
         return Request::all();
