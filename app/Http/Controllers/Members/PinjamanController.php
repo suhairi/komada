@@ -77,10 +77,20 @@ class PinjamanController extends Controller
             'status'            => 1
         ]);
 
-        Potongan::create([
-            'no_gaji'   => Request::get('no_gaji'),
-            'jumlah'    => Request::get('byrn_bulanan')
-        ]);
+        // this is how to cater the potongan table!!
+
+        $potongan = Potongan::where('no_gaji', Request::get('no_gaji'))
+            ->first();
+
+        if(!empty($potongan))
+            $potongan->jumlah += Request::get('byrn_bulanan');
+        else{
+            $potongan = new Potongan;
+            $potongan->no_gaji = Request::get('no_gaji');
+            $potongan->jumlah  = Request::get('byrn_bulanan');
+        }
+
+        $potongan->save();
 
         Session::flash('success', 'Berjaya. Proses Pinjaman telah direkodkan.');
 
@@ -140,10 +150,7 @@ class PinjamanController extends Controller
             'status'            => 1
         ]);
 
-
-
-
-
+        return Redirect::back();
     }
 
 
@@ -155,7 +162,7 @@ class PinjamanController extends Controller
     {
         $accounts = AkaunPotongan::where('no_gaji', $no_gaji)
             ->where('status', 1)
-            ->where('perkhidmatan_id',1)
+            ->where('perkhidmatan_id', 1)
             ->get();
 
         if($accounts->isEmpty())

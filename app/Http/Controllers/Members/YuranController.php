@@ -90,7 +90,6 @@ class YuranController extends Controller
             return Redirect::back();
         }
 
-
         $profiles = Profile::where('status', 1)
             ->where('tarikh_ahli', 'not like', Carbon::now()->format('Y-m') . '%')
             ->get();
@@ -104,7 +103,6 @@ class YuranController extends Controller
 
             if(!empty($potongan))
                 $jumlahPotongan = (float)number_format($potongan->jumlah, 2);
-
 
             if(!$this->checkPotongan($profile->no_gaji))
             {

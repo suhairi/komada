@@ -6,6 +6,7 @@ use App\AkaunPotongan;
 use App\Potongan;
 use App\Profile;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Request;
 use App\Http\Controllers\Controller;
@@ -56,7 +57,14 @@ class BukusekolahController extends Controller
         $potongan = Potongan::where('no_gaji', Request::get('no_gaji'))
             ->first();
 
-        $potongan->jumlah += Request::get('bulanan');
+        if(!empty($potongan))
+            $potongan->jumlah += Request::get('bulanan');
+        else{
+            $potongan = new Potongan;
+            $potongan->no_gaji = Request::get('no_gaji');
+            $potongan->jumlah  = Request::get('bulanan');
+        }
+
 
         if($potongan->save())
         {
@@ -65,11 +73,11 @@ class BukusekolahController extends Controller
                 ->where('status', 1)
                 ->first();
 
-            if($akaunPotongan->isEmpty())
+            if(empty($akaunPotongan))
             {
                 AkaunPotongan::create([
                     'no_gaji'               => Request::get('no_gaji'),
-                    'perkhidmatan_id'       => Request::get('2'),
+                    'perkhidmatan_id'       => '2',
                     'jumlah'                => Request::get('jumlah'),
                     'tempoh'                => Request::get('tempoh'),
                     'kadar'                 => Request::get('kadar'),
@@ -82,7 +90,9 @@ class BukusekolahController extends Controller
             }
         }
 
-        return Request::all();
+        Session::flash('success', 'Berjaya. Pinjaman Buku Sekolah berjaya direkodkan');
+
+        return Redirect::back();
 
 
     }

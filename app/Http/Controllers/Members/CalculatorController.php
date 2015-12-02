@@ -25,6 +25,7 @@ class CalculatorController extends Controller
 
         $akaunPotongan = AkaunPotongan::where('no_gaji', Request::get('no_gaji'))
             ->where('status', 1)
+            ->where('perkhidmatan_id', 1)
             ->get();
 
         $info = [];

@@ -26,12 +26,12 @@
 
                         <div class="form-group">
                             <label for="tempoh">Tempoh (bulan)</label>
-                            <input class="form-control" type="number" name="tempoh" id="tempoh" value="8" max="8" />
+                            <input class="form-control" type="number" name="tempoh" id="tempoh" value="8" max="8" onkeyup="calc()" />
                         </div>
 
                         <div class="form-group">
                             <label for="jumlah">Kadar</label>
-                            <select name="kadar" class="form-control" id="kadar">
+                            <select name="kadar" class="form-control" id="kadar" onkeyup="calc()">
                                 <option value="">Kadar</option>
                                 <option value="4">4 %</option>
                                 <option value="5">5 %</option>
@@ -67,12 +67,12 @@
             kadar = document.getElementById('kadar').value;
             tempoh = document.getElementById('tempoh').value;
 
-            jumlahKadar = parseFloat((jumlah * kadar / 100) / 12 * tempoh);
+            jumlahKadar = ((parseFloat(jumlah) * parseFloat(kadar) / 100) / 12 * parseFloat(tempoh));
             jumlahKeseluruhan = parseFloat(jumlah) + parseFloat(jumlahKadar);
 
             document.getElementById('keseluruhan').value = jumlahKeseluruhan.toFixed(2);
 
-            bulanan = parseFloat(jumlahKeseluruhan / tempoh);
+            bulanan = (parseFloat(jumlahKeseluruhan) / parseFloat(tempoh));
 
             document.getElementById('bulanan').value = bulanan.toFixed(2);
 
