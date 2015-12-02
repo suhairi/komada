@@ -113,27 +113,7 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
 
     });
 
-    // Buku Sekolah
-    Route::group(['prefix' => 'bukusekolah'], function() {
 
-        Route::get('index', [
-            'as'    => 'members.bukusekolah.index',
-            'uses'  => 'Members\BukusekolahController@index'
-        ]);
-
-        Route::post('index', [
-            'as'    => 'members.bukusekolah.indexPost',
-            'uses'  => 'Members\BukusekolahController@indexPost'
-        ]);
-
-        Route::get('proses', [
-            'as'    => 'members.bukusekolah.proses',
-            'uses'  => 'Members\BukusekolahController@proses'
-        ]);
-
-
-
-    });
 
     // Roadtax
     Route::group(['prefix' => 'roadtax'], function() {
@@ -261,7 +241,27 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
 
     });
 
-    // Road Tax
+    // Buku Sekolah
+    Route::group(['prefix' => 'bukusekolah'], function() {
+
+        Route::get('index', [
+            'as'    => 'members.bukusekolah.index',
+            'uses'  => 'Members\BukusekolahController@index'
+        ]);
+
+        Route::post('index', [
+            'as'    => 'members.bukusekolah.indexPost',
+            'uses'  => 'Members\BukusekolahController@indexPost'
+        ]);
+
+        Route::post('proses', [
+            'as'    => 'members.bukusekolah.proses',
+            'uses'  => 'Members\BukusekolahController@proses'
+        ]);
+
+
+
+    });
 
 
 

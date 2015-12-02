@@ -9,6 +9,7 @@
                 <div class="panel-body">
 
                     <form method="post" action="{{ route('members.bukusekolah.proses') }}">
+                    {{ csrf_field() }}
                         <div class="form-group">
                             <label for="No gaji">No Gaji</label>
                             <input class="form-control" type="text" name="no_gaji" value="{{ $profile->no_gaji }}" readonly />
@@ -20,9 +21,30 @@
 
                         <div class="form-group">
                             <label for="jumlah">Jumlah</label>
-                            <input class="form-control" type="number" name="jumlah" max="500" />
+                            <input class="form-control" type="number" name="jumlah" max="500" id="jumlah" step="any" placeholder="Contoh : RM 500.00" onkeyup="calc()" />
                         </div>
 
+                        <div class="form-group">
+                            <label for="tempoh">Tempoh (bulan)</label>
+                            <input class="form-control" type="number" name="tempoh" id="tempoh" value="8" max="8" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="jumlah">Kadar</label>
+                            <select name="kadar" class="form-control" id="kadar">
+                                <option value="">Kadar</option>
+                                <option value="4">4 %</option>
+                                <option value="5">5 %</option>
+                                <option value="6" selected>6 %</option>
+                                <option value="7">7 %</option>
+                                <option value="8">8 %</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bulanan">Bayaran Bulanan</label>
+                            <input class="form-control" type="number" name="bulanan" id="bulanan" readonly />
+                        </div>
 
                         <div align="right">@include('buttons._submit', ['value' => 'Proses Pinjaman'])</div>
 
@@ -31,5 +53,24 @@
             </div>
         </div>
     </div>
+
+    <script>
+
+        function calc()
+        {
+            jumlah = document.getElementById('jumlah').value;
+            kadar = document.getElementById('kadar').value;
+            tempoh = document.getElementById('tempoh').value;
+
+            jumlahKadar = parseFloat((jumlah * kadar / 100) / 12 * tempoh);
+            jumlahKeseluruhan = parseFloat(jumlah) + parseFloat(jumlahKadar);
+
+
+            bulanan = parseFloat(jumlahKeseluruhan / tempoh);
+
+            document.getElementById('bulanan').value = bulanan.toFixed(2);
+
+        }
+    </script>
 
 @stop

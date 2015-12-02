@@ -25,6 +25,7 @@ class UserTableSeeder extends Seeder
         User::create(array('name' => 'Nona Azizah', 'email' => 'azizah@gmail.com', 'password' => Hash::make('azizah')));
 
         Perkhidmatan::create(array("nama" => "WANG TUNAI"));
+        Perkhidmatan::create(array("nama" => "BUKU SEKOLAH"));
         Perkhidmatan::create(array("nama" => "CUKAI JALAN"));
         Perkhidmatan::create(array("nama" => "PERTARUHAN"));
         Perkhidmatan::create(array("nama" => "TAYAR / BATERI"));
