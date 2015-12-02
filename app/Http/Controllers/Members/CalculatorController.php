@@ -36,6 +36,7 @@ class CalculatorController extends Controller
 
             $akaun = AkaunPotongan::where('no_gaji', Request::get('no_gaji'))
                 ->where('status', 1)
+                ->where('perkhidmatan_id', 1)
                 ->first();
 
             $baki = $this->getBaki(Request::get('no_gaji'));
@@ -93,6 +94,7 @@ class CalculatorController extends Controller
     {
         $akaun = AkaunPotongan::where('no_gaji', $no_gaji)
             ->where('status', 1)
+            ->where('perkhidmatan_id', 1)
             ->first();
 
         $bilPotongan = Yuran::where('no_gaji', $no_gaji)
@@ -109,8 +111,18 @@ class CalculatorController extends Controller
     {
         $akaun = AkaunPotongan::where('no_gaji', $no_gaji)
             ->where('status', 1)
+            ->where('perkhidmatan_id',1)
             ->first();
 
+        // #####################################################################################
+        // bugs here
+        // since potongan is inclusive with other pinjamans, the jumlah is not exact already.
+        // need to find way to fix this.
+
+        // solution to try :-
+        // 1. compare tarikh, and get jumlah bayaran by doing the formula again here
+
+        // #####################################################################################
         $jumlahBayaran = Yuran::where('no_gaji', $no_gaji)
             ->where('created_at', '>=', $akaun->created_at->format('Y-m-d') . '%')
             ->where('potongan', '>', 0)
@@ -125,6 +137,7 @@ class CalculatorController extends Controller
     {
         $akaun = AkaunPotongan::where('no_gaji', $no_gaji)
             ->where('status', 1)
+            ->where('perkhidmatan_id', 1)
             ->first();
 
         $kadarSebulan = (($akaun->jumlah_keseluruhan - $akaun->insurans - $akaun->caj_perkhidmatan) - $akaun->jumlah) / $akaun->tempoh;
@@ -143,6 +156,7 @@ class CalculatorController extends Controller
     {
         $akaun = AkaunPotongan::where('no_gaji', $no_gaji)
             ->where('status', 1)
+            ->where('perkhidmatan_id', 1)
             ->first();
 
         $kadarSebulan = ($akaun->jumlah_keseluruhan - $akaun->insurans - $akaun->caj_perkhidmatan) / $akaun->tempoh;
