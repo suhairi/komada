@@ -9,8 +9,8 @@
             @if($kelayakan)
 
                 {!! Form::open(['route' => 'members.pinjaman.overlap.process', 'method' => 'POST']) !!}
-
                 {!! Form::hidden('no_gaji', Session::get('no_gaji')) !!}
+
                 <table class="table table-condensed table-hover">
                     <tr>
                         <th>Jenis Pinjaman</th>

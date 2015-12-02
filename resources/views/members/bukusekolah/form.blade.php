@@ -18,6 +18,14 @@
                             <input class="form-control" type="text" name="nama" value="{{ $profile->nama }}" readonly />
                         </div>
 
+                        <div class="form-group">
+                            <label for="jumlah">Jumlah</label>
+                            <input class="form-control" type="number" name="jumlah" max="500" />
+                        </div>
+
+
+                        <div align="right">@include('buttons._submit', ['value' => 'Proses Pinjaman'])</div>
+
                     </form>
                 </div>
             </div>
