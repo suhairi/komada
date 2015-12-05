@@ -67,6 +67,7 @@ class CarianController extends Controller
 
         $bil = 1;
         $biasas = AkaunPotongan::where('no_gaji', Request::get('no_gaji'))
+            ->where('status', 1)
             ->get();
 
 //        dd($yuranTambahan);

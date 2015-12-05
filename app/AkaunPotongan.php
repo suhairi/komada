@@ -18,6 +18,7 @@ class AkaunPotongan extends Model
                             'insurans',
                             'jumlah_keseluruhan',
                             'baki',
+                            'bulanan',
                             'status'
                         ];
 

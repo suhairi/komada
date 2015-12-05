@@ -74,23 +74,24 @@ class PinjamanController extends Controller
             'insurans'          => Request::get('insurans'),
             'jumlah_keseluruhan'=> Request::get('jumlah_keseluruhan'),
             'baki'              => $baki,
+            'bulanan'           => Request::get('byrn_bulanan'),
             'status'            => 1
         ]);
 
         // this is how to cater the potongan table!!
-
-        $potongan = Potongan::where('no_gaji', Request::get('no_gaji'))
-            ->first();
-
-        if(!empty($potongan))
-            $potongan->jumlah += Request::get('byrn_bulanan');
-        else{
-            $potongan = new Potongan;
-            $potongan->no_gaji = Request::get('no_gaji');
-            $potongan->jumlah  = Request::get('byrn_bulanan');
-        }
-
-        $potongan->save();
+//
+//        $potongan = Potongan::where('no_gaji', Request::get('no_gaji'))
+//            ->first();
+//
+//        if(!empty($potongan))
+//            $potongan->jumlah += Request::get('byrn_bulanan');
+//        else{
+//            $potongan = new Potongan;
+//            $potongan->no_gaji = Request::get('no_gaji');
+//            $potongan->jumlah  = Request::get('byrn_bulanan');
+//        }
+//
+//        $potongan->save();
 
         Session::flash('success', 'Berjaya. Proses Pinjaman telah direkodkan.');
 
@@ -147,6 +148,7 @@ class PinjamanController extends Controller
             'insurans'          => Request::get('insurans'),
             'jumlah_keseluruhan'=> Request::get('jumlah_keseluruhan'),
             'baki'              => $baki,
+            'bulanan'           => Request::get('byrn_bulanan'),
             'status'            => 1
         ]);
 

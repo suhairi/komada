@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBayaranTable extends Migration
+class CreatePwtTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,10 +12,9 @@ class CreateBayaranTable extends Migration
      */
     public function up()
     {
-        Schema::create('bayaran', function (Blueprint $table) {
+        Schema::create('pwt', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('no_gaji', 2);
-            $table->integer('perkhidmatan_id', false,false);
+            $table->string('no_gaji');
             $table->float('jumlah', 7, 2);
             $table->timestamps();
         });
@@ -28,6 +27,6 @@ class CreateBayaranTable extends Migration
      */
     public function down()
     {
-        Schema::drop('bayaran');
+        Schema::drop('pwt');
     }
 }

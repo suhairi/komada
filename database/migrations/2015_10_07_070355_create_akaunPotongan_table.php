@@ -23,6 +23,7 @@ class CreateAkaunPotonganTable extends Migration
             $table->float('insurans', 7, 2);
             $table->float('jumlah_keseluruhan', 7, 2);
             $table->float('baki', 7, 2);
+            $table->float('bulanan', 7, 2);
             $table->tinyInteger('status', false, false);
             $table->timestamps();
         });

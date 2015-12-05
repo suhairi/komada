@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Members;
 
+use App\AkaunPotongan;
+use App\Bayaran;
 use App\Potongan;
 use App\Sumbangan;
 use App\Tka;
@@ -99,10 +101,55 @@ class YuranController extends Controller
             $jumlahPotongan = '0.00';
             $tka = Tka::where('status', 1)->first();
             $takaful = Takaful::where('status', 1)->first();
-            $potongan = Potongan::where('no_gaji', $profile->no_gaji)->first();
 
-            if(!empty($potongan))
-                $jumlahPotongan = (float)number_format($potongan->jumlah, 2);
+            $potongans = AkaunPotongan::where('no_gaji', $profile->no_gaji)
+                ->where('status', 1)
+                ->get();
+
+            // Bayaran potongan Pinjaman
+
+            if(!empty($potongans))
+            {
+                foreach($potongans as $potongan)
+                {
+                    // 1. Bayran pinjaman wang tunai
+                    if($potongan->perkhidmtan_id == 1)
+                    {
+                        Bayaran::create([
+                            'no_gaji'           => $profile->no_gaji,
+                            'perkhidmatan_id'   => 1,
+                            'jumlah'            => $potongan->bulanan
+                        ]);
+                    }
+
+                    // 2. Bayaran pinjaman buku sekolah
+                    if($potongan->perkhidmtan_id == 2)
+                    {
+                        Bayaran::create([
+                            'no_gaji'           => $profile->no_gaji,
+                            'perkhidmatan_id'   => 2,
+                            'jumlah'            => $potongan->bulanan
+                        ]);
+                    }
+
+                    // 3. Bayaran Cukai Jalan -> 3
+
+
+
+                    // 4. *Bayaran Pertaruhan -> 4
+
+
+
+                    // 5. Bayaran Tayar bateri -> 5
+
+
+
+                    // 6. Bayaran Insurans -> 6
+
+                    $jumlahPotongan += $potongan->bulanan;
+                }
+            }
+
 
             if(!$this->checkPotongan($profile->no_gaji))
             {

@@ -20,10 +20,15 @@ class BukusekolahController extends Controller
 
     public function indexPost()
     {
-//        return Request::all();
 
         $profile = Profile::where('no_gaji', Request::get('no_gaji'))
             ->first();
+
+        if(empty($profile))
+        {
+            Session::flash('error', 'Gagal. No Gaji *' . Request::get('no_gaji') . '* tidak didaftarkan sebagai anggota KOMADA.');
+            return Redirect::back()->withInput();
+        }
 
         // 1. check for outstanding payment for buku sekolah
         // 2.
@@ -33,8 +38,6 @@ class BukusekolahController extends Controller
 
     public function proses()
     {
-
-
         $validation = Validator::make(Request::all(), [
             'no_gaji'   => 'required|numeric',
             'nama'      => 'required',
@@ -50,45 +53,37 @@ class BukusekolahController extends Controller
             return Redirect::back();
         }
 
-        // 1. add up in table potongan
-        // 2. add up in table akaunpotongan
-        // 3.
+        // 1. add up in table akaunpotongan
+        // 2.
 
-        $potongan = Potongan::where('no_gaji', Request::get('no_gaji'))
+        $akaunPotongan = AkaunPotongan::where('no_gaji', Request::get('no_gaji'))
+            ->where('perkhidmatan_id', 2)
+            ->where('status', 1)
             ->first();
 
-        if(!empty($potongan))
-            $potongan->jumlah += Request::get('bulanan');
-        else{
-            $potongan = new Potongan;
-            $potongan->no_gaji = Request::get('no_gaji');
-            $potongan->jumlah  = Request::get('bulanan');
-        }
-
-
-        if($potongan->save())
+        if(empty($akaunPotongan))
         {
-            $akaunPotongan = AkaunPotongan::where('no_gaji', Request::get('no_gaji'))
-                ->where('perkhidmatan_id', 2)
-                ->where('status', 1)
-                ->first();
+            AkaunPotongan::create([
+                'no_gaji'               => Request::get('no_gaji'),
+                'perkhidmatan_id'       => '2',
+                'jumlah'                => Request::get('jumlah'),
+                'tempoh'                => Request::get('tempoh'),
+                'kadar'                 => Request::get('kadar'),
+                'caj_perkhidmatan'      => '0.00',
+                'insurans'              => '0.00',
+                'jumlah_keseluruhan'    => Request::get('jumlah_keseluruhan'),
+                'baki'                  => Request::get('jumlah_keseluruhan'),
+                'bulanan'               => Request::get('bulanan'),
+                'status'                => 1
+            ]);
+        } else {
+            // 1. deactivate current active accountpotongan
+            // 2. and then create a new one with new bulanan payment
 
-            if(empty($akaunPotongan))
-            {
-                AkaunPotongan::create([
-                    'no_gaji'               => Request::get('no_gaji'),
-                    'perkhidmatan_id'       => '2',
-                    'jumlah'                => Request::get('jumlah'),
-                    'tempoh'                => Request::get('tempoh'),
-                    'kadar'                 => Request::get('kadar'),
-                    'caj_perkhidmatan'      => '0.00',
-                    'insurans'              => '0.00',
-                    'jumlah_keseluruhan'    => Request::get('jumlah_keseluruhan'),
-                    'baki'                  => Request::get('jumlah_keseluruhan'),
-                    'status'                => 1
-                ]);
-            }
+
+
         }
+
 
         Session::flash('success', 'Berjaya. Pinjaman Buku Sekolah berjaya direkodkan');
 

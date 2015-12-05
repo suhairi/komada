@@ -24,20 +24,8 @@
                 <a data-toggle="tab" href="#profil"><i class="glyphicon glyphicon-user"></i> Profil</a>
             </li>
             <li role="presentation"><a data-toggle="tab" href="#yuran"><i class="glyphicon glyphicon-credit-card"></i> Yuran</a></li>
-            <li role="presentation" class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                    <i class="glyphicon glyphicon-usd"></i> Pinjaman <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a data-toggle="tab" href="#biasa">Pinjaman Biasa</a>
-                    </li>
-                    <li><a data-toggle="tab" href="#biasa">Cukai Jalan</a></li>
-                    <li><a data-toggle="tab" href="#biasa">Insurans</a></li>
-                    <li><a data-toggle="tab" href="#biasa">Tayar / Bateri</a></li>
-                    <li><a data-toggle="tab" href="#biasa">Buku Sekolah</a></li>
-                </ul>
-            </li>
+            <li role="presentation"><a data-toggle="tab" href="#biasa"><i class="glyphicon glyphicon-usd"></i> Pinjaman</a></li>
+
         </ul>
 
         <div class="tab-content">
