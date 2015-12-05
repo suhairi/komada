@@ -1,20 +1,20 @@
 @extends('layouts.members')
 
+
 @section('content')
 
     <div class="row">
         <div class="col-xs-5">
-
             <div class="panel panel-primary">
-                <div class="panel-heading"><h4>Pinjaman Wang Tunai</h4></div>
+                <div class="panel-heading"><h4>Kecemasan</h4></div>
                 <div class="panel-body">
-                    {!! Form::open(['route' => 'members.calculator.pwtPost', 'method' => 'post']) !!}
+
+                    <form method="post" action="{{ route('members.kecemasan.indexPost') }}">
                         @include('forms._carian')
-                    {!! Form::close() !!}
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-
 
 @stop

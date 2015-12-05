@@ -30,6 +30,7 @@ class UserTableSeeder extends Seeder
         Perkhidmatan::create(array("nama" => "PERTARUHAN"));
         Perkhidmatan::create(array("nama" => "TAYAR / BATERI"));
         Perkhidmatan::create(array("nama" => "INSURANS"));
+        Perkhidmatan::create(array("nama" => "KECEMASAN"));
 
         Startup::create(['id' => 1, 'nama' => 'YURAN', 'nilai' => '4184963.80', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()]);
         Startup::create(['id' => 2, 'nama' => 'TKA', 'nilai' => '90721.52', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()]);

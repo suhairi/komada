@@ -9,22 +9,10 @@
                             <ul>
                                 <li>+ function Batal Proses Yuran</li>
                                 <li>+ function Batal Bayaran yuran, pertaruhan</li>
-                                <li>+ function penyelesaian pinjaman awal</li>
                                 <li>+ function Backup</li>
-                                <li>icons</li>
                                 <li>Favicon</li>
                             </ul>
 
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-5">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading"><h4>Settings</h4></div>
-                        <div class="panel-body">
-                            <ul>
-                                <li><strike>+ tka</strike></li>
-                            </ul>
                         </div>
                     </div>
                 </div>
@@ -37,9 +25,6 @@
                         <div class="panel-heading"><h4>Anggota</h4></div>
                         <div class="panel-body">
                             <ul>
-                                <li><strike>During register, add jumlah potongan yuran, profile category id, zon gaji.</strike></li>
-                                <li><strike>After Carian Profile, yuran tab does not list along sumbngan lain.</strike></li>
-                                <li><strike>Kemaskini profil tak update jantina</strike></li>
                                 <li>Adakah Anggota yg masuk bulan semasa perlu terus byr yuran?</li>
                             </ul>
                         </div>
@@ -60,20 +45,6 @@
 
                 </div>
 
-                <div class="col-xs-3">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading"><h4>Pinjaman Wang Tunai</h4></div>
-                        <div class="panel-body">
-                            <ul>
-                                <li><strike>Daftar Anggota - +attribute jumlah potongan yuran bulanan</strike></li>
-                                <li><strike>Jadual Pembayaran Pinjaman Wang Tunai (calculator) First Timer Loan</strike></li>
-                                <li>Jadual Pembayaran Pinjaman Wang Tunai (calculator) Overlap Loan</li>
-                                <li>Semakan calculator first time loan dgn Kak Zah</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                </div>
             </div>
 
             <div class="row">
@@ -99,18 +70,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="col-xs-3">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading"><h4>Soalan</h4></div>
-                        <div class="panel-body">
-                            <ul>
-                                <li>Adakah tempoh PWT fixed(12,24,36...60)?</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
 
             </div>
 

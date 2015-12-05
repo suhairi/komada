@@ -14,7 +14,7 @@ class CreateBayaranTable extends Migration
     {
         Schema::create('bayaran', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('no_gaji', 2);
+            $table->string('no_gaji');
             $table->integer('perkhidmatan_id', false,false);
             $table->float('jumlah', 7, 2);
             $table->timestamps();

@@ -259,7 +259,45 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
             'uses'  => 'Members\BukusekolahController@proses'
         ]);
 
+    });
 
+    // Tayar/Bateri -> 5
+    Route::group(['prefix' => 'tayar'], function() {
+
+        Route::get('index', [
+            'as'    => 'members.tayar.index',
+            'uses'  => 'Members\TayarController@index'
+        ]);
+
+        Route::post('index', [
+            'as'    => 'members.tayar.indexPost',
+            'uses'  => 'Members\TayarController@indexPost'
+        ]);
+
+        Route::post('proses', [
+            'as'    => 'members.tayar.proses',
+            'uses'  => 'Members\TayarController@proses'
+        ]);
+
+    });
+
+    // Kecemasan -> 7
+    Route::group(['prefix' => 'kecemasan'], function() {
+
+        Route::get('index', [
+            'as'    => 'members.kecemasan.index',
+            'uses'  => 'Members\KecemasanController@index'
+        ]);
+
+        Route::post('index', [
+            'as'    => 'members.kecemasan.indexPost',
+            'uses'  => 'Members\KecemasanController@indexPost'
+        ]);
+
+        Route::post('proses', [
+            'as'    => 'members.kecemasan.proses',
+            'uses'  => 'Members\KecemasanController@proses'
+        ]);
 
     });
 

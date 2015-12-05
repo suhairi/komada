@@ -110,10 +110,12 @@ class YuranController extends Controller
 
             if(!empty($potongans))
             {
+
                 foreach($potongans as $potongan)
                 {
-                    // 1. Bayran pinjaman wang tunai
-                    if($potongan->perkhidmtan_id == 1)
+//
+                    // 1. Bayaran pinjaman wang tunai
+                    if($potongan->perkhidmatan_id == 1)
                     {
                         Bayaran::create([
                             'no_gaji'           => $profile->no_gaji,
@@ -123,8 +125,9 @@ class YuranController extends Controller
                     }
 
                     // 2. Bayaran pinjaman buku sekolah
-                    if($potongan->perkhidmtan_id == 2)
+                    if($potongan->perkhidmatan_id == 2)
                     {
+//                        return $potongan->perkhidmatan_id;
                         Bayaran::create([
                             'no_gaji'           => $profile->no_gaji,
                             'perkhidmatan_id'   => 2,
@@ -133,18 +136,59 @@ class YuranController extends Controller
                     }
 
                     // 3. Bayaran Cukai Jalan -> 3
-
-
+                    if($potongan->perkhidmatan_id == 3)
+                    {
+//                        return $potongan->perkhidmatan_id;
+                        Bayaran::create([
+                            'no_gaji'           => $profile->no_gaji,
+                            'perkhidmatan_id'   => 3,
+                            'jumlah'            => $potongan->bulanan
+                        ]);
+                    }
 
                     // 4. *Bayaran Pertaruhan -> 4
-
-
+                    if($potongan->perkhidmatan_id == 4)
+                    {
+//                        return $potongan->perkhidmatan_id;
+                        Bayaran::create([
+                            'no_gaji'           => $profile->no_gaji,
+                            'perkhidmatan_id'   => 4,
+                            'jumlah'            => $potongan->bulanan
+                        ]);
+                    }
 
                     // 5. Bayaran Tayar bateri -> 5
-
-
+                    if($potongan->perkhidmatan_id == 5)
+                    {
+//                        return $potongan->perkhidmatan_id;
+                        Bayaran::create([
+                            'no_gaji'           => $profile->no_gaji,
+                            'perkhidmatan_id'   => 5,
+                            'jumlah'            => $potongan->bulanan
+                        ]);
+                    }
 
                     // 6. Bayaran Insurans -> 6
+                    if($potongan->perkhidmatan_id == 6)
+                    {
+//                        return $potongan->perkhidmatan_id;
+                        Bayaran::create([
+                            'no_gaji'           => $profile->no_gaji,
+                            'perkhidmatan_id'   => 6,
+                            'jumlah'            => $potongan->bulanan
+                        ]);
+                    }
+
+                    // 7. Kecemasan -> 7
+                    if($potongan->perkhidmatan_id == 7)
+                    {
+//                        return $potongan->perkhidmatan_id;
+                        Bayaran::create([
+                            'no_gaji'           => $profile->no_gaji,
+                            'perkhidmatan_id'   => 7,
+                            'jumlah'            => $potongan->bulanan
+                        ]);
+                    }
 
                     $jumlahPotongan += $potongan->bulanan;
                 }

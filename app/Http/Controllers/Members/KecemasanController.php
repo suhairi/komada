@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers\Members;
 
+use Request;
 use App\AkaunPotongan;
-use App\Potongan;
 use App\Profile;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
-use Request;
-use App\Http\Controllers\Controller;
 
-class BukusekolahController extends Controller
+class KecemasanController extends Controller
 {
+
     public function index()
     {
-        return View('members.bukusekolah.index');
+        return View('members.kecemasan.index');
     }
 
     public function indexPost()
@@ -24,8 +24,7 @@ class BukusekolahController extends Controller
         $profile = Profile::where('no_gaji', Request::get('no_gaji'))
             ->first();
 
-        if(empty($profile))
-        {
+        if (empty($profile)) {
             Session::flash('error', 'Gagal. No Gaji *' . Request::get('no_gaji') . '* tidak didaftarkan sebagai anggota KOMADA.');
             return Redirect::back()->withInput();
         }
@@ -33,7 +32,7 @@ class BukusekolahController extends Controller
         // 1. check for outstanding payment for buku sekolah
         // 2.
 
-        Return View('members.bukusekolah.form', compact('profile'));
+        Return View('members.kecemasan.form', compact('profile'));
     }
 
     public function proses()
@@ -57,7 +56,7 @@ class BukusekolahController extends Controller
         // 2.
 
         $akaunPotongan = AkaunPotongan::where('no_gaji', Request::get('no_gaji'))
-            ->where('perkhidmatan_id', 2)
+            ->where('perkhidmatan_id', 7)
             ->where('status', 1)
             ->first();
 
@@ -65,7 +64,7 @@ class BukusekolahController extends Controller
         {
             AkaunPotongan::create([
                 'no_gaji'               => Request::get('no_gaji'),
-                'perkhidmatan_id'       => '2',
+                'perkhidmatan_id'       => '7',
                 'jumlah'                => Request::get('jumlah'),
                 'tempoh'                => Request::get('tempoh'),
                 'kadar'                 => Request::get('kadar'),
@@ -77,19 +76,16 @@ class BukusekolahController extends Controller
                 'status'                => 1
             ]);
         } else {
-            // This is for overlapping buku sekolah
+            // this is for overlapping kecemasan
             // 1. deactivate current active accountpotongan
             // 2. and then create a new one with new bulanan payment
-
 
         }
 
 
-        Session::flash('success', 'Berjaya. Pinjaman Buku Sekolah berjaya direkodkan');
+        Session::flash('success', 'Berjaya. Pinjaman Kecemasan berjaya direkodkan');
 
         return Redirect::back();
-
-
     }
 
 }
