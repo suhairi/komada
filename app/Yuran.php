@@ -10,7 +10,7 @@ class Yuran extends Model
     protected $primaryKey = 'id';
     protected $fillable = ['no_gaji', 'bulan_tahun', 'yuran', 'tka', 'takaful', 'potongan', 'zon_gaji_id'];
 
-    public function Profile()
+    public function profile()
     {
         return $this->hasOne('App\Profile', 'id', 'no_gaji');
     }
