@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers\Members;
 
-use Request;
 use App\AkaunPotongan;
+use App\Potongan;
 use App\Profile;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use Request;
+use App\Http\Controllers\Controller;
 
-class KecemasanController extends Controller
+
+class JalanController extends Controller
 {
-
     public function index()
     {
-        return View('members.kecemasan.index');
+        return View('members.jalan.index');
     }
 
     public function indexPost()
@@ -24,21 +25,16 @@ class KecemasanController extends Controller
         $profile = Profile::where('no_gaji', Request::get('no_gaji'))
             ->first();
 
-        if (empty($profile)) {
-            Session::flash('error', 'Gagal. No Gaji *' . Request::get('no_gaji') . '* tidak didaftarkan sebagai anggota KOMADA.');
-            return Redirect::back()->withInput();
-        }
-
-        if($profile->status == 0)
+        if(empty($profile))
         {
-            Session::flash('error', 'Gagal. No Gaji *' . Request::get('no_gaji') . '* adalah ahli KOMADA, tetapi telah tidak AKTIF.');
+            Session::flash('error', 'Gagal. No Gaji *' . Request::get('no_gaji') . '* tidak didaftarkan sebagai anggota KOMADA.');
             return Redirect::back()->withInput();
         }
 
         // 1. check for outstanding payment for buku sekolah
         // 2.
 
-        Return View('members.kecemasan.form', compact('profile'));
+        Return View('members.jalan.form', compact('profile'));
     }
 
     public function proses()
@@ -62,7 +58,7 @@ class KecemasanController extends Controller
         // 2.
 
         $akaunPotongan = AkaunPotongan::where('no_gaji', Request::get('no_gaji'))
-            ->where('perkhidmatan_id', 7)
+            ->where('perkhidmatan_id', 3)
             ->where('status', 1)
             ->first();
 
@@ -70,11 +66,11 @@ class KecemasanController extends Controller
         {
             AkaunPotongan::create([
                 'no_gaji'               => Request::get('no_gaji'),
-                'perkhidmatan_id'       => '7',
+                'perkhidmatan_id'       => '3',
                 'jumlah'                => Request::get('jumlah'),
                 'tempoh'                => Request::get('tempoh'),
                 'kadar'                 => Request::get('kadar'),
-                'caj_perkhidmatan'      => Request::get('caj'),
+                'caj_perkhidmatan'      => '0.00',
                 'insurans'              => '0.00',
                 'jumlah_keseluruhan'    => Request::get('jumlah_keseluruhan'),
                 'baki'                  => Request::get('jumlah_keseluruhan'),
@@ -82,18 +78,15 @@ class KecemasanController extends Controller
                 'status'                => 1
             ]);
         } else {
-            // this is for overlapping kecemasan
+            // This is for overlapping buku sekolah
             // 1. deactivate current active accountpotongan
             // 2. and then create a new one with new bulanan payment
 
-            Session::flash('error', 'Gagal. Baki Pinjaman Kecemasan masih belum selesai.');
-            return Redirect::back();
         }
 
-
-        Session::flash('success', 'Berjaya. Pinjaman Kecemasan berjaya direkodkan');
+        Session::flash('success', 'Berjaya. Pinjaman Cukai Jalan berjaya direkodkan');
 
         return Redirect::back();
-    }
 
+    }
 }

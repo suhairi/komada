@@ -27,9 +27,8 @@ class UserTableSeeder extends Seeder
         Perkhidmatan::create(array("nama" => "WANG TUNAI"));
         Perkhidmatan::create(array("nama" => "BUKU SEKOLAH"));
         Perkhidmatan::create(array("nama" => "CUKAI JALAN"));
-        Perkhidmatan::create(array("nama" => "PERTARUHAN"));
-        Perkhidmatan::create(array("nama" => "TAYAR / BATERI"));
         Perkhidmatan::create(array("nama" => "INSURANS"));
+        Perkhidmatan::create(array("nama" => "TAYAR / BATERI"));
         Perkhidmatan::create(array("nama" => "KECEMASAN"));
 
         Startup::create(['id' => 1, 'nama' => 'YURAN', 'nilai' => '4184963.80', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()]);

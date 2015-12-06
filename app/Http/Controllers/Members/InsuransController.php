@@ -10,12 +10,11 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
-class KecemasanController extends Controller
+class InsuransController extends Controller
 {
-
     public function index()
     {
-        return View('members.kecemasan.index');
+        return View('members.insurans.index');
     }
 
     public function indexPost()
@@ -38,7 +37,7 @@ class KecemasanController extends Controller
         // 1. check for outstanding payment for buku sekolah
         // 2.
 
-        Return View('members.kecemasan.form', compact('profile'));
+        Return View('members.insurans.form', compact('profile'));
     }
 
     public function proses()
@@ -62,7 +61,7 @@ class KecemasanController extends Controller
         // 2.
 
         $akaunPotongan = AkaunPotongan::where('no_gaji', Request::get('no_gaji'))
-            ->where('perkhidmatan_id', 7)
+            ->where('perkhidmatan_id', 4)
             ->where('status', 1)
             ->first();
 
@@ -70,11 +69,11 @@ class KecemasanController extends Controller
         {
             AkaunPotongan::create([
                 'no_gaji'               => Request::get('no_gaji'),
-                'perkhidmatan_id'       => '7',
+                'perkhidmatan_id'       => '4',
                 'jumlah'                => Request::get('jumlah'),
                 'tempoh'                => Request::get('tempoh'),
                 'kadar'                 => Request::get('kadar'),
-                'caj_perkhidmatan'      => Request::get('caj'),
+                'caj_perkhidmatan'      => "0.00",
                 'insurans'              => '0.00',
                 'jumlah_keseluruhan'    => Request::get('jumlah_keseluruhan'),
                 'baki'                  => Request::get('jumlah_keseluruhan'),
@@ -86,14 +85,13 @@ class KecemasanController extends Controller
             // 1. deactivate current active accountpotongan
             // 2. and then create a new one with new bulanan payment
 
-            Session::flash('error', 'Gagal. Baki Pinjaman Kecemasan masih belum selesai.');
+            Session::flash('error', 'Gagal. Baki Pinjaman Insurans masih belum selesai.');
             return Redirect::back();
         }
 
 
-        Session::flash('success', 'Berjaya. Pinjaman Kecemasan berjaya direkodkan');
+        Session::flash('success', 'Berjaya. Pinjaman Insurans berjaya direkodkan');
 
         return Redirect::back();
     }
-
 }

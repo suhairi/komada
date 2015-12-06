@@ -219,7 +219,7 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
         'uses'  => 'Members\YuranController@yuranProcess'
     ]);
 
-    // PINJAMAN
+    // PINJAMAN  -> 1
 
     Route::group(['prefix' => 'pinjaman'], function() {
 
@@ -241,7 +241,7 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
 
     });
 
-    // Buku Sekolah
+    // Buku Sekolah  -> 2
     Route::group(['prefix' => 'bukusekolah'], function() {
 
         Route::get('index', [
@@ -260,6 +260,48 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
         ]);
 
     });
+
+    // Cukai Jalan  -> 3
+    Route::group(['prefix' => 'cukaijalan'], function() {
+
+        Route::get('index', [
+            'as'    => 'members.jalan.index',
+            'uses'  => 'Members\JalanController@index'
+        ]);
+
+        Route::post('index', [
+            'as'    => 'members.jalan.indexPost',
+            'uses'  => 'Members\JalanController@indexPost'
+        ]);
+
+        Route::post('proses', [
+            'as'    => 'members.jalan.proses',
+            'uses'  => 'Members\JalanController@proses'
+        ]);
+
+    });
+
+    // Insurans  -> 4
+    Route::group(['prefix' => 'insurans'], function() {
+
+        Route::get('index', [
+            'as'    => 'members.insurans.index',
+            'uses'  => 'Members\InsuransController@index'
+        ]);
+
+        Route::post('index', [
+            'as'    => 'members.insurans.indexPost',
+            'uses'  => 'Members\InsuransController@indexPost'
+        ]);
+
+        Route::post('proses', [
+            'as'    => 'members.insurans.proses',
+            'uses'  => 'Members\InsuransController@proses'
+        ]);
+
+    });
+
+
 
     // Tayar/Bateri -> 5
     Route::group(['prefix' => 'tayar'], function() {

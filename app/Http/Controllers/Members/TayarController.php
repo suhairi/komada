@@ -67,7 +67,7 @@ class TayarController extends Controller
                 'jumlah'                => Request::get('jumlah'),
                 'tempoh'                => Request::get('tempoh'),
                 'kadar'                 => Request::get('kadar'),
-                'caj_perkhidmatan'      => '0.00',
+                'caj_perkhidmatan'      => Request::get('caj'),
                 'insurans'              => '0.00',
                 'jumlah_keseluruhan'    => Request::get('jumlah_keseluruhan'),
                 'baki'                  => Request::get('jumlah_keseluruhan'),
@@ -78,6 +78,9 @@ class TayarController extends Controller
             // this is for overlapping kecemasan
             // 1. deactivate current active accountpotongan
             // 2. and then create a new one with new bulanan payment
+
+            Session::flash('error', 'Gagal. Baki Pinjaman Kecemasan masih belum selesai.');
+            return Redirect::back();
 
         }
 

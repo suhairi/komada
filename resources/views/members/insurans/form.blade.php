@@ -5,11 +5,11 @@
     <div class="row">
         <div class="col-xs-6">
             <div class="panel panel-primary">
-                <div class="panel-heading"><h4>Kecemasan</h4></div>
+                <div class="panel-heading"><h4>Pinjaman Insurans</h4></div>
                 <div class="panel-body">
 
-                    <form method="post" action="{{ route('members.kecemasan.proses') }}">
-                    {{ csrf_field() }}
+                    <form method="post" action="{{ route('members.insurans.proses') }}">
+                        {{ csrf_field() }}
                         <div class="form-group">
                             <label for="No gaji">No Gaji</label>
                             <input class="form-control" type="text" name="no_gaji" value="{{ $profile->no_gaji }}" readonly />
@@ -21,17 +21,12 @@
 
                         <div class="form-group">
                             <label for="jumlah">Jumlah</label>
-                            <input class="form-control" type="number" name="jumlah" max="1000" id="jumlah" step="any" placeholder="Contoh : RM 1000.00" onkeyup="calc()" />
+                            <input class="form-control" type="number" name="jumlah" max="500" id="jumlah" step="any" placeholder="Contoh : RM 500.00" onkeyup="calc()" />
                         </div>
 
                         <div class="form-group">
                             <label for="tempoh">Tempoh (bulan)</label>
                             <input class="form-control" type="number" name="tempoh" id="tempoh" value="8" max="12" onkeyup="calc()" />
-                        </div>
-
-                        <div class="form-group">
-                            <label for="tempoh">Caj Proses</label>
-                            <input class="form-control" type="number" name="caj" id="caj" value="0.00" max="12" step="any" readonly />
                         </div>
 
                         <div class="form-group">
@@ -72,16 +67,8 @@
             kadar = document.getElementById('kadar').value;
             tempoh = document.getElementById('tempoh').value;
 
-            if(jumlah >= 1000)
-            {
-//                alert(jumlah);
-                document.getElementById('caj').value = "50.00";
-            }else{
-                document.getElementById('caj').value = "0.00";
-            }
-
             jumlahKadar = ((parseFloat(jumlah) * parseFloat(kadar) / 100) / 12 * parseFloat(tempoh));
-            jumlahKeseluruhan = parseFloat(jumlah) + parseFloat(document.getElementById('caj').value) + parseFloat(jumlahKadar);
+            jumlahKeseluruhan = parseFloat(jumlah) + parseFloat(jumlahKadar);
 
             document.getElementById('keseluruhan').value = jumlahKeseluruhan.toFixed(2);
 

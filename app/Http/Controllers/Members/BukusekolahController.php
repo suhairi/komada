@@ -89,7 +89,6 @@ class BukusekolahController extends Controller
 
         return Redirect::back();
 
-
     }
 
 }
