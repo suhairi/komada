@@ -11,6 +11,8 @@
                 <th><div align="right">Jumlah Pinjaman (RM)</div></th>
                 <th><div align="right">Kadar (%)</div></th>
                 <th><div align="right">Jumlah Keseluruhan (RM)</div></th>
+                <th><div align="right">Jumlah Baki (RM)</div></th>
+                <th><div align="right">Bulanan (RM)</div></th>
                 <th><div align="center">Pilihan</div></th>
             </tr>
             </thead>
@@ -23,11 +25,13 @@
                 <td align="right">{{ number_format($biasa->jumlah, 2) }}</td>
                 <td align="right">{{ number_format($biasa->kadar, 2) }}</td>
                 <td align="right">{{ number_format($biasa->jumlah_keseluruhan, 2) }}</td>
+                <td align="right">{{ number_format($biasa->baki, 2) }}</td>
+                <td align="right">{{ number_format($biasa->bulanan, 2) }}</td>
                 <td align="center"><a href="{{ route('members.penyata.potongan', ['id' => $biasa->id]) }}"><button class="btn btn-default">Details</button></a></td>
             </tr>
         @empty
             <tr>
-                <td colspan="7" class="alert alert-danger">Tiada Pinjaman Wang Tunai</td>
+                <td colspan="9" class="alert alert-danger">Tiada Pinjaman Wang Tunai</td>
             </tr>
         @endforelse
             </tbody>

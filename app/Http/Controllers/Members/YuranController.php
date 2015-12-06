@@ -122,6 +122,15 @@ class YuranController extends Controller
                             'perkhidmatan_id'   => 1,
                             'jumlah'            => $potongan->bulanan
                         ]);
+
+                        $bayaran = AkaunPotongan::where('no_gaji', $profile->no_gaji)
+                            ->where('perkhidmatan_id', 1)
+                            ->where('status', 1)
+                            ->first();
+
+                        $bayaran->baki -= $potongan->bulanan;
+
+                        $bayaran->save();
                     }
 
                     // 2. Bayaran pinjaman buku sekolah
@@ -133,6 +142,15 @@ class YuranController extends Controller
                             'perkhidmatan_id'   => 2,
                             'jumlah'            => $potongan->bulanan
                         ]);
+
+                        $bayaran = AkaunPotongan::where('no_gaji', $profile->no_gaji)
+                            ->where('perkhidmatan_id', 2)
+                            ->where('status', 1)
+                            ->first();
+
+                        $bayaran->baki -= $potongan->bulanan;
+
+                        $bayaran->save();
                     }
 
                     // 3. Bayaran Cukai Jalan -> 3
@@ -144,9 +162,18 @@ class YuranController extends Controller
                             'perkhidmatan_id'   => 3,
                             'jumlah'            => $potongan->bulanan
                         ]);
+
+                        $bayaran = AkaunPotongan::where('no_gaji', $profile->no_gaji)
+                            ->where('perkhidmatan_id', 3)
+                            ->where('status', 1)
+                            ->first();
+
+                        $bayaran->baki -= $potongan->bulanan;
+
+                        $bayaran->save();
                     }
 
-                    // 4. *Bayaran Pertaruhan -> 4
+                    // 4. Bayaran Insurans -> 4
                     if($potongan->perkhidmatan_id == 4)
                     {
 //                        return $potongan->perkhidmatan_id;
@@ -155,6 +182,15 @@ class YuranController extends Controller
                             'perkhidmatan_id'   => 4,
                             'jumlah'            => $potongan->bulanan
                         ]);
+
+                        $bayaran = AkaunPotongan::where('no_gaji', $profile->no_gaji)
+                            ->where('perkhidmatan_id', 4)
+                            ->where('status', 1)
+                            ->first();
+
+                        $bayaran->baki -= $potongan->bulanan;
+
+                        $bayaran->save();
                     }
 
                     // 5. Bayaran Tayar bateri -> 5
@@ -166,9 +202,19 @@ class YuranController extends Controller
                             'perkhidmatan_id'   => 5,
                             'jumlah'            => $potongan->bulanan
                         ]);
+
+                        $bayaran = AkaunPotongan::where('no_gaji', $profile->no_gaji)
+                            ->where('perkhidmatan_id', 5)
+                            ->where('status', 1)
+                            ->first();
+
+                        $bayaran->baki -= $potongan->bulanan;
+
+                        $bayaran->save();
                     }
 
-                    // 6. Bayaran Insurans -> 6
+
+                    // 6. Kecemasan -> 6
                     if($potongan->perkhidmatan_id == 6)
                     {
 //                        return $potongan->perkhidmatan_id;
@@ -177,17 +223,15 @@ class YuranController extends Controller
                             'perkhidmatan_id'   => 6,
                             'jumlah'            => $potongan->bulanan
                         ]);
-                    }
 
-                    // 7. Kecemasan -> 7
-                    if($potongan->perkhidmatan_id == 7)
-                    {
-//                        return $potongan->perkhidmatan_id;
-                        Bayaran::create([
-                            'no_gaji'           => $profile->no_gaji,
-                            'perkhidmatan_id'   => 7,
-                            'jumlah'            => $potongan->bulanan
-                        ]);
+                        $bayaran = AkaunPotongan::where('no_gaji', $profile->no_gaji)
+                            ->where('perkhidmatan_id', 6)
+                            ->where('status', 1)
+                            ->first();
+
+                        $bayaran->baki -= $potongan->bulanan;
+
+                        $bayaran->save();
                     }
 
                     $jumlahPotongan += $potongan->bulanan;
