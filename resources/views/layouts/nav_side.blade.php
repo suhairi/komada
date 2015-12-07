@@ -40,11 +40,12 @@
         <ul class="nav navbar-nav">
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    <i class="glyphicon glyphicon-credit-card"></i> Yuran
+                    <i class="glyphicon glyphicon-credit-card"></i> Bayaran
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
                     <li><a href="{{ route('members.yuran.index') }}"><i class="glyphicon glyphicon-credit-card"></i> Yuran</a></li>
+                    <li><a href="{{ route('members.yuran.index') }}"><i class="glyphicon glyphicon-credit-card"></i> Langsai</a></li>
                 </ul>
             </li>
         </ul>
