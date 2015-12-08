@@ -59,15 +59,12 @@ class LaporanController extends Controller
 
         $bulan_tahun = $bulan . '-' . Request::get('tahun');
 
-
         $bahagian = Zon::where('kod', Request::get('zon'))
             ->first();
 
         $profiles = Profile::where('zon_gaji_id', Request::get('zon'))
             ->where('status', 1)
             ->get();
-
-//        dd($profiles->toArray());
 
         $persons = [];
         $jumlahBesar = 0.00;
@@ -86,10 +83,12 @@ class LaporanController extends Controller
             $bs = $this->getPinjaman($profile->no_gaji, $bulan_tahun, 2);
             $rt = $this->getPinjaman($profile->no_gaji, $bulan_tahun, 3);
             $ins = $this->getPinjaman($profile->no_gaji, $bulan_tahun, 4);
-            $tbs = $this->getPinjaman($profile->no_gaji, $bulan_tahun, 5);
+            $tb = $this->getPinjaman($profile->no_gaji, $bulan_tahun, 5);
             $kc = $this->getPinjaman($profile->no_gaji, $bulan_tahun, 6);
 
-            $jumlah = $yuran->yuran + $yuran->tka + $yuran->takaful + $sumbangan + $pwt;
+            $jumlah = $yuran->yuran + $yuran->tka + $yuran->takaful + $sumbangan + $pwt + $kc
+                + $bs + $rt + $tb + $ins;
+
 
             array_push($persons, [
                 'no_gaji'   => $profile->no_gaji,
@@ -101,12 +100,14 @@ class LaporanController extends Controller
                 'sumbangan' => number_format($sumbangan, 2),
                 'pwt'       => number_format($pwt, 2),
                 'kecemasan' => number_format($kc, 2),
-                'bsekolah' => number_format($bs, 2),
+                'bsekolah'  => number_format($bs, 2),
+                'rt'        => number_format($rt, 2),
+                'tb'        => number_format($tb, 2),
+                'ins'        => number_format($ins, 2),
                 'jumlah'    => number_format($jumlah, 2)
             ]);
 
             $jumlahBesar += $jumlah;
-
         }
 
         $bil = 1;

@@ -22,6 +22,8 @@
                             <th>W/T</th>
                             <th>K/C</th>
                             <th>B/S</th>
+                            <th>T/B</th>
+                            <th>Ins</th>
                             <th><div align="right">JUMLAH</div></th>
                         </tr>
                         @foreach($persons as $person)
@@ -37,11 +39,13 @@
                                 <td align="right">{{ number_format($person['pwt'], 2) }}</td>
                                 <td align="right">{{ number_format($person['kecemasan'], 2) }}</td>
                                 <td align="right">{{ number_format($person['bsekolah'], 2) }}</td>
+                                <td align="right">{{ number_format($person['tb'], 2) }}</td>
+                                <td align="right">{{ number_format($person['ins'], 2) }}</td>
                                 <th><div align="right">{{ number_format($person['jumlah'], 2) }}</div></th>
                             </tr>
                         @endforeach
                         <tr>
-                            <td align="right" colspan="11"><strong>JUMLAH BESAR</strong></td>
+                            <td align="right" colspan="13"><strong>JUMLAH BESAR</strong></td>
                             <th><div align="right">{{ number_format($jumlahBesar, 2) }}</div></th>
                         </tr>
                     </table>
