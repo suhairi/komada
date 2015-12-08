@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Members;
 
 use App\AkaunPotongan;
+use App\Bayaran;
 use App\Profile;
 use App\Yuran;
 use Illuminate\Support\Facades\Redirect;
@@ -97,9 +98,8 @@ class CalculatorController extends Controller
             ->where('perkhidmatan_id', 1)
             ->first();
 
-        $bilPotongan = Yuran::where('no_gaji', $no_gaji)
+        $bilPotongan = Bayaran::where('no_gaji', $no_gaji)
             ->where('created_at', '>=', $akaun->created_at->format('Y-m-d') . '%')
-            ->where('potongan', '>', 0)
             ->count();
 
         $bakiTempoh = $akaun->tempoh - $bilPotongan;

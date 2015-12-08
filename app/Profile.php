@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Profile extends Model
 {
     protected $table = 'profile';
-    protected $primaryKey = 'no_anggota';
+    protected $primaryKey = 'id';
 
     protected $fillable = [
         'no_gaji', 'no_anggota', 'jumlah_yuran_bulanan', 'jumlah_pertaruhan', 'nama', 'nokp', 'jantina_id', 'bangsa',
@@ -31,4 +31,6 @@ class Profile extends Model
     {
         return $this->hasOne('App\Zon', 'id', 'zon_gaji_id');
     }
+
+
 }

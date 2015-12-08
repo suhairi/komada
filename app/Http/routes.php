@@ -301,8 +301,6 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
 
     });
 
-
-
     // Tayar/Bateri -> 5
     Route::group(['prefix' => 'tayar'], function() {
 
@@ -344,14 +342,18 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
     });
 
 
-
     // LAPORAN
 
     Route::group(['prefix' => 'laporan'], function () {
 
-        Route::get('potonganGaji', [
-            'as'    => 'members.laporan.potonganGaji',
-            'uses'  => 'Members\LaporanController@potonganGaji'
+        Route::get('gaji', [
+            'as'    => 'members.laporan.lapGajiIndividu',
+            'uses'  => 'Members\LaporanController@lapGajiIndividu'
+        ]);
+
+        Route::post('gaji', [
+            'as'    => 'members.laporan.lapGajiIndividu.generate',
+            'uses'  => 'Members\LaporanController@lapGajiIndividuGenerate'
         ]);
 
         Route::post('carian', [
