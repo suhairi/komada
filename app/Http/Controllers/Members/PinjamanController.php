@@ -197,7 +197,4 @@ class PinjamanController extends Controller
     }
 
 
-
-
-
 }

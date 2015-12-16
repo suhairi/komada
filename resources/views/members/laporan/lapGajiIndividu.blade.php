@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-xs-6">
             <div class="panel panel-primary">
-                <div class="panel panel-heading"><h4>Jadual Potongan Gaji Individus</h4></div>
+                <div class="panel panel-heading"><h4>Jadual Potongan Gaji Individu</h4></div>
                 <div class="panel-body">
 
                 <form method="post" action="{{ route('members.laporan.lapGajiIndividu.generate') }}">

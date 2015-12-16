@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Members;
 
+use App\AkaunPotongan;
 use App\Bayaran;
 use App\Profile;
 use App\Yuran;
@@ -74,6 +75,11 @@ class LaporanController extends Controller
             // yuran, tka, takaful
             $yuran = $this->getYuran($profile->no_gaji, $bulan_tahun);
 
+            if($yuran == null) {
+                Session::flash('error', 'Gagal. Laporan tidak dapat dijana. Yuran bagi ' . $bulan_tahun . ' belum diproses.');
+                return Redirect::back();
+            }
+
             // sumbangan kematian
             $sumbangan = number_format($this->getSumbangan($bulan_tahun), 2);
 
@@ -87,7 +93,7 @@ class LaporanController extends Controller
             $kc = $this->getPinjaman($profile->no_gaji, $bulan_tahun, 6);
 
             $jumlah = $yuran->yuran + $yuran->tka + $yuran->takaful + $sumbangan + $pwt + $kc
-                + $bs + $rt + $tb + $ins;
+                + $bs + $rt + $tb + $ins + $profile->jumlah_pertaruhan;
 
 
             array_push($persons, [
@@ -114,6 +120,66 @@ class LaporanController extends Controller
 
         return View('members.laporan.janaan.lapGajiIndividu', compact('bil', 'bahagian', 'persons', 'jumlahBesar'));
 
+    }
+
+    public function lapPotonganGaji() {
+        return View('members.laporan.lapPotonganGaji');
+    }
+
+    public function lapPotonganGajiGenerate() {
+
+        $month = Request::get('bulan');
+        $year = Request::get('tahun');
+        $tarikh = $year . '-' . $month;
+
+        $zones = Zon::all();
+
+        $pwt = $bs = [];
+
+        $accounts = AkaunPotongan::where('created_at', 'like', $tarikh . '%')
+            ->where('status', 1)
+            ->get();
+
+        if($accounts->isEmpty()){
+            Session::flash('error', 'Gagal. Tiada data dalam table akaun potongan');
+            return Redirect::back();
+        }
+
+        foreach($accounts as $account) {
+
+            foreach($zones as $zone) {
+
+                // PWT - perkhidmatan_id = 1
+                if($account->perkhidmatan_id == 1) {
+                    $zon_gaji = $this->getZonGaji($account->no_gaji);
+
+                    $flag = false;
+                    if(!empty($pwt)) {
+
+                        foreach ($pwt as &$pwt_) {
+                            if ($pwt_['zon'] == $zon_gaji) {
+
+                                $pwt_['jumlah'] += $account->jumlah;
+                                $flag = true;
+                            }
+                        }
+                    }
+
+                    if(!$flag) {
+                        array_push($pwt, ['zon' => $zon_gaji, 'jumlah' => number_format($account->jumlah, 2)]);
+                    }
+                }
+
+                // BS - perkhidmatan_id = 2
+
+            }
+        }
+
+        dd($pwt);
+
+        exit;
+
+        return View('members.laporan.janaan.lapPotonganGajiGenerate', compact('zones', 'pwt', 'bs'));
     }
 
     protected function getYuran($no_gaji, $bulan_tahun)
@@ -154,5 +220,12 @@ class LaporanController extends Controller
         return $bayaran;
     }
 
+    protected function getZonGaji($no_gaji) {
+
+        $profile = Profile::where('no_gaji', $no_gaji)
+            ->first();
+
+        return $profile->zon_gaji_id;
+    }
 
 }

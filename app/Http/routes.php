@@ -366,6 +366,16 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
             'uses'  => 'Members\YuranController@index'
         ]);
 
+        Route::get('potongan', [
+            'as'    => 'members.laporan.lapPotonganGaji',
+            'uses'  => 'Members\LaporanController@lapPotonganGaji'
+        ]);
+
+        Route::post('potongan', [
+            'as'    => 'members.laporan.lapPotonganGaji.generate',
+            'uses'  => 'Members\LaporanController@lapPotonganGajiGenerate'
+        ]);
+
     }); //end group['laporan']
 
     Route::group(['prefix' =>'penyata'], function() {

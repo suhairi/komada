@@ -61,7 +61,7 @@
                 <ul class="dropdown-menu">
                     <li><a href="{{ route('members.laporan.lapGajiIndividu') }}"><i class="glyphicon glyphicon-file"></i> Potongan Gaji Individu</a></li>
                     <li><a href="{{ route('members.laporan.yuran') }}"><i class="glyphicon glyphicon-file"></i> Laporan Yuran</a></li>
-                    <li><a href="{{ route('members.penyata.potongan') }}"><i class="glyphicon glyphicon-file"></i> Penyata Potongan</a></li>
+                    <li><a href="{{ route('members.laporan.lapPotonganGaji') }}"><i class="glyphicon glyphicon-file"></i> Penyata Potongan</a></li>
                     <li><a href="#"><i class="glyphicon glyphicon-file"></i> Laporan Komisyen</a></li>
                 </ul>
             </li>
