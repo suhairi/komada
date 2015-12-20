@@ -68,5 +68,44 @@
         </ul>
     </div>
 
+    <div id='cssmenu'>
+        <ul>
+            <li class='active'><a href='#'><span>Home</span></a></li>
+            <li class='has-sub'><a href='#'><span>Profil</span></a>
+                <ul>
+                    <li><a href='#'><span>Carian Profil</span></a></li>
+                    <li><a href='#'><span>Daftar Anggota</span></a></li>
+                    <li class='last'><a href='#'><span>Daftar Pertaruhan</span></a></li>
+                </ul>
+            </li>
+            <li class='has-sub'><a href='#'><span>Pinjaman</span></a>
+                <ul>
+                    <li><a href='#'><span>Wang Tunai</span></a></li>
+                    <li class='last'><a href='#'><span>Buku Sekolah</span></a></li>
+                    <li class='last'><a href='#'><span>Kecemasan</span></a></li>
+                    <li class='last'><a href='#'><span>Tayar / Bateri</span></a></li>
+                    <li class='last'><a href='#'><span>Cukai Jalan</span></a></li>
+                    <li class='last'><a href='#'><span>Insurans</span></a></li>
+                </ul>
+            </li>
+            <li class='has-sub'><a href='#'><span>Bayaran</span></a>
+                <ul>
+                    <li class='last'><a href='#'><span>Yuran</span></a></li>
+                    <li class='last'><a href='#'><span>Bayaran Tunai</span></a></li>
+                    <li class='last'><a href='#'><span>Langsai</span></a></li>
+                </ul>
+            </li>
+            <li class='has-sub'><a href='#'><span>Laporan</span></a>
+                <ul>
+                    <li class='last'><a href='#'><span>Potongan Gaji Individu</span></a></li>
+                    <li class='last'><a href='#'><span>Laporan Yuran</span></a></li>
+                    <li class='last'><a href='#'><span>Penyata Potongan</span></a></li>
+                    <li class='last'><a href='#'><span>Laporan Komisyen</span></a></li>
+                </ul>
+            </li>
+
+        </ul>
+    </div>
+
 
 </div>

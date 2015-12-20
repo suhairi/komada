@@ -10,6 +10,7 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="{{ asset('css/react/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/collapse-styles.css') }}">
     {{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">--}}
 
     <link rel="stylesheet" href="{{ asset('css/bootstrap-theme.min.css') }}">
@@ -42,6 +43,7 @@
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('js/collapse-script.js') }}"></script>
 
 </body>
 </html>
