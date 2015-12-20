@@ -20,9 +20,14 @@
                             <th>M/P</th>
                             <th>S/K</th>
                             <th>W/T</th>
+                            <th>CP</th>
+                            <th>Ins</th>
                             <th>K/C</th>
+                            <th>CP</th>
+                            <th>Ins</th>
                             <th>B/S</th>
                             <th>T/B</th>
+                            <th>CP</th>
                             <th>Ins</th>
                             <th><div align="right">JUMLAH</div></th>
                         </tr>
@@ -37,15 +42,20 @@
                                 <td align="right">{{ number_format($person['takaful'], 2) }}</td>
                                 <td align="right">{{ number_format($person['sumbangan'], 2) }}</td>
                                 <td align="right">{{ number_format($person['pwt'], 2) }}</td>
+                                <td align="right">{{ number_format($person['pwt'], 2) }}</td>
+                                <td align="right">{{ number_format($person['pwt'], 2) }}</td>
+                                <td align="right">{{ number_format($person['kecemasan'], 2) }}</td>
+                                <td align="right">{{ number_format($person['kecemasan'], 2) }}</td>
                                 <td align="right">{{ number_format($person['kecemasan'], 2) }}</td>
                                 <td align="right">{{ number_format($person['bsekolah'], 2) }}</td>
+                                <td align="right">{{ number_format($person['tb'], 2) }}</td>
                                 <td align="right">{{ number_format($person['tb'], 2) }}</td>
                                 <td align="right">{{ number_format($person['ins'], 2) }}</td>
                                 <th><div align="right">{{ number_format($person['jumlah'], 2) }}</div></th>
                             </tr>
                         @endforeach
                         <tr>
-                            <td align="right" colspan="13"><strong>JUMLAH BESAR</strong></td>
+                            <td align="right" colspan="18"><strong>JUMLAH BESAR</strong></td>
                             <th><div align="right">{{ number_format($jumlahBesar, 2) }}</div></th>
                         </tr>
                     </table>
