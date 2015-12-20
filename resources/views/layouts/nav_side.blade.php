@@ -1,25 +1,7 @@
 <div class="col-sm-3 col-md-2 sidebar">
-
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    <i class="glyphicon glyphicon-file"></i> Laporan
-                    <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-
     <div id='cssmenu'>
         <ul>
-            <li class='active'><a href='{{ url('/') }}'><span>Home</span></a></li>
+            {{--<li class='active'><a href='{{ url('/') }}'><span>Home</span></a></li>--}}
             <li class='has-sub'><a href='#'><span>Profil</span></a>
                 <ul>
                     <li><a href="{{ route('members.index') }}"><i class="glyphicon glyphicon-search"></i> Carian Profil </a></li>
