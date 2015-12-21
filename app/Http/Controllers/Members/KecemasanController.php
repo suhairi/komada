@@ -62,7 +62,7 @@ class KecemasanController extends Controller
         // 2.
 
         $akaunPotongan = AkaunPotongan::where('no_gaji', Request::get('no_gaji'))
-            ->where('perkhidmatan_id', 7)
+            ->where('perkhidmatan_id', 6)
             ->where('status', 1)
             ->first();
 
@@ -70,7 +70,7 @@ class KecemasanController extends Controller
         {
             AkaunPotongan::create([
                 'no_gaji'               => Request::get('no_gaji'),
-                'perkhidmatan_id'       => '7',
+                'perkhidmatan_id'       => '6',
                 'jumlah'                => Request::get('jumlah'),
                 'tempoh'                => Request::get('tempoh'),
                 'kadar'                 => Request::get('kadar'),

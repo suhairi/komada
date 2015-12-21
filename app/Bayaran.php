@@ -8,12 +8,12 @@ class Bayaran extends Model
 {
     protected $table = 'bayaran';
     protected $primaryKey = 'id';
-    protected $fillable = ['no_gaji', 'perkhidmatan_id', 'jumlah'];
+    protected $fillable = ['no_gaji', 'akaunpotongan_id', 'jumlah'];
 
 
     public function perkhidmatan()
     {
-        return $this->hasOne('App\Perkhidmatan', 'id', 'perkhidmatan_id');
+        return $this->hasOne('App\AkaunPotongan', 'id', 'akaunpotongan_id');
     }
 
 }

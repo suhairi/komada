@@ -219,6 +219,23 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
         'uses'  => 'Members\YuranController@yuranProcess'
     ]);
 
+    // Bayaran Tunai
+
+    Route::get('/bayaran', [
+        'as'    => 'members.bayaran.index',
+        'uses'  => 'Members\BayaranController@index'
+    ]);
+
+    Route::post('/bayaran', [
+        'as'    => 'members.bayaran.indexPost',
+        'uses'  => 'Members\BayaranController@indexPost'
+    ]);
+
+    Route::post('bayaran/proses', [
+        'as'    => 'members.bayaran.proses',
+        'uses'  => 'Members\BayaranController@proses'
+    ]);
+
     // PINJAMAN  -> 1
 
     Route::group(['prefix' => 'pinjaman'], function() {
