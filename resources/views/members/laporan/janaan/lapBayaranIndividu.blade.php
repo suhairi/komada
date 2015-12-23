@@ -19,9 +19,9 @@
                                 <th>No Gaji</th>
                                 <td>{{ $no_gaji }}</td>
                             </tr>
-                            <tr>
-                                <td colspan="4">&nbsp;</td>
-                            </tr>
+                            {{--<tr>--}}
+                                {{--<td colspan="4">&nbsp;</td>--}}
+                            {{--</tr>--}}
                             <tr>
                                 <th>Bulan</th>
                                 <th>Perkara</th>
