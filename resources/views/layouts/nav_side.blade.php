@@ -23,7 +23,7 @@
                 <ul>
                     <li><a href="{{ route('members.yuran.index') }}"><i class="glyphicon glyphicon-credit-card"></i> Yuran</a></li>
                     <li><a href='{{ route('members.bayaran.index') }}'><i class="glyphicon glyphicon-credit-card"></i> Bayaran Tunai</a></li>
-                    <li class='last'><a href="{{ route('members.yuran.index') }}"><i class="glyphicon glyphicon-credit-card"></i> Langsai</a></li>
+                    <li class='last'><a href="{{ route('members.bayaran.langsai') }}"><i class="glyphicon glyphicon-credit-card"></i> Langsai</a></li>
                 </ul>
             </li>
             <li class='has-sub'><a href='#'><span>Laporan</span></a>

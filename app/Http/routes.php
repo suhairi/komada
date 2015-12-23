@@ -236,6 +236,25 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
         'uses'  => 'Members\BayaranController@proses'
     ]);
 
+    // LANGSAI
+
+    Route::get('/langsai', [
+        'as'    => 'members.bayaran.langsai',
+        'uses'  => 'Members\BayaranController@langsai'
+    ]);
+
+    Route::post('/langsai', [
+        'as'    => 'members.bayaran.langsaiPost',
+        'uses'  => 'Members\BayaranController@langsaiPost'
+    ]);
+
+    Route::post('/langsai/proses', [
+        'as'    => 'members.bayaran.langsaiProses',
+        'uses'  => 'Members\BayaranController@langsaiProses'
+    ]);
+
+
+
     // PINJAMAN  -> 1
 
     Route::group(['prefix' => 'pinjaman'], function() {
