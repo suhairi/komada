@@ -28,6 +28,7 @@
             </li>
             <li class='has-sub'><a href='#'><span>Laporan</span></a>
                 <ul>
+                    <li><a href="{{ route('members.laporan.lapBayaranIndividu') }}"><i class="glyphicon glyphicon-file"></i> Bayaran Individu</a></li>
                     <li><a href="{{ route('members.laporan.lapGajiIndividu') }}"><i class="glyphicon glyphicon-file"></i> Potongan Gaji Individu</a></li>
                     <li><a href="{{ route('members.laporan.yuran') }}"><i class="glyphicon glyphicon-file"></i> Laporan Yuran</a></li>
                     <li><a href="{{ route('members.laporan.lapPotonganGaji') }}"><i class="glyphicon glyphicon-file"></i> Penyata Potongan</a></li>
