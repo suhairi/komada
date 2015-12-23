@@ -1,6 +1,6 @@
 <div class="col-xs-6">
     <div class="panel panel-primary">
-        <div class="panel-heading"><h4>Maklumat Pinjaman (Kali Pertama)</h4></div>
+        <div class="panel-heading"><h4>Maklumat Pinjaman</h4></div>
         <div class="panel-body">
 
             {!! Form::open(['route' => 'members.pinjaman.proses', 'method' => 'POST']) !!}
@@ -8,8 +8,13 @@
             {!! Form::hidden('no_gaji', Session::get('no_gaji')) !!}
             <table class="table table-condensed table-hover">
                 <tr>
-                    <th>Jenis Pinjaman</th>
-                    <td>Pinjaman Wang Tunai</td>
+                    <td colspan="2" style="background-color: #CCCCCC; color: green; border-radius: 5px; border-top: none; border-bottom: none;">
+                        * Tiada rekod pinjaman/tertunggak
+                    </td>
+                </tr>
+                <tr>
+                    <th style="border-top: none; ">Jenis Pinjaman</th>
+                    <td style="border-top: none; ">Pinjaman Wang Tunai</td>
                 </tr>
                 <tr>
                     <th><div class="input-group">Jumlah Pinjaman (RM)</div></th>
