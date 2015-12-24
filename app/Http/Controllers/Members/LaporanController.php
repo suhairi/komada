@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Members;
 
 use App\AkaunPotongan;
 use App\Bayaran;
+use App\Perkhidmatan;
 use App\Profile;
 use App\Yuran;
 use App\Yurantambahan;
@@ -28,6 +29,74 @@ class LaporanController extends Controller
 //        dd($profiles);
 
         return View('members.laporan.kadAhli', compact('bil', 'profile'));
+    }
+
+    public function lapBayaranIndividu() {
+        return View('members.laporan.lapBayaranIndividu');
+    }
+
+    public function lapBayaranIndividuPost() {
+
+        $profile = Profile::where('no_gaji', Request::get('no_gaji'))
+            ->first();
+
+        $nama = $profile->nama;
+        $no_gaji = Request::get('no_gaji');
+
+
+        $fees = Yuran::where('no_gaji', Request::get('no_gaji'))
+            ->where('bulan_tahun', 'like', '%' . date('Y'))
+            ->get();
+
+        if($fees->isEmpty()){
+            Session::flash('error', 'Gagal. Tiada maklumat bayaran pada tahun ini.');
+            return Redirect::back();
+        }
+
+        $bayaran = [];
+
+        foreach($fees as $fee) {
+
+            $profile = Profile::where('no_gaji', Request::get('no_gaji'))
+                ->first();
+
+            $bulan = explode('-', $fee->bulan_tahun);
+            $bulan = (int)$bulan[0];
+
+            $jumlah = $fee->yuran + $fee->pertaruhan + $fee->tka + $fee->takaful + $fee->potongan;
+
+            array_push($bayaran, ['bulan' => $bulan, 'perkara' => 'Yuran Bulanan', 'catatan' => '', 'jumlah' => $jumlah]);
+
+            $bulan = explode('-', $fee->bulan_tahun);
+            $bulan = $bulan[0];
+
+            $tunai = Bayaran::where('no_gaji', Request::get('no_gaji'))
+                ->where('created_at', 'like', date('Y') . '-' . $bulan . '%')
+                ->get();
+
+            if(!$tunai->isEmpty()) {
+
+                $bulan = explode('-', $fee->bulan_tahun);
+                foreach($tunai as $cash) {
+
+                    $catatan = Perkhidmatan::where('id', $cash->akaunpotongan_id)
+                        ->first()
+                        ->nama;
+                    $jumlah = $cash->jumlah;
+                    array_push($bayaran, ['bulan' => $bulan[0], 'perkara' => 'Bayaran Tunai', 'catatan' => $catatan, 'jumlah' => $jumlah]);
+                }
+            } // end if tunai is not empty
+
+        } //end foreach
+
+
+        return View('members.laporan.janaan.lapBayaranIndividu', compact('nama', 'no_gaji', 'bayaran'));
+
+
+        dd($bayaran);
+
+
+
     }
 
     public function lapGajiIndividu()

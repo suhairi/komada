@@ -219,6 +219,42 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
         'uses'  => 'Members\YuranController@yuranProcess'
     ]);
 
+    // Bayaran Tunai
+
+    Route::get('/bayaran', [
+        'as'    => 'members.bayaran.index',
+        'uses'  => 'Members\BayaranController@index'
+    ]);
+
+    Route::post('/bayaran', [
+        'as'    => 'members.bayaran.indexPost',
+        'uses'  => 'Members\BayaranController@indexPost'
+    ]);
+
+    Route::post('bayaran/proses', [
+        'as'    => 'members.bayaran.proses',
+        'uses'  => 'Members\BayaranController@proses'
+    ]);
+
+    // LANGSAI
+
+    Route::get('/langsai', [
+        'as'    => 'members.bayaran.langsai',
+        'uses'  => 'Members\BayaranController@langsai'
+    ]);
+
+    Route::post('/langsai', [
+        'as'    => 'members.bayaran.langsaiPost',
+        'uses'  => 'Members\BayaranController@langsaiPost'
+    ]);
+
+    Route::post('/langsai/proses', [
+        'as'    => 'members.bayaran.langsaiProses',
+        'uses'  => 'Members\BayaranController@langsaiProses'
+    ]);
+
+
+
     // PINJAMAN  -> 1
 
     Route::group(['prefix' => 'pinjaman'], function() {
@@ -345,6 +381,18 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
     // LAPORAN
 
     Route::group(['prefix' => 'laporan'], function () {
+
+        Route::get('bayaran', [
+            'as'    => 'members.laporan.lapBayaranIndividu',
+            'uses'  => 'Members\LaporanController@lapBayaranIndividu'
+        ]);
+
+        Route::post('bayaran', [
+            'as'    => 'members.laporan.lapBayaranIndividu',
+            'uses'  => 'Members\LaporanController@lapBayaranIndividuPost'
+        ]);
+
+
 
         Route::get('gaji', [
             'as'    => 'members.laporan.lapGajiIndividu',
