@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="row">
-        <div class="col-xs-5">
+        <div class="col-xs-7">
             <div class="panel panel-primary">
                 <div class="panel-heading"><h4>Bayaran Langsai</h4></div>
                 <div class="panel-body">
@@ -30,7 +30,7 @@
                                     <select name="akaunpotongan_id" class="form-control" id="akaunpotongan_id" required="" onchange="calc()">
                                         <option>Baki Pinjaman</option>
                                         @foreach($accounts as $account)
-                                            <option value="{{ $account['id'] }}">{{ strtoupper(strtolower($account['nama'])) }} (Baki : RM {{ number_format($account['baki'], 2) }})</option>
+                                            <option value="{{ $account['id'] }}">{{ strtoupper(strtolower($account['nama'])) }} (Langsai : RM {{ number_format($account['baki'], 2) }})</option>
                                         @endforeach
                                     </select>
                                 </td>
@@ -66,9 +66,6 @@
             @endforeach
 
             document.getElementById('jumlah_bayaran').value = (baki).toFixed(2);
-
-
-
         }
 
     </script>

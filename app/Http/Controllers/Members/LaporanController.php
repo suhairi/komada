@@ -40,6 +40,11 @@ class LaporanController extends Controller
         $profile = Profile::where('no_gaji', Request::get('no_gaji'))
             ->first();
 
+        if($profile == null) {
+            Session::flash('error', 'Gagal. Tiada ahli yang berdaftar dengan no gaji *' .Request::get('no_gaji') . '*.');
+            return Redirect::back();
+        }
+
         $nama = $profile->nama;
         $no_gaji = Request::get('no_gaji');
 
@@ -80,8 +85,10 @@ class LaporanController extends Controller
                 foreach($tunai as $cash) {
 
                     $catatan = Perkhidmatan::where('id', $cash->akaunpotongan_id)
-                        ->first()
-                        ->nama;
+                        ->first();
+
+                    $catatan = $catatan->nama;
+
                     $jumlah = $cash->jumlah;
                     array_push($bayaran, ['bulan' => $bulan[0], 'perkara' => 'Bayaran Tunai', 'catatan' => $catatan, 'jumlah' => $jumlah]);
                 }
@@ -92,11 +99,6 @@ class LaporanController extends Controller
 
         return View('members.laporan.janaan.lapBayaranIndividu', compact('nama', 'no_gaji', 'bayaran'));
 
-
-        dd($bayaran);
-
-
-
     }
 
     public function lapGajiIndividu()
@@ -106,8 +108,8 @@ class LaporanController extends Controller
         return View('members.laporan.lapGajiIndividu', compact('zones'));
     }
 
-    public function lapGajiIndividuGenerate()
-    {
+    public function lapGajiIndividuGenerate() {
+
         $validation = Validator::make(Request::all(), [
             'zon'   => 'required',
             'bulan' => 'required',
@@ -251,6 +253,11 @@ class LaporanController extends Controller
         return View('members.laporan.janaan.lapPotonganGajiGenerate', compact('zones', 'pwt', 'bs'));
     }
 
+
+
+
+    // Helper Functions
+
     protected function getYuran($no_gaji, $bulan_tahun)
     {
         $yuran = Yuran::where('no_gaji', $no_gaji)
@@ -276,15 +283,21 @@ class LaporanController extends Controller
         $tarikh = explode('-', $bulan_tahun);
         $tarikh = $tarikh[1] . '-' . $tarikh[0];
 
-        $bayaran = Bayaran::where('no_gaji', $no_gaji)
+        $akaun = AkaunPotongan::where('no_gaji', $no_gaji)
             ->where('perkhidmatan_id', $perkhidmatan_id)
-            ->where('created_at', 'like', $tarikh . '%')
+            ->where('status', 1)
             ->first();
 
-        if(empty($bayaran))
-            $bayaran = '0.00';
-        else
+        $bayaran = 0.00;
+        if($akaun != null) {
+
+            $bayaran = Bayaran::where('no_gaji', $no_gaji)
+                ->where('akaunpotongan_id', $akaun->id)
+                ->where('created_at', 'like', $tarikh . '%')
+                ->first();
+
             $bayaran = $bayaran->jumlah;
+        }
 
         return $bayaran;
     }
@@ -294,7 +307,10 @@ class LaporanController extends Controller
         $profile = Profile::where('no_gaji', $no_gaji)
             ->first();
 
-        return $profile->zon_gaji_id;
+        if($profile != null)
+            return $profile->zon_gaji_id;
+        else
+            return '';
     }
 
 }

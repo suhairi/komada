@@ -7,7 +7,7 @@
 
             <div class="panel panel-primary">
                 <div class="panel-heading"><h4>Sumbangan Tambahan</h4></div>
-                <div class="panel-body">
+                <div class="panel-body" id="tambahan">
 
                     @if($count['totalYuran'] > 0)
                         <div class="alert alert-info">Yuran Tambahan ini telah ditutup kerana yuran bulanan telah diproses</div>
@@ -44,7 +44,10 @@
             <div class="panel panel-primary">
                 <div class="panel-heading"><h4>Yuran Bulanan</h4></div>
                 <div class="panel-body">
-                    @include('yuran._yuranBulanan')
+                    <div id="form">
+                        @include('yuran._yuranBulanan')
+                    </div>
+                    @include('progress-bar.yuran')
                 </div>
             </div>
         </div>

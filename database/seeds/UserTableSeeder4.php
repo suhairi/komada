@@ -94,5 +94,8 @@ class UserTableSeeder4 extends Seeder
                 }
             }
         }
+
+        Profile::where('no_gaji', '')
+            ->delete();
     }
 }

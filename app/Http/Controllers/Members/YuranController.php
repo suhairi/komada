@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers\Members;
-
 use App\AkaunPotongan;
 use App\Bayaran;
 use App\Potongan;
@@ -11,34 +9,27 @@ use App\Takaful;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Request;
-
 use App\Profile;
 use App\Yuran;
 use App\Yurantambahan;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
-
 class YuranController extends Controller
 {
     public function index()
     {
-
         $yuranTambahans = Yurantambahan::where('created_at', 'like', Carbon::now()->format('Y') . '%')
             ->orderBy('created_at', 'asc')
             ->get();
-
         $yuranBulanans = Yuran::where('bulan_tahun', 'like', Carbon::now()->format('m-Y') . '%')
             ->get();
-
         $sumbangan = Sumbangan::lists('nama', 'id');
-
         $totalAnggota = Profile::all()->count();
         $totalAnggotaAktif = Profile::where('status', 1)->count();
         $totalAnggotaXAktif = Profile::where('status', 0)->count();
         $totalAnggotaBaru = Profile::where('status', 1)->where('tarikh_ahli', 'like', Carbon::now()->format('Y-m') . '%')->count();
         $totalYuran = Yuran::where('bulan_tahun', 'like', Carbon::now()->format('m-Y') . '%')
             ->count();
-
         $count = [
             'totalAnggota' => $totalAnggota,
             'totalAnggotaAktif' => $totalAnggotaAktif,
@@ -46,20 +37,15 @@ class YuranController extends Controller
             'totalAnggotaBaru'  => $totalAnggotaBaru,
             'totalYuran' => $totalYuran
         ];
-
         $totalTambahan = 0.00;
-
         return View('members.yuran', compact('yuranTambahans', 'yuranBulanans', 'count', 'totalTambahan', 'sumbangan'));
     }
-
     // Merekod Yuran Tambahan
     public function yuranTambahan()
     {
         $tarikh = explode('-', Request::get('bulan_tahun'));
         $created_at = $tarikh[1] . '-' . $tarikh[0] . '-' . Carbon::now()->format('d') .' 00:00:00';
-
 //        return Request::all();
-
         Yurantambahan::create([
             'jumlah'        => Request::get('jumlah'),
             'sumbangan_id'  => Request::get('sumbangan_id'),
@@ -68,21 +54,15 @@ class YuranController extends Controller
             'penerima'      => strtoupper(Request::get('penerima')),
             'created_at'    => $created_at
         ]);
-
         $profile = Profile::where('no_gaji', Request::get('no_gaji'))->first();
         $profile->status = 0;
         $profile->save();
-
         Session::flash('success', 'Berjaya. Yuran Tambahan berjaya didaftarkan dan Anggota telah di nyah-aktifkan.');
-
         return redirect()->route('members.yuran.index');
     }
-
     public function yuranProcess()
     {
-
         // check for repeated payment for the selected month
-
         $doneMonth = Yuran::where('bulan_tahun', Request::get('bulan_tahun'))
             ->first();
 
@@ -102,142 +82,128 @@ class YuranController extends Controller
             $tka = Tka::where('status', 1)->first();
             $takaful = Takaful::where('status', 1)->first();
 
+            $dates = explode('-', Request::get('bulan_tahun'));
+            $tarikh = $dates[1] . '-' . $dates[0] . '01 00:00:00';
+
             $potongans = AkaunPotongan::where('no_gaji', $profile->no_gaji)
                 ->where('status', 1)
                 ->get();
 
             // Bayaran potongan Pinjaman
-
             if(!empty($potongans))
             {
-
                 foreach($potongans as $potongan)
                 {
-//
-                    // 1. Bayaran pinjaman wang tunai
                     if($potongan->perkhidmatan_id == 1)
                     {
-                        Bayaran::create([
-                            'no_gaji'           => $profile->no_gaji,
-                            'perkhidmatan_id'   => 1,
-                            'jumlah'            => $potongan->bulanan
-                        ]);
-
                         $bayaran = AkaunPotongan::where('no_gaji', $profile->no_gaji)
                             ->where('perkhidmatan_id', 1)
                             ->where('status', 1)
                             ->first();
 
-                        $bayaran->baki -= $potongan->bulanan;
+//                        Bayaran::create([
+//                            'no_gaji'           => $profile->no_gaji,
+//                            'akaunpotongan_id'   => $bayaran->id,
+//                            'jumlah'            => $potongan->bulanan
+//                        ]);
 
+                        $bayaran->baki -= $potongan->bulanan;
                         $bayaran->save();
                     }
 
                     // 2. Bayaran pinjaman buku sekolah
                     if($potongan->perkhidmatan_id == 2)
                     {
-//                        return $potongan->perkhidmatan_id;
-                        Bayaran::create([
-                            'no_gaji'           => $profile->no_gaji,
-                            'perkhidmatan_id'   => 2,
-                            'jumlah'            => $potongan->bulanan
-                        ]);
-
                         $bayaran = AkaunPotongan::where('no_gaji', $profile->no_gaji)
                             ->where('perkhidmatan_id', 2)
                             ->where('status', 1)
                             ->first();
 
-                        $bayaran->baki -= $potongan->bulanan;
+//                        Bayaran::create([
+//                            'no_gaji'           => $profile->no_gaji,
+//                            'akaunpotongan_id'  => $bayaran->id,
+//                            'jumlah'            => $potongan->bulanan
+//                        ]);
 
+                        $bayaran->baki -= $potongan->bulanan;
                         $bayaran->save();
                     }
 
                     // 3. Bayaran Cukai Jalan -> 3
                     if($potongan->perkhidmatan_id == 3)
                     {
-//                        return $potongan->perkhidmatan_id;
-                        Bayaran::create([
-                            'no_gaji'           => $profile->no_gaji,
-                            'perkhidmatan_id'   => 3,
-                            'jumlah'            => $potongan->bulanan
-                        ]);
-
                         $bayaran = AkaunPotongan::where('no_gaji', $profile->no_gaji)
                             ->where('perkhidmatan_id', 3)
                             ->where('status', 1)
                             ->first();
 
-                        $bayaran->baki -= $potongan->bulanan;
+//                        Bayaran::create([
+//                            'no_gaji'           => $profile->no_gaji,
+//                            'akaunpotongan_id'   => $bayaran->id,
+//                            'jumlah'            => $potongan->bulanan
+//                        ]);
 
+                        $bayaran->baki -= $potongan->bulanan;
                         $bayaran->save();
                     }
 
                     // 4. Bayaran Insurans -> 4
                     if($potongan->perkhidmatan_id == 4)
                     {
-//                        return $potongan->perkhidmatan_id;
-                        Bayaran::create([
-                            'no_gaji'           => $profile->no_gaji,
-                            'perkhidmatan_id'   => 4,
-                            'jumlah'            => $potongan->bulanan
-                        ]);
-
                         $bayaran = AkaunPotongan::where('no_gaji', $profile->no_gaji)
                             ->where('perkhidmatan_id', 4)
                             ->where('status', 1)
                             ->first();
 
-                        $bayaran->baki -= $potongan->bulanan;
+//                        Bayaran::create([
+//                            'no_gaji'           => $profile->no_gaji,
+//                            'akaunpotongan_id'   => $bayaran->id,
+//                            'jumlah'            => $potongan->bulanan
+//                        ]);
 
+                        $bayaran->baki -= $potongan->bulanan;
                         $bayaran->save();
                     }
 
                     // 5. Bayaran Tayar bateri -> 5
                     if($potongan->perkhidmatan_id == 5)
                     {
-//                        return $potongan->perkhidmatan_id;
-                        Bayaran::create([
-                            'no_gaji'           => $profile->no_gaji,
-                            'perkhidmatan_id'   => 5,
-                            'jumlah'            => $potongan->bulanan
-                        ]);
-
                         $bayaran = AkaunPotongan::where('no_gaji', $profile->no_gaji)
                             ->where('perkhidmatan_id', 5)
                             ->where('status', 1)
                             ->first();
 
-                        $bayaran->baki -= $potongan->bulanan;
+//                        Bayaran::create([
+//                            'no_gaji'           => $profile->no_gaji,
+//                            'akaunpotongan_id'   => $bayaran->id,
+//                            'jumlah'            => $potongan->bulanan
+//                        ]);
 
+                        $bayaran->baki -= $potongan->bulanan;
                         $bayaran->save();
                     }
-
 
                     // 6. Kecemasan -> 6
                     if($potongan->perkhidmatan_id == 6)
                     {
-//                        return $potongan->perkhidmatan_id;
-                        Bayaran::create([
-                            'no_gaji'           => $profile->no_gaji,
-                            'perkhidmatan_id'   => 6,
-                            'jumlah'            => $potongan->bulanan
-                        ]);
-
                         $bayaran = AkaunPotongan::where('no_gaji', $profile->no_gaji)
                             ->where('perkhidmatan_id', 6)
                             ->where('status', 1)
                             ->first();
 
-                        $bayaran->baki -= $potongan->bulanan;
+//                        Bayaran::create([
+//                            'no_gaji'           => $profile->no_gaji,
+//                            'akaunpotongan_id'   => $bayaran->id,
+//                            'jumlah'            => $potongan->bulanan
+//                        ]);
 
+                        $bayaran->baki -= $potongan->bulanan;
                         $bayaran->save();
                     }
 
                     $jumlahPotongan += $potongan->bulanan;
                 }
             }
-
 
             if(!$this->checkPotongan($profile->no_gaji))
             {
@@ -252,18 +218,15 @@ class YuranController extends Controller
                     'zon_gaji_id'   => $profile->zon_gaji_id
                 ]);
             }
-
         }
 
         return Redirect::route('members.yuran.index');
     }
-
     // Check Potongan Bulan semasa telah dibuat atau belum
     protected function checkPotongan($no_gaji)
     {
         $bulan = Carbon::now()->format('m');
         $tahun = Carbon::now()->format('Y');
-
         if($bulan < 10)
             $bulan = '0' . $bulan;
 
@@ -276,5 +239,4 @@ class YuranController extends Controller
         else
             return true;
     }
-
 }

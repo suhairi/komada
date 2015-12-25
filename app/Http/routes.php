@@ -392,8 +392,6 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
             'uses'  => 'Members\LaporanController@lapBayaranIndividuPost'
         ]);
 
-
-
         Route::get('gaji', [
             'as'    => 'members.laporan.lapGajiIndividu',
             'uses'  => 'Members\LaporanController@lapGajiIndividu'

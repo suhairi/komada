@@ -6,6 +6,7 @@ use App\AkaunPotongan;
 use App\Bayaran;
 use App\Perkhidmatan;
 use App\Profile;
+use App\Yuran;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
@@ -125,7 +126,11 @@ class BayaranController extends Controller
             $perkhidmatan = Perkhidmatan::where('id', $akaun->perkhidmatan_id)
                 ->first();
 
-            array_push($accounts, ['id' => $akaun->perkhidmatan_id, 'nama' => $perkhidmatan->nama, 'baki' => $akaun->baki]);
+//            $baki = $akaun->baki;
+
+             $baki = $this->getJumlahLangsai($akaun->id);
+
+            array_push($accounts, ['id' => $akaun->perkhidmatan_id, 'nama' => $perkhidmatan->nama, 'baki' => $baki]);
         }
 
         return View('members.bayaran.langsaiPost', compact('profile', 'accounts'));
@@ -169,6 +174,32 @@ class BayaranController extends Controller
         }
 
         return Redirect::back();
+    }
+
+    protected function getJumlahLangsai($id) {
+
+        // LANGSAI
+        // Formula :-
+        // Langsai = (baki - lebihan kadar) + 6 bulan kadar
+
+        $account = AkaunPotongan::find($id);
+
+        $tempoh = $account->tempoh;
+
+
+        $bilBayaran = Yuran::where('no_gaji', $account->no_gaji)
+            ->where('created_at', '>=', $account->created_at)
+            ->where('potongan', '!=', 0.00)
+            ->count('id');
+
+        $kadarSebulan = ($account->kadar * $account->jumlah / 100) / 12;
+        $kadar6Bulan = 6 * $kadarSebulan;
+
+        $jumlahLebihanKadar = ($account->tempoh - $bilBayaran) * $kadarSebulan;
+
+        $langsai = ($account->baki - $jumlahLebihanKadar) + $kadar6Bulan;
+
+        return $langsai;
     }
 
 
