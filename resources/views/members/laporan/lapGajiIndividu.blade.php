@@ -43,7 +43,7 @@
                             </select>
                         </div>
 
-                        <div align="right">@include('buttons._submit', ['value' => 'Jana Laporan'])</div>
+                        <div align="right">@include('buttons._submit-progress', ['value' => 'Jana Laporan'])</div>
                     </form>
                     </div>
                     @include('progress-bar.fast')

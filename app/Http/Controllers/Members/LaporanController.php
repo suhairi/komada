@@ -295,8 +295,10 @@ class LaporanController extends Controller
                 ->where('akaunpotongan_id', $akaun->id)
                 ->where('created_at', 'like', $tarikh . '%')
                 ->first();
-
-            $bayaran = $bayaran->jumlah;
+            if($bayaran != null)
+                $bayaran = $bayaran->jumlah;
+            else
+                $bayaran = 0.00;
         }
 
         return $bayaran;
