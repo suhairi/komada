@@ -30,6 +30,7 @@ class YuranController extends Controller
         $totalAnggotaBaru = Profile::where('status', 1)->where('tarikh_ahli', 'like', Carbon::now()->format('Y-m') . '%')->count();
         $totalYuran = Yuran::where('bulan_tahun', 'like', Carbon::now()->format('m-Y') . '%')
             ->count();
+
         $count = [
             'totalAnggota' => $totalAnggota,
             'totalAnggotaAktif' => $totalAnggotaAktif,
@@ -37,7 +38,9 @@ class YuranController extends Controller
             'totalAnggotaBaru'  => $totalAnggotaBaru,
             'totalYuran' => $totalYuran
         ];
+
         $totalTambahan = 0.00;
+
         return View('members.yuran', compact('yuranTambahans', 'yuranBulanans', 'count', 'totalTambahan', 'sumbangan'));
     }
     // Merekod Yuran Tambahan
@@ -54,10 +57,25 @@ class YuranController extends Controller
             'penerima'      => strtoupper(Request::get('penerima')),
             'created_at'    => $created_at
         ]);
+
         $profile = Profile::where('no_gaji', Request::get('no_gaji'))->first();
         $profile->status = 0;
         $profile->save();
+
+        $accounts = AkaunPotongan::where('no_gaji', Request::get('no_gaji'))
+            ->get();
+
+        if(!$accounts->isEmpty()){
+
+            foreach($accounts as $account) {
+                $account->status = 0;
+                $account->save();
+            }
+
+        }
+
         Session::flash('success', 'Berjaya. Yuran Tambahan berjaya didaftarkan dan Anggota telah di nyah-aktifkan.');
+
         return redirect()->route('members.yuran.index');
     }
     public function yuranProcess()

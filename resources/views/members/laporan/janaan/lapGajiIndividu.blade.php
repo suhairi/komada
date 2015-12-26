@@ -6,8 +6,10 @@
         <div class="col-xs-14">
             <div class="panel panel-primary">
                 <div class="panel panel-heading"><h4>Jadual Potongan Gaji Individu</h4></div>
-                <div class="panel-body">
 
+                <div class="panel-body" id="content">
+
+                    @include('cetak._cetak', ['value' => 'members.laporan.cetak.lapGajiIndividu', 'zon' => $zon, 'bulan' => $bulan, 'tahun' => $tahun])
                     <table class="table table-hover table-striped table-bordered">
                         <thead>
                         <tr>
@@ -62,13 +64,12 @@
                             <td>{{ $person['jumlah'] }}</td>
                         </tr>
                         @endforeach
+
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
-
-
 
 @stop

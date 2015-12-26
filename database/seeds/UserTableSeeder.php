@@ -64,6 +64,8 @@ class UserTableSeeder extends Seeder
 
         Status::create(['nama' => 'AKTIF']);
         Status::create(['nama' => 'TIDAK AKTIF']);
+        Status::create(['nama' => 'TIDAK AKTIF']);
+        Status::where('id', 3)->update(['id' => 0]);
 
         Takaful::create(['jumlah' => '10.00', 'status' => 1]);
 

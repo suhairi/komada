@@ -400,6 +400,11 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
             'uses'  => 'Members\LaporanController@lapGajiIndividuGenerate'
         ]);
 
+        Route::get('cetak/lapGajiIndividu/{zon}/{bulan}/{tahun}', [
+            'as'    => 'members.laporan.cetak.lapGajiIndividu',
+            'uses'  => 'Members\CetakController@lapGajiIndividu'
+        ]);
+
         Route::post('carian', [
             'as'    => 'members.laporan.carianPost',
             'uses'  => 'Members\LaporanController@carianPost'

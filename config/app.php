@@ -149,6 +149,8 @@ return [
 
         Flatten\FlattenServiceProvider::class,
 
+        Barryvdh\DomPDF\ServiceProvider::class,
+
     ],
 
     /*
@@ -203,7 +205,7 @@ return [
 
         'Flatten' => Flatten\Facades\Flatten::class,
 
-
+        'PDF' => Barryvdh\DomPDF\Facade::class,
 
     ],
 

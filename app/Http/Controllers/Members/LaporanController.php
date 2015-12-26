@@ -124,6 +124,10 @@ class LaporanController extends Controller
             'tahun' => 'required'
         ]);
 
+        $zon = Request::get('zon');
+        $bulan = Request::get('bulan');
+        $tahun = Request::get('tahun');
+
         if($validation->fails())
         {
             Session::flash('error', 'Gagal. Sila pilih ruangan yang disediakan');
@@ -206,7 +210,7 @@ class LaporanController extends Controller
 
         $bil = 1;
 
-        return View('members.laporan.janaan.lapGajiIndividu', compact('bil', 'bahagian', 'persons', 'jumlahBesar'));
+        return View('members.laporan.janaan.lapGajiIndividu', compact('bil', 'bahagian', 'profiles', 'persons', 'jumlahBesar', 'zon', 'bulan', 'tahun'));
 
     }
 
@@ -309,7 +313,8 @@ class LaporanController extends Controller
             ->where('created_at', 'like', $tarikh . '%')
             ->first();
 
-        $tarikhYuran = $yuran->created_at;
+        if($yuran != null)
+            $tarikhYuran = $yuran->created_at;
 
         $akaun = AkaunPotongan::where('no_gaji', $no_gaji)
             ->where('perkhidmatan_id', $perkhidmatan_id)

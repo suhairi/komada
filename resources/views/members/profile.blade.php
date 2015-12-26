@@ -2,21 +2,23 @@
 
 @section('content')
 
-    <div class="row">
-        <div class="col-xs-5">
+    {{--<div class="row">--}}
+        {{--<div class="col-xs-5">--}}
 
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h4>Carian Anggota</h4>
-                </div>
-                <div class="panel-body">
-                    <form method="post" action="{{ route('members.carian') }}">
-                        @include('forms._carian')
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+            {{--<div class="panel panel-primary">--}}
+                {{--<div class="panel-heading">--}}
+                    {{--<h4>Carian Anggota</h4>--}}
+                {{--</div>--}}
+                {{--<div class="panel-body">--}}
+                    {{--<form method="post" action="{{ route('members.carian') }}">--}}
+                        {{--@include('forms._carian')--}}
+                    {{--</form>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</div>--}}
+
+    <h2>Maklumat Ahli</h2>
 
     @forelse($profiles as $profile)
         <ul class="nav nav-tabs">

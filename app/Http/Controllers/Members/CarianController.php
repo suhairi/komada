@@ -28,7 +28,7 @@ class CarianController extends Controller
         if($profiles->isEmpty())
         {
             Session::flash('error', 'Gagal. No Gaji * ' . Request::get('no_gaji') . ' * tidak berdaftar sebagai ahli KOMADA.');
-            return Redirect::back()->withInput();
+            return Redirect::back();
         }
 
         $yurans = Yuran::where('no_gaji', Request::get('no_gaji'))
@@ -67,10 +67,8 @@ class CarianController extends Controller
 
         $bil = 1;
         $biasas = AkaunPotongan::where('no_gaji', Request::get('no_gaji'))
-            ->where('status', 1)
+//            ->where('status', 1)
             ->get();
-
-//        dd($yuranTambahan);
 
         return View('members.profile', compact('bil', 'profiles', 'yurans', 'yuranTambahan', 'biasas'));
     }
