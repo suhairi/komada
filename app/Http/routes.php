@@ -197,8 +197,6 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
             'uses'  => 'Members\JadualController@result'
         ]);
 
-
-
     });
 
 

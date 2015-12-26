@@ -31,6 +31,10 @@ class LaporanController extends Controller
         return View('members.laporan.kadAhli', compact('bil', 'profile'));
     }
 
+    /*
+     *   1 - Laporan Bayaran Individu
+     */
+
     public function lapBayaranIndividu() {
         return View('members.laporan.lapBayaranIndividu');
     }
@@ -101,6 +105,10 @@ class LaporanController extends Controller
 
     }
 
+    /*
+     *  2 - Laporan Penyata Gaji Mengikut Zon
+     */
+
     public function lapGajiIndividu()
     {
         $zones = Zon::all();
@@ -163,25 +171,34 @@ class LaporanController extends Controller
             $tb = $this->getPinjaman($profile->no_gaji, $bulan_tahun, 5);
             $kc = $this->getPinjaman($profile->no_gaji, $bulan_tahun, 6);
 
-            $jumlah = $yuran->yuran + $yuran->tka + $yuran->takaful + $sumbangan + $pwt + $kc
-                + $bs + $rt + $tb + $ins + $profile->jumlah_pertaruhan;
+            $jumlah = $yuran->yuran + $yuran->tka + $yuran->takaful + $sumbangan +
+                $pwt['jumlah'] + $pwt['cp'] + $pwt['ins'] +
+                $kc['jumlah'] + $kc['cp'] + $kc['ins'] +
+                $bs['jumlah'] + $rt['jumlah'] +
+                $tb['jumlah'] + $tb['cp'] +
+                $ins['jumlah'] + $profile->jumlah_pertaruhan;
 
 
             array_push($persons, [
-                'no_gaji'   => $profile->no_gaji,
-                'nama'      => $profile->nama,
-                'yuran'     => number_format($yuran->yuran, 2),
-                'tka'       => number_format($yuran->tka, 2),
-                'pertaruhan'=> number_format($profile->jumlah_pertaruhan, 2),
-                'takaful'   => number_format($yuran->takaful, 2),
-                'sumbangan' => number_format($sumbangan, 2),
-                'pwt'       => number_format($pwt, 2),
-                'kecemasan' => number_format($kc, 2),
-                'bsekolah'  => number_format($bs, 2),
-                'rt'        => number_format($rt, 2),
-                'tb'        => number_format($tb, 2),
-                'ins'        => number_format($ins, 2),
-                'jumlah'    => number_format($jumlah, 2)
+                'no_gaji'       => $profile->no_gaji,
+                'nama'          => $profile->nama,
+                'yuran'         => number_format($yuran->yuran, 2),
+                'tka'           => number_format($yuran->tka, 2),
+                'pertaruhan'    => number_format($profile->jumlah_pertaruhan, 2),
+                'takaful'       => number_format($yuran->takaful, 2),
+                'sumbangan'     => number_format($sumbangan, 2),
+                'pwt'           => number_format($pwt['jumlah'], 2),
+                'pwtCP'         => number_format($pwt['cp'], 2),
+                'pwtIns'        => number_format($pwt['ins'], 2),
+                'kecemasan'     => number_format($kc['jumlah'], 2),
+                'kecemasanCP'   => number_format($kc['cp'], 2),
+                'kecemasanIns'  => number_format($kc['ins'], 2),
+                'bs'            => number_format($bs['jumlah'], 2),
+                'rt'            => number_format($rt['jumlah'], 2),
+                'tb'            => number_format($tb['jumlah'], 2),
+                'tbCP'            => number_format($tb['jumlah'], 2),
+                'ins'           => number_format($ins['jumlah'], 2),
+                'jumlah'        => number_format($jumlah, 2)
             ]);
 
             $jumlahBesar += $jumlah;
@@ -192,6 +209,10 @@ class LaporanController extends Controller
         return View('members.laporan.janaan.lapGajiIndividu', compact('bil', 'bahagian', 'persons', 'jumlahBesar'));
 
     }
+
+    /*
+     *  3 - Laporan Potongan Gaji Individu
+     */
 
     public function lapPotonganGaji() {
         return View('members.laporan.lapPotonganGaji');
@@ -254,9 +275,9 @@ class LaporanController extends Controller
     }
 
 
-
-
-    // Helper Functions
+    /*
+     *  Helper Functions
+     */
 
     protected function getYuran($no_gaji, $bulan_tahun)
     {
@@ -282,23 +303,32 @@ class LaporanController extends Controller
     {
         $tarikh = explode('-', $bulan_tahun);
         $tarikh = $tarikh[1] . '-' . $tarikh[0];
+        $bayaran = [];
+
+        $yuran = Yuran::where('no_gaji', $no_gaji)
+            ->where('created_at', 'like', $tarikh . '%')
+            ->first();
+
+        $tarikhYuran = $yuran->created_at;
 
         $akaun = AkaunPotongan::where('no_gaji', $no_gaji)
             ->where('perkhidmatan_id', $perkhidmatan_id)
             ->where('status', 1)
+            ->where('created_at', '<=', $tarikhYuran)
             ->first();
 
-        $bayaran = 0.00;
         if($akaun != null) {
-
-            $bayaran = Bayaran::where('no_gaji', $no_gaji)
-                ->where('akaunpotongan_id', $akaun->id)
-                ->where('created_at', 'like', $tarikh . '%')
-                ->first();
-            if($bayaran != null)
-                $bayaran = $bayaran->jumlah;
-            else
-                $bayaran = 0.00;
+            $bayaran = [
+                'jumlah'    => $akaun->bulanan,
+                'cp'        => $akaun->caj_perkhidmatan,
+                'ins'       => $akaun->insurans
+            ];
+        } else {
+            $bayaran = [
+                'jumlah'    => 0.00,
+                'cp'        => 0.00,
+                'ins'       => 0.00
+            ];
         }
 
         return $bayaran;
