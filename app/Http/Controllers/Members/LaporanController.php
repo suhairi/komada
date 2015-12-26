@@ -168,12 +168,12 @@ class LaporanController extends Controller
 
 
             // Pinjaman. WT, Kecemasan, Buku Sekolah, Roadtax, Tayar Bateri, Insurans
-            $pwt = $this->getPinjaman($profile->no_gaji, $bulan_tahun, 1);
-            $bs = $this->getPinjaman($profile->no_gaji, $bulan_tahun, 2);
-            $rt = $this->getPinjaman($profile->no_gaji, $bulan_tahun, 3);
-            $ins = $this->getPinjaman($profile->no_gaji, $bulan_tahun, 4);
-            $tb = $this->getPinjaman($profile->no_gaji, $bulan_tahun, 5);
-            $kc = $this->getPinjaman($profile->no_gaji, $bulan_tahun, 6);
+            $pwt = $this->getBayaran($profile->no_gaji, $bulan_tahun, 1);
+            $bs = $this->getBayaran($profile->no_gaji, $bulan_tahun, 2);
+            $rt = $this->getBayaran($profile->no_gaji, $bulan_tahun, 3);
+            $ins = $this->getBayaran($profile->no_gaji, $bulan_tahun, 4);
+            $tb = $this->getBayaran($profile->no_gaji, $bulan_tahun, 5);
+            $kc = $this->getBayaran($profile->no_gaji, $bulan_tahun, 6);
 
             $jumlah = $yuran->yuran + $yuran->tka + $yuran->takaful + $sumbangan +
                 $pwt['jumlah'] + $pwt['cp'] + $pwt['ins'] +
@@ -226,52 +226,101 @@ class LaporanController extends Controller
 
         $month = Request::get('bulan');
         $year = Request::get('tahun');
-        $tarikh = $year . '-' . $month;
+        $tarikh = $year . '-' . $month . '-' . '01 00:00:00';
+
+        $perkara = Array();
 
         $zones = Zon::all();
 
-        $pwt = $bs = [];
+        foreach($zones as $zone) {
 
-        $accounts = AkaunPotongan::where('created_at', 'like', $tarikh . '%')
-            ->where('status', 1)
-            ->get();
+            // Yuran, pertaruhan, tka, takaful
 
-        if($accounts->isEmpty()){
-            Session::flash('error', 'Gagal. Tiada data dalam table akaun potongan');
-            return Redirect::back();
-        }
+            $perkara[$zone->kod]['yuran'] = 0.00;
+            $perkara[$zone->kod]['per'] = 0.00;
+            $perkara[$zone->kod]['tka'] = 0.00;
+            $perkara[$zone->kod]['takaful'] = 0.00;
 
-        foreach($accounts as $account) {
+            $fees = Yuran::where('bulan_tahun', Request::get('bulan') . '-' . Request::get('tahun'))
+                ->get();
 
-            foreach($zones as $zone) {
+            if($fees->isEmpty()) {
+                Session::flash('error', 'Gagal. Laporan tidak dapat dijana. Yuran Bulan ini belum diproses.');
+                return Redirect::back();
+            }
 
-                // PWT - perkhidmatan_id = 1
-                if($account->perkhidmatan_id == 1) {
-                    $zon_gaji = $this->getZonGaji($account->no_gaji);
+            $profiles = Profile::where('zon_gaji_id', $zone->kod)
+                ->where('status', 1)
+                ->get();
 
-                    $flag = false;
-                    if(!empty($pwt)) {
+            if($profiles->isEmpty()) {
+                Session::flash('error', 'Gagal. Tiada maklumat profile ahli KOMADA. Sila hubungi Programmer');
+                return Redirect::back();
+            }
 
-                        foreach ($pwt as &$pwt_) {
-                            if ($pwt_['zon'] == $zon_gaji) {
+            foreach($profiles as $profile) {
 
-                                $pwt_['jumlah'] += $account->jumlah;
-                                $flag = true;
-                            }
-                        }
-                    }
+                $fee = Yuran::where('no_gaji', $profile->no_gaji)
+                    ->where('bulan_tahun', Request::get('bulan') . '-' . Request::get('tahun'))
+                    ->first();
 
-                    if(!$flag) {
-                        array_push($pwt, ['zon' => $zon_gaji, 'jumlah' => number_format($account->jumlah, 2)]);
-                    }
+                if($fee == null) {
+                    dd($profile->no_gaji);
                 }
 
-                // BS - perkhidmatan_id = 2
-
+                $perkara[$zone->kod]['yuran'] += $fee->yuran;
+                $perkara[$zone->kod]['per'] += $fee->pertaruhan;
+                $perkara[$zone->kod]['tka'] += $fee->tka;
+                $perkara[$zone->kod]['takaful'] += $fee->takaful;
             }
+
+            // Yuran Tambahan
+
+            $perkara[$zone->kod]['sumbangan'] = 0.00;
+
+            $sumbangans = Yurantambahan::where('created_at', '>=', $tarikh)
+                ->get();
+
+            if(!$sumbangans->isEmpty()) {
+
+                foreach($sumbangans as $sumbangan) {
+
+                    $profiles = Profile::where('zon_gaji_id', $zone->kod)
+                        ->where('status', 1)
+                        ->get();
+
+                    if($profiles->isEmpty()) {
+                        Session::flash('error', 'Gagal. Tiada maklumat profile ahli KOMADA. Sila hubungi Programmer');
+                        return Redirect::back();
+                    }
+
+                    foreach($profiles as $profile)
+                        $perkara[$zone->kod]['sumbangan'] += $sumbangan->jumlah;
+                }
+            }
+
+            // PWT -> perkhidmatan_id = 1
+
+            $perkara[$zone->kod]['bs'] = 0.00;
+
+            
+
+            // Buku Sekolah -> perkhidmatan_id = 2
+
+            $perkara[$zone->kod]['bs'] = 0.00;
+
+            // RoadTax - perkhidmatan_id = 3
+
+            $perkara[$zone->kod]['rt'] = 0.00;
+
+
+
+
         }
 
-        dd($pwt);
+        dd($perkara);
+
+
 
         exit;
 
@@ -303,7 +352,7 @@ class LaporanController extends Controller
         return $sumbangan;
     }
 
-    protected function getPinjaman($no_gaji, $bulan_tahun, $perkhidmatan_id)
+    protected function getBayaran($no_gaji, $bulan_tahun, $perkhidmatan_id)
     {
         $tarikh = explode('-', $bulan_tahun);
         $tarikh = $tarikh[1] . '-' . $tarikh[0];
