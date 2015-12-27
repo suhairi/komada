@@ -40,7 +40,7 @@
             function progress() {
                 var val = progressbar.progressbar( "value" ) || 0;
 
-                progressbar.progressbar( "value", val + 10 );
+                progressbar.progressbar( "value", val + 5 );
 
                 if ( val < 99 ) {
                     setTimeout( progress, 100 );

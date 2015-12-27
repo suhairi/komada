@@ -226,7 +226,12 @@ class LaporanController extends Controller
 
         $month = Request::get('bulan');
         $year = Request::get('tahun');
-        $tarikh = $year . '-' . $month . '-' . '01 00:00:00';
+//        $tarikh = $year . '-' . $month . '-' . '01 00:00:00';
+
+        $yuran = Yuran::where('bulan_tahun', 'like', $month . '-' . $year . '%')
+            ->first();
+
+        $tarikh = $yuran->created_at;
 
         $perkara = Array();
 
@@ -234,7 +239,7 @@ class LaporanController extends Controller
 
         foreach($zones as $zone) {
 
-            // Yuran, pertaruhan, tka, takaful
+            // 1 - Yuran, pertaruhan, tka, takaful
 
             $perkara[$zone->kod]['yuran'] = 0.00;
             $perkara[$zone->kod]['per'] = 0.00;
@@ -274,11 +279,11 @@ class LaporanController extends Controller
                 $perkara[$zone->kod]['takaful'] += $fee->takaful;
             }
 
-            // Yuran Tambahan
+            // 2 - Yuran Tambahan
 
             $perkara[$zone->kod]['sumbangan'] = 0.00;
 
-            $sumbangans = Yurantambahan::where('created_at', '>=', $tarikh)
+            $sumbangans = Yurantambahan::where('created_at', '<=', $tarikh)
                 ->get();
 
             if(!$sumbangans->isEmpty()) {
@@ -299,32 +304,116 @@ class LaporanController extends Controller
                 }
             }
 
-            // PWT -> perkhidmatan_id = 1
+            // 3 - PWT -> perkhidmatan_id = 1
+
+            $perkara[$zone->kod]['pwt'] = 0.00;
+
+            $accounts = AkaunPotongan::where('status', 1)
+                ->where('perkhidmatan_id', 1)
+                ->where('created_at', '<=', $tarikh)
+                ->get();
+
+            if(!$accounts->isEmpty()){
+
+                foreach($accounts as $account) {
+
+                    if($zone->kod == $this->getZonGaji($account->no_gaji))
+                        $perkara[$zone->kod]['pwt'] += $account->bulanan;
+                }
+            }
+
+            // 4 - Buku Sekolah -> perkhidmatan_id = 2
 
             $perkara[$zone->kod]['bs'] = 0.00;
 
-            
+            $accounts = AkaunPotongan::where('status', 1)
+                ->where('perkhidmatan_id', 2)
+                ->where('created_at', '<=', $tarikh)
+                ->get();
 
-            // Buku Sekolah -> perkhidmatan_id = 2
+            if(!$accounts->isEmpty()){
 
-            $perkara[$zone->kod]['bs'] = 0.00;
+                foreach($accounts as $account) {
 
-            // RoadTax - perkhidmatan_id = 3
+                    if($zone->kod == $this->getZonGaji($account->no_gaji))
+                        $perkara[$zone->kod]['bs'] += $account->bulanan;
+                }
+            }
+
+            // 5 - RoadTax - perkhidmatan_id = 3
 
             $perkara[$zone->kod]['rt'] = 0.00;
 
+            $accounts = AkaunPotongan::where('status', 1)
+                ->where('perkhidmatan_id', 3)
+                ->where('created_at', '<=', $tarikh)
+                ->get();
 
+            if(!$accounts->isEmpty()){
 
+                foreach($accounts as $account) {
 
+                    if($zone->kod == $this->getZonGaji($account->no_gaji))
+                        $perkara[$zone->kod]['rt'] += $account->bulanan;
+                }
+            }
+
+            // 6 - Insurans - perkhidmatan_id = 4
+
+            $perkara[$zone->kod]['ins'] = 0.00;
+
+            $accounts = AkaunPotongan::where('status', 1)
+                ->where('perkhidmatan_id', 4)
+                ->where('created_at', '<=', $tarikh)
+                ->get();
+
+            if(!$accounts->isEmpty()){
+
+                foreach($accounts as $account) {
+
+                    if($zone->kod == $this->getZonGaji($account->no_gaji))
+                        $perkara[$zone->kod]['ins'] += $account->bulanan;
+                }
+            }
+
+            // 7 - Tayar / Bayar - perkhidmatan_id = 5
+
+            $perkara[$zone->kod]['ins'] = 0.00;
+
+            $accounts = AkaunPotongan::where('status', 1)
+                ->where('perkhidmatan_id', 5)
+                ->where('created_at', '<=', $tarikh)
+                ->get();
+
+            if(!$accounts->isEmpty()){
+
+                foreach($accounts as $account) {
+
+                    if($zone->kod == $this->getZonGaji($account->no_gaji))
+                        $perkara[$zone->kod]['tb'] += $account->bulanan;
+                }
+            }
+
+            // 8 - Kecemasan - perkhidmatan_id = 6
+
+            $perkara[$zone->kod]['kc'] = 0.00;
+
+            $accounts = AkaunPotongan::where('status', 1)
+                ->where('perkhidmatan_id', 6)
+                ->where('created_at', '<=', $tarikh)
+                ->get();
+
+            if(!$accounts->isEmpty()){
+
+                foreach($accounts as $account) {
+
+                    if($zone->kod == $this->getZonGaji($account->no_gaji))
+                        $perkara[$zone->kod]['kc'] += $account->bulanan;
+                }
+            }
         }
 
-        dd($perkara);
-
-
-
-        exit;
-
-        return View('members.laporan.janaan.lapPotonganGajiGenerate', compact('zones', 'pwt', 'bs'));
+        return View('members.laporan.janaan.lapPotonganGajiGenerate', compact('zones', 'perkara'));
     }
 
 
