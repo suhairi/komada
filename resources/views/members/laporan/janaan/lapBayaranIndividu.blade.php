@@ -38,7 +38,6 @@
                                     <td align="right" width="10">{{ number_format($bayar['jumlah'], 2) }}</td>
                                 </tr>
                             @endforeach
-
                             <tr>
                                 <td colspan="3" align="right"><strong>JUMLAH</strong></td>
                                 <td align="right"><strong>{{ number_format($jumlah, 2) }}</strong></td>
@@ -46,8 +45,6 @@
 
                         </tbody>
                     </table>
-
-
                 </div>
             </div>
         </div>

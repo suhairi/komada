@@ -97,6 +97,11 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
         'uses'  => 'Members\KadahliController@kadahli'
     ]);
 
+    Route::get('mystyle', [
+        'as'    => 'members.mystyle',
+        'uses'  => 'Members\UserController@mystyle'
+    ]);
+
     // Calculator - Pinjaman Wang Tunai
     Route::group(['prefix' => 'calculator'], function() {
 

@@ -36,5 +36,9 @@ class UserController extends Controller
         return View('members.index', compact('profiles'));
     }
 
+    public function myStyle() {
+        return View('members.mystyle');
+    }
+
 
 }
