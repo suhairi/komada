@@ -78,6 +78,7 @@ class YuranController extends Controller
 
         return redirect()->route('members.yuran.index');
     }
+
     public function yuranProcess()
     {
         // check for repeated payment for the selected month
@@ -240,6 +241,19 @@ class YuranController extends Controller
 
         return Redirect::route('members.yuran.index');
     }
+
+    public function batal($bulan, $tahun) {
+
+        if(Yuran::where('bulan_tahun', $bulan . '-' . $tahun)->delete()) {
+            Session::flash('success', 'Berjaya. Yuran ' . $bulan . '/' .  $tahun . ' telah dibatalkan.');
+            return Redirect::back();
+        } else {
+            Session::flash('error', 'Gagal. Yuran ' . $bulan . '/' . $tahun . ' gagal dibatalkan.');
+            return Redirect::back();
+        }
+    }
+
+
     // Check Potongan Bulan semasa telah dibuat atau belum
     protected function checkPotongan($no_gaji)
     {

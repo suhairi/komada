@@ -11,7 +11,6 @@
 
                     @if($count['totalYuran'] > 0)
                         <div class="alert alert-info">Yuran Tambahan ini telah ditutup kerana yuran bulanan telah diproses</div>
-
                     @else
                         @include('forms._yuranTambahan')
                         <table class="table table-responsive">

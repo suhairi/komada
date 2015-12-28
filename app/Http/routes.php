@@ -222,6 +222,13 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
         'uses'  => 'Members\YuranController@yuranProcess'
     ]);
 
+    Route::get('/yuran/batal/{bulan}/{tahun}', [
+        'as'    => 'members.yuran.batal',
+        'uses'  => 'Members\YuranController@batal'
+    ]);
+
+
+
     // Bayaran Tunai
 
     Route::get('/bayaran', [

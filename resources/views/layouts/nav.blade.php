@@ -16,7 +16,7 @@
                 @if(Auth::user()->email == 'suhairi81@gmail.com')
                     <li><a href="{{ route('members.admin.backup') }}">Backup</a></li>
                     <li><a href="{{ route('members.admin.todolist') }}">To do List</a></li>
-                    <li><a href="{{ route('members.mystyle') }}">mystyle</a> </li>
+                    <li><a href="{{ route('members.mystyle') }}" target="_blank">myStyle</a> </li>
                 @endif
                 <li><a href="{{ route('members.password') }}">Tukar Kata Laluan</a></li>
                 <li><a href="{{ route('logout') }}">Logout <i class="glyphicon glyphicon-log-out"></i></a></li>
