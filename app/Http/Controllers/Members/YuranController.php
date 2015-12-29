@@ -81,6 +81,9 @@ class YuranController extends Controller
 
     public function yuranProcess()
     {
+
+        Session::flash('error', 'Sistem dalam Pengemaskinian. Proses Yuran tergendala. Harap Maaf.');
+        return Redirect::back();
         // check for repeated payment for the selected month
         $doneMonth = Yuran::where('bulan_tahun', Request::get('bulan_tahun'))
             ->first();
