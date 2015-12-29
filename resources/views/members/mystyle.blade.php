@@ -2,26 +2,16 @@
 
 @section('content')
 
-<button class="btn"><a href="{{ route('members.index') }}">Home</a></button>
-<div class="dropdown">
-
-    <button class="btn">Dropdown</button>
-    <div class="dropdown-content">
-        <a href="{{ route('members.index') }}">Sub 1</a>
-        <a href="#">Sub 2</a>
-        <a href="#">Sub 3</a>
-    </div>
-</div>
-<div class="dropdown">
-    <button class="btn"><a href="#">Products</a></button>
-    <div class="dropdown-content">
-        <a href="#">Product 1</a>
-        <a href="#">Product 2</a>
-        <a href="#">Product 3</a>
-        <a href="#">Product 4</a>
-        <a href="#">Product 5</a>
-    </div>
-
-</div>
+<ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Products</a>
+        <ul>
+            <li><a href="#">Product 1</a></li>
+            <li><a href="#">Product 2</a></li>
+            <li><a href="#">Product 3</a></li>
+        </ul>
+    </li>
+    <li><a href="#">Item</a></li>
+</ul>
 
 @stop
