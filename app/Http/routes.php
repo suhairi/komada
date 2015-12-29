@@ -114,11 +114,7 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
             'as'    => 'members.calculator.pwt',
             'uses'  => 'Members\CalculatorController@pwtPost'
         ]);
-
-
     });
-
-
 
     // Roadtax
     Route::group(['prefix' => 'roadtax'], function() {
@@ -164,7 +160,6 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
             'as'    => 'members.settings.pengguna.delete',
             'uses'  => 'Members\SettingsController@penggunaDelete'
         ]);
-
     });
 
 
@@ -201,7 +196,6 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
             'as'    => 'members.profile.jadual.result',
             'uses'  => 'Members\JadualController@result'
         ]);
-
     });
 
 
@@ -226,7 +220,6 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
         'as'    => 'members.yuran.batal',
         'uses'  => 'Members\YuranController@batal'
     ]);
-
 
 
     // Bayaran Tunai
@@ -264,7 +257,6 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
     ]);
 
 
-
     // PINJAMAN  -> 1
 
     Route::group(['prefix' => 'pinjaman'], function() {
@@ -283,8 +275,6 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
             'as'    => 'members.pinjaman.overlap.process',
             'uses'  => 'Members\PinjamanController@overlapProcess'
         ]);
-
-
     });
 
     // Buku Sekolah  -> 2
@@ -304,7 +294,6 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
             'as'    => 'members.bukusekolah.proses',
             'uses'  => 'Members\BukusekolahController@proses'
         ]);
-
     });
 
     // Cukai Jalan  -> 3
@@ -324,7 +313,6 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
             'as'    => 'members.jalan.proses',
             'uses'  => 'Members\JalanController@proses'
         ]);
-
     });
 
     // Insurans  -> 4
@@ -344,7 +332,6 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
             'as'    => 'members.insurans.proses',
             'uses'  => 'Members\InsuransController@proses'
         ]);
-
     });
 
     // Tayar/Bateri -> 5
@@ -364,7 +351,6 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
             'as'    => 'members.tayar.proses',
             'uses'  => 'Members\TayarController@proses'
         ]);
-
     });
 
     // Kecemasan -> 7
@@ -384,7 +370,6 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
             'as'    => 'members.kecemasan.proses',
             'uses'  => 'Members\KecemasanController@proses'
         ]);
-
     });
 
 
