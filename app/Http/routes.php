@@ -97,11 +97,6 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
         'uses'  => 'Members\KadahliController@kadahli'
     ]);
 
-    Route::get('mystyle', [
-        'as'    => 'members.mystyle',
-        'uses'  => 'Members\UserController@mystyle'
-    ]);
-
     // Calculator - Pinjaman Wang Tunai
     Route::group(['prefix' => 'calculator'], function() {
 
@@ -220,6 +215,29 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
         'as'    => 'members.yuran.batal',
         'uses'  => 'Members\YuranController@batal'
     ]);
+
+
+    // Tangguh
+
+    Route::group(['prefix' => 'tangguh'], function() {
+
+        Route::get('index', [
+            'as'    => 'members.tangguh.index',
+            'uses'  => 'Members\TangguhController@index'
+        ]);
+
+        Route::post('index', [
+            'as'    => 'members.tangguh.index.post',
+            'uses'  => 'Members\TangguhController@indexPost'
+        ]);
+
+        Route::post('form', [
+            'as'    => 'members.tangguh.proses',
+            'uses'  => 'Members\TangguhController@proses'
+        ]);
+
+
+    });
 
 
     // Bayaran Tunai
