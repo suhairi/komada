@@ -49,6 +49,8 @@
                 <td>
                     @if($profile->status == 1)
                         AKTIF
+                    @elseif($profile->status == 2)
+                        PENCEN
                     @else
                         TIDAK AKTIF
                     @endif

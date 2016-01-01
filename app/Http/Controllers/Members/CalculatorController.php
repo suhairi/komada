@@ -20,13 +20,12 @@ class CalculatorController extends Controller
 
     public function pwtPost()
     {
-
         $found = false;
         $info = [];
 
         $akaunPotongan = AkaunPotongan::where('no_gaji', Request::get('no_gaji'))
             ->where('status', 1)
-            ->where('perkhidmatan_id', 1)
+            ->where('perkhidmatan_id', Request::get('perkhidmatan_id'))
             ->get();
 
         $info = [];
@@ -37,11 +36,16 @@ class CalculatorController extends Controller
 
             $akaun = AkaunPotongan::where('no_gaji', Request::get('no_gaji'))
                 ->where('status', 1)
-                ->where('perkhidmatan_id', 1)
+                ->where('perkhidmatan_id', Request::get('perkhidmatan_id'))
                 ->first();
 
-            $baki = $this->getBaki(Request::get('no_gaji'));
+            $baki = $akaun->baki;
+
+            // Formula tempoh = $akaun->tempoh - bilangan bayaran yuran - tempoh tangguh
+            $tempoh = $akaun->tempoh;
+
             $tempoh = $this->getBakiTempoh(Request::get('no_gaji'));
+
 
             // LANGSAI
             // Formula :-
@@ -93,45 +97,24 @@ class CalculatorController extends Controller
 
     protected function getBakiTempoh($no_gaji)
     {
+        // Formula tempoh = $akaun->tempoh - bilangan bayaran yuran + tempoh tangguh
+
         $akaun = AkaunPotongan::where('no_gaji', $no_gaji)
             ->where('status', 1)
-            ->where('perkhidmatan_id', 1)
+            ->where('perkhidmatan_id', Request::get('perkhidmatan_id'))
             ->first();
 
         $bilPotongan = Bayaran::where('no_gaji', $no_gaji)
             ->where('created_at', '>=', $akaun->created_at->format('Y-m-d') . '%')
             ->count();
 
-        $bakiTempoh = $akaun->tempoh - $bilPotongan;
+        $tangguh =
+
+        $bakiTempoh = $akaun->tempoh - $bilPotongan + $tangguh;
 
         return $bakiTempoh;
     }
 
-    protected function getBaki($no_gaji)
-    {
-        $akaun = AkaunPotongan::where('no_gaji', $no_gaji)
-            ->where('status', 1)
-            ->where('perkhidmatan_id',1)
-            ->first();
-
-        // #####################################################################################
-        // bugs here
-        // since potongan is inclusive with other pinjamans, the jumlah is not exact already.
-        // need to find way to fix this.
-
-        // solution to try :-
-        // 1. compare tarikh, and get jumlah bayaran by doing the formula again here
-
-        // #####################################################################################
-        $jumlahBayaran = Yuran::where('no_gaji', $no_gaji)
-            ->where('created_at', '>=', $akaun->created_at->format('Y-m-d') . '%')
-            ->where('potongan', '>', 0)
-            ->sum('potongan');
-
-        $baki = $akaun->jumlah_keseluruhan - $jumlahBayaran;
-
-        return $baki;
-    }
 
     protected function getLebihanKadar($no_gaji)
     {

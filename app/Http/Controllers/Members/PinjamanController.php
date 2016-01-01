@@ -30,7 +30,7 @@ class PinjamanController extends Controller
             'tempoh'            => 'required|numeric',
             'kadar'             => 'required|numeric',
             'kadar_bulanan'     => 'required|numeric',
-            'caj_perkhidmatan' => 'required|numeric',
+            'caj_perkhidmatan'   => 'required|numeric',
             'insurans'          => 'required|numeric',
             'byrn_bulanan'      => 'required|numeric',
             'jumlah_keseluruhan'=> 'required|numeric'

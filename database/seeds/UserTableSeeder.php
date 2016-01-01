@@ -63,7 +63,7 @@ class UserTableSeeder extends Seeder
         Jantina::create(['nama' => 'PEREMPUAN']);
 
         Status::create(['nama' => 'AKTIF']);
-        Status::create(['nama' => 'TIDAK AKTIF']);
+        Status::create(['nama' => 'PENCEN']);
         Status::create(['nama' => 'TIDAK AKTIF']);
         Status::where('id', 3)->update(['id' => 0]);
 

@@ -157,7 +157,7 @@ class ProfileController extends Controller
         $profile = Profile::where('no_anggota', $id)
             ->first();
 
-        $status = ['1' => 'AKTIF', '0' => 'TIDAK AKTIF'];
+        $status = ['1' => 'AKTIF', '0' => 'TIDAK AKTIF', '2' => 'PENCEN'];
 
         $zon = Zon::lists('nama', 'kod');
 
