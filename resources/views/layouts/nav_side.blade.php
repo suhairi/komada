@@ -6,7 +6,8 @@
                 <ul>
                     <li><a href="{{ route('members.index') }}"><i class="glyphicon glyphicon-search"></i> Carian Profil </a></li>
                     <li><a href="{{ route('members.profiles.addUser') }}"><i class="glyphicon glyphicon-user"></i> Daftar Anggota</a></li>
-                    <li class='last'><a href="{{ route('members.pertaruhan.index') }}"><i class="glyphicon glyphicon-paperclip"></i> Daftar Pertaruhan</a></li>
+                    <li><a href="{{ route('members.pertaruhan.index') }}"><i class="glyphicon glyphicon-paperclip"></i> Daftar Pertaruhan</a></li>
+                    <li class='last'><a href="{{ route('members.tangguh.index') }}"><i class="glyphicon glyphicon-paperclip"></i> Daftar Tangguh</a></li>
                 </ul>
             </li>
             <li class='has-sub'><a href='#'><span>Pinjaman</span></a>
