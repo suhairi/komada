@@ -16,7 +16,6 @@ class Profile extends Model
     ];
 
     protected $dates = ['tarikh_khidmat', 'tarikh_ahli'];
-    public $timestamps = false;
 
     public function jantina()
     {

@@ -33,6 +33,7 @@ class CreateProfileTable extends Migration
             $table->string('zon_gaji_id', 3);
             $table->tinyInteger('profile_category_id', false, false);
             $table->tinyInteger('status', false, true)->default(1);
+            $table->timestamps();
         });
     }
 
