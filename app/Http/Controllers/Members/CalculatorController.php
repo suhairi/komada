@@ -47,7 +47,7 @@ class CalculatorController extends Controller
             $baki = $akaun->baki;
 
             // Formula tempoh = ceiling(baki / bulanan)
-            $bakiTempoh = ceil($akaun->baki / $akaun->bulanan);
+            $bakiTempoh = ceil(number_format(($akaun->baki / $akaun->bulanan), 2));
 
             // LANGSAI
             // Formula :-
@@ -110,6 +110,8 @@ class CalculatorController extends Controller
             ->sum('yuran');
 
         // missing => $jumlah = $jumlah + jumlah_caruman_lama
+        // done. by attaching it to yuran (bulan_tahun : jan 2015)
+        // so the system will automatically calculate gracefully.
 
         if($jumlah < 10000)
             $layak = 2 * $jumlah;

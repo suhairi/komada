@@ -58,7 +58,7 @@ class UserTableSeeder4 extends Seeder
         Inactive::create(['no_anggota' => '90', 'catatan' => '', 'status' => 1, 'created_at' => Carbon::createFromDate('2015', '1', '30'), 'updated_at' => Carbon::createFromDate('2015', '1', '30')]);
 
         // Yuran
-        for($i=Carbon::now()->format('Y'); $i<=Carbon::now()->format('Y'); $i++)
+        for($i=2015; $i<=2015; $i++)
         {
             $profiles = Profile::where('status', 1)->get();
             $tka = Tka::where('status', 1)->first();

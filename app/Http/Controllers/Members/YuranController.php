@@ -4,6 +4,7 @@ use App\AkaunPotongan;
 use App\Bayaran;
 use App\Potongan;
 use App\Sumbangan;
+use App\Tangguh;
 use App\Tka;
 use App\Takaful;
 use Illuminate\Support\Facades\Redirect;
@@ -256,7 +257,6 @@ class YuranController extends Controller
         }
     }
 
-
     // Check Potongan Bulan semasa telah dibuat atau belum
     protected function checkPotongan($no_gaji)
     {
@@ -274,4 +274,25 @@ class YuranController extends Controller
         else
             return true;
     }
+
+    protected function isTangguh($no_gaji) {
+
+        $tarikh = explode('-', Request::get('bulan_tahun'));
+
+        $bulan = $tarikh[0];
+        $tahun = $tarikh[1];
+
+        $date = $tahun . '-' . $bulan . '-01 00:00:00';
+
+        $tangguh = Tangguh::where('no_gaji', $no_gaji)
+            ->where('dari', '>=', $date)
+            ->where('sehingga', '<=', $date)
+            ->get();
+
+        if(!$tangguh->isEmpty())
+            return true;
+        else
+            return false;
+    }
+
 }

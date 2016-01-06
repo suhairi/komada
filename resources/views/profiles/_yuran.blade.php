@@ -1,5 +1,5 @@
 <div class="panel panel-info">
-    <div class="panel-heading"><h4>Maklumat Yuran</h4></div>
+    <div class="panel-heading"><h4>Maklumat Yuran Tahun {{ date('Y') }}</h4></div>
     <div class="panel-body">
         <table class="table table-hover table-striped">
             <tr>
