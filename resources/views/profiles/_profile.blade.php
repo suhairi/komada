@@ -5,7 +5,7 @@
     <div class="panel-body">
         <table class="table table-hover table-striped">
             <tr>
-                <th width="150">No Gaji</th>
+                <th width="250">No Gaji</th>
                 <td>{{ $profile->no_gaji }}</td>
             </tr>
             <tr>
@@ -25,25 +25,37 @@
                 <td>{{ $profile->jantina->nama }}</td>
             </tr>
             <tr>
-                <th>Bangsa</th>
-                <td>{{ $profile->bangsa }}</td>
-            </tr>
-            <tr>
-                <th>Agama</th>
-                <td>{{ $profile->agama }}</td>
-            </tr>
-            <tr>
                 <th>Alamat 1 / Alamat 2</th>
-                <td>{{ $profile->alamat1 }}, {{ $profile->alamat2 }}</td>
+                <td>{{ $profile->alamat1 }}
+                    @if(str_replace(' ', '', $profile->alamat1) != '')
+                        , {{ $profile->alamat2 }}
+                    @endif
+                </td>
             </tr>
             <tr>
                 <th>Jawatan</th>
-                <td>{{ $profile->taraf_jawatan }} - {{ $profile->jawatan }}</td>
+                <td>
+                    {{ $profile->taraf_jawatan }}
+
+                    @if(str_replace(' ', '', $profile->taraf_jawatan) != '')
+                        - {{ $profile->jawatan }}
+                    @endif
+
+                </td>
             </tr>
             <tr>
                 <th>Tarikh Mula Berkhidmat</th>
                 <td>{{ $profile->tarikh_khidmat->format('d M Y') }}</td>
             </tr>
+            <tr>
+                <th>Yuran Bulanan</th>
+                <td>RM {{ number_format($profile->jumlah_yuran_bulanan, 2) }}</td>
+            </tr>
+            <tr>
+                <th>Pertaruhan</th>
+                <td>RM {{ number_format($profile->jumlah_pertaruhan, 2) }}</td>
+            </tr>
+
             <tr>
                 <th>Status</th>
                 <td>
