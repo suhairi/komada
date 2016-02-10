@@ -18,13 +18,13 @@ class DatabaseSeeder extends Seeder
          $this->call(UserTableSeeder::class);
 
         // Profile
-         $this->call(UserTableSeeder2::class);
+//         $this->call(UserTableSeeder2::class);
 
         // Trim - Profile Category_id
          $this->call(UserTableSeeder3::class);
 
         // faker data - yuran
-         $this->call(UserTableSeeder4::class);
+//         $this->call(UserTableSeeder4::class);
 
         Model::reguard();
     }
