@@ -16,6 +16,7 @@ class CreateBayaranTable extends Migration
             $table->increments('id');
             $table->string('no_gaji');
             $table->integer('akaunpotongan_id', false,false);
+            $table->string('desc');
             $table->float('jumlah', 7, 2);
             $table->timestamps();
         });
