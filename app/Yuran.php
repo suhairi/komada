@@ -24,4 +24,5 @@ class Yuran extends Model
     {
         return $this->hasOne('App\Zon', 'id', 'zon_gaji_id');
     }
+
 }

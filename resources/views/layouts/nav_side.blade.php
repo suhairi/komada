@@ -17,7 +17,8 @@
                     <li><a href="{{ route('members.kecemasan.index') }}"><i class="glyphicon glyphicon-usd"></i> Kecemasan</a></li>
                     <li><a href="{{ route('members.tayar.index') }}"><i class="glyphicon glyphicon-usd"></i> Tayar / Bateri</a></li>
                     <li><a href="{{ route('members.jalan.index') }}"><i class="glyphicon glyphicon-usd"></i> Cukai Jalan</a></li>
-                    <li class='last'><a href="{{ route('members.insurans.index') }}"><i class="glyphicon glyphicon-usd"></i> Insurans</a></li>
+                    <li><a href="{{ route('members.insurans.index') }}"><i class="glyphicon glyphicon-usd"></i> Insurans</a></li>
+                    <li class='last'><a href="{{ route('members.pertaruhan.index') }}"><i class="glyphicon glyphicon-usd"></i> Pertaruhan</a></li>
                 </ul>
             </li>
             <li class='has-sub'><a href='#'><span>Bayaran</span></a>

@@ -109,6 +109,7 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
             'as'    => 'members.calculator.pwt',
             'uses'  => 'Members\CalculatorController@pwtPost'
         ]);
+
     });
 
     // Roadtax
@@ -387,6 +388,14 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
         Route::post('proses', [
             'as'    => 'members.kecemasan.proses',
             'uses'  => 'Members\KecemasanController@proses'
+        ]);
+    });
+
+    Route::group(['prefix' => 'pertaruhan'], function() {
+
+        Route::get('index', [
+            'as'    => 'members.pertaruhan.index',
+            'uses'  => 'members\PertaruhanController@index'
         ]);
     });
 
