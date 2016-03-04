@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Session;
 class TangguhController extends Controller
 {
     public function index() {
+
+        
         return View('members.tangguh.index');
     }
 

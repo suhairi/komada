@@ -20,8 +20,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="akaunpotongan_id">Akaun Potongan</label>
-                            <select name="akaunpotongan_id" class="form-control">
+                            <label for="akaunpotongan_id">Akaun Potongan..</label>
+                            <select name="akaunpotongan_id" class="form-control" "required">
                                 <option>AKAUN</option>
                                 @foreach($accounts as $account)
                                     <option value="{{ $account->id }}">{{ $account->perkhidmatan->nama }}</option>

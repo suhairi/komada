@@ -8,7 +8,16 @@ class Yuran extends Model
 {
     protected $table = 'yuran';
     protected $primaryKey = 'id';
-    protected $fillable = ['no_gaji', 'bulan_tahun', 'yuran', 'tka', 'takaful', 'potongan', 'zon_gaji_id'];
+    protected $fillable = [
+        'no_gaji', 'bulan_tahun', 'yuran', 'tka', 'takaful', 
+        'pwt', 'pwtcp', 'pwtins',
+        'rt',
+        'bs',
+        'rt',
+        'tb', 'tbcp', 'tbins', 
+        'kc', 'kccp', 'kcins',
+        'zon_gaji_id'
+        ];
 
     public function profile()
     {

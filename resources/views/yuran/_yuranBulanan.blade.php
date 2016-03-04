@@ -33,7 +33,7 @@
         <tr>
             <td align="right">
                 <a href="{{route('members.yuran.batal', ['bulan' => date('m'), 'year' => date('Y')])}}">
-                    <button class="btn btn-danger">Batal Yuran dan Sumbangan Bulan ini</button>
+                    @include('buttons._submit-progress-batal', ['value' => 'Batal Yuran dan Sumbangan Bulan ini'])
                 </a>
             </td>
         </tr>
