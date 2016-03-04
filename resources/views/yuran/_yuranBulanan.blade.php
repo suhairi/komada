@@ -13,7 +13,7 @@
     </tr>
 
     <tr>
-        <th>Jumlah Anggota Bulan ini</th>
+        <th>Jumlah Anggota Baru Bulan ini</th>
         <td>{{ $count['totalAnggotaBaru'] }}</td>
     </tr>
 
