@@ -133,17 +133,18 @@ class YuranController extends Controller
                 // Kod = 2
                 $bs = $this->getJumlah($profile->no_gaji, 2, 'jumlah'); 
 
+                // Kod = 3;
+                $rt = $this->getJumlah($profile->no_gaji, 3, 'jumlah');
 
+                // Kod = 5
+                $tb = $this->getJumlah($profile->no_gaji, 5, 'jumlah'); 
+                $tbcp = $this->getJumlah($profile->no_gaji, 5, 'caj_proses'); 
+                $tbins = $this->getJumlah($profile->no_gaji, 5, 'insurans'); 
 
-                $kc; $kccp; $kcins; // kod = 6
-                
-                $rt; // kod = 3
-                $tb; $tbcp; $tbins; // kod = 5
-
-                $pwt = $this->getJumlah($profile->no_gaji, 1, 'jumlah');
-
-
-                return $bs;
+                // kod = 6                
+                $kc = $this->getJumlah($profile->no_gaji, 6, 'jumlah'); 
+                $kccp = $this->getJumlah($profile->no_gaji, 6, 'caj_proses'); 
+                $kcins = $this->getJumlah($profile->no_gaji, 6, 'insurans');            
 
                 Yuran::create([
                     'no_gaji'       => $profile->no_gaji,
@@ -152,7 +153,17 @@ class YuranController extends Controller
                     'pertaruhan'    => number_format($pertaruhan, 2),
                     'tka'           => number_format($tka, 2),
                     'takaful'       => number_format($takaful, 2),
-                    'potongan'      => number_format($jumlahPotongan, 2),
+                    'pwt'           => number_format($pwt, 2),
+                    'pwtcp'         => number_format($pwtcp, 2),
+                    'pwtins'        => number_format($pwtins, 2),
+                    'bs'            => number_format($bs, 2),
+                    'rt'            => number_format($rt, 2),
+                    'tb'            => number_format($tb, 2),
+                    'tbcp'          => number_format($tbcp, 2),
+                    'tbins'         => number_format($tbins, 2),
+                    'kc'            => number_format($kc, 2),
+                    'kccp'          => number_format($kccp, 2),
+                    'kcins'         => number_format($kcins, 2),
                     'zon_gaji_id'   => $profile->zon_gaji_id
                 ]);
             }
@@ -174,26 +185,26 @@ class YuranController extends Controller
 
         if($jumlah == null) {
 
-            $jumlah = 0.00;
+            $total = 0.00;
 
         } else {
 
-            if($perkara != 'jumlah') {
+            $total = $jumlah->$perkara;
 
+            if($perkara != 'jumlah') {
+                
                 $tarikh = explode('-', Request::get('bulan_tahun'));
                 $tarikh = $tarikh[1] . '-' . $tarikh[0];
 
                 $updated_at = substr($jumlah->updated_at, 0, 7);
 
-                if($tarikh == $updated_at)
-                    $jumlah = $jumlah->$perkara;
-                else
-                    $jumlah = 0.00;
+                if($tarikh != $updated_at)
+                    $total = 0.00;
 
             }
         }
 
-        return $jumlah;
+        return $total;
     }
 
 

@@ -41,12 +41,12 @@
 
                 progressbar.progressbar( "value", val + 1 );
 
-                if ( val < 244 ) {
-                    setTimeout( progress, 245);
+                if ( val < 999 ) {
+                    setTimeout(progress, 1000);
                 }
             }
 
-            setTimeout( progress, 100 );
+            setTimeout(progress, 100 );
 
         });
 
