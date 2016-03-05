@@ -74,7 +74,7 @@ class KecemasanController extends Controller
                 'jumlah'                => Request::get('jumlah'),
                 'tempoh'                => Request::get('tempoh'),
                 'kadar'                 => Request::get('kadar'),
-                'caj_perkhidmatan'      => Request::get('caj'),
+                'caj_proses'            => Request::get('caj'),
                 'insurans'              => '0.00',
                 'jumlah_keseluruhan'    => Request::get('jumlah_keseluruhan'),
                 'baki'                  => Request::get('jumlah_keseluruhan'),

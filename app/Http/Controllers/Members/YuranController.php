@@ -169,8 +169,6 @@ class YuranController extends Controller
                     'zon_gaji_id'   => $profile->zon_gaji_id
                 ]);
 
-                return;
-
             }
         }
 
