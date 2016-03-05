@@ -63,20 +63,7 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
         'uses'  => 'Members\ProfileController@biasa'
     ]);
 
-    Route::get('pertaruhan', [
-        'as'    => 'members.pertaruhan.index',
-        'uses'  => 'Members\PertaruhanController@index'
-    ]);
-
-    Route::post('pertaruhan', [
-        'as'    => 'members.pertaruhan.index',
-        'uses'  => 'Members\PertaruhanController@indexPost'
-    ]);
-
-    Route::post('pertaruhan/daftar', [
-        'as'    => 'members.pertaruhan.daftarPost',
-        'uses'  => 'Members\PertaruhanController@daftarPost'
-    ]);
+    
 
 
     // Change Password
@@ -397,6 +384,22 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
             'as'    => 'members.pertaruhan.index',
             'uses'  => 'members\PertaruhanController@index'
         ]);
+
+        // Route::get('pertaruhan', [
+        //     'as'    => 'members.pertaruhan.index',
+        //     'uses'  => 'Members\PertaruhanController@index'
+        // ]);
+
+        Route::post('index', [
+            'as'    => 'members.pertaruhan.index',
+            'uses'  => 'Members\PertaruhanController@indexPost'
+        ]);
+
+        Route::post('pertaruhan/daftar', [
+            'as'    => 'members.pertaruhan.daftarPost',
+            'uses'  => 'Members\PertaruhanController@daftarPost'
+        ]);
+
     });
 
 

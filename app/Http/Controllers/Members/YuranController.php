@@ -15,6 +15,7 @@ use App\Yuran;
 use App\Yurantambahan;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
+
 class YuranController extends Controller
 {
     public function index()
@@ -146,7 +147,8 @@ class YuranController extends Controller
                 $kccp = $this->getJumlah($profile->no_gaji, 6, 'caj_proses'); 
                 $kcins = $this->getJumlah($profile->no_gaji, 6, 'insurans'); 
 
-                // return $pwt;          
+                // if($profile->no_gaji == 3374)
+                //     return $pwt;         
 
                 Yuran::create([
                     'no_gaji'       => $profile->no_gaji,
@@ -307,9 +309,9 @@ class YuranController extends Controller
             ->get();
 
         if($tangguh->isEmpty())
-            return true;
-        else
             return false;
+        else
+            return true;
 
     }
 

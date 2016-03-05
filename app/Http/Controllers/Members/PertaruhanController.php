@@ -17,6 +17,7 @@ class PertaruhanController extends Controller
 
     public function indexPost()
     {
+
         $profile = Profile::where('no_gaji', Request::get('no_gaji'))->first();
 
         if(empty($profile))

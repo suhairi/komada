@@ -43,10 +43,6 @@
 
                 </td>
             </tr>
-<!--             <tr>
-                <th>Tarikh Mula Berkhidmat</th>
-                <td>{{ $profile->tarikh_khidmat }}</td>
-            </tr> -->
             <tr>
                 <th>Yuran Bulanan</th>
                 <td>RM {{ number_format($profile->jumlah_yuran_bulanan, 2) }}</td>
