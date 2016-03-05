@@ -10,7 +10,7 @@
 
     <div class="form-group">
         <label for="Anggota ID">No Gaji Anggota</label>
-        {!! Form::text('no_gaji', null, ['class' => 'form-control', 'placeholder' => 'Contoh : 3374']) !!}
+        {!! Form::text('no_gaji', null, ['class' => 'form-control', 'placeholder' => 'Contoh : 3374', 'autocomplete' => 'off']) !!}
     </div>
 
     <div class="form-group">

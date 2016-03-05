@@ -43,10 +43,10 @@
 
                 </td>
             </tr>
-            <tr>
+<!--             <tr>
                 <th>Tarikh Mula Berkhidmat</th>
-                <td>{{ $profile->tarikh_khidmat->format('d M Y') }}</td>
-            </tr>
+                <td>{{ $profile->tarikh_khidmat }}</td>
+            </tr> -->
             <tr>
                 <th>Yuran Bulanan</th>
                 <td>RM {{ number_format($profile->jumlah_yuran_bulanan, 2) }}</td>
@@ -55,6 +55,13 @@
                 <th>Pertaruhan</th>
                 <td>RM {{ number_format($profile->jumlah_pertaruhan, 2) }}</td>
             </tr>
+
+            <tr>
+                <th>Zon Pembayaran Gaji</th>
+                <td>{{ $profile->zon->nama }}</td>
+            </tr>
+
+
 
             <tr>
                 <th>Status</th>
