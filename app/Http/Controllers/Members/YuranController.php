@@ -46,11 +46,9 @@ class YuranController extends Controller
         return View('members.yuran', compact('yuranTambahans', 'yuranBulanans', 'count', 'totalTambahan', 'sumbangan'));
     }
     // Merekod Yuran Tambahan
-    public function yuranTambahan()
-    {
+    public function yuranTambahan() {
         $tarikh = explode('-', Request::get('bulan_tahun'));
         $created_at = $tarikh[1] . '-' . $tarikh[0] . '-' . Carbon::now()->format('d') .' 00:00:00';
-//        return Request::all();
         Yurantambahan::create([
             'jumlah'        => Request::get('jumlah'),
             'sumbangan_id'  => Request::get('sumbangan_id'),
@@ -81,8 +79,7 @@ class YuranController extends Controller
         return redirect()->route('members.yuran.index');
     }
 
-    public function yuranProcess()
-    {
+    public function yuranProcess() {
 
         // Session::flash('error', 'Sistem dalam Pengemaskinian. Proses Yuran tergendala. Harap Maaf.');
         // return Redirect::back();
@@ -250,12 +247,13 @@ class YuranController extends Controller
 
             $total = $bulanan->$perkara;
 
+            // if $perkara = insurans, caj_proses
             if($perkara != 'bulanan') {
                 
                 $tarikh = explode('-', Request::get('bulan_tahun'));
                 $tarikh = $tarikh[1] . '-' . $tarikh[0];
 
-                $updated_at = substr($bulanan->updated_at, 0, 7);
+                $updated_at = substr($bulanan->created_at, 0, 7);
 
                 if($tarikh != $updated_at)
                     $total = 0.00;
