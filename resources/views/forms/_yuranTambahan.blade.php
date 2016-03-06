@@ -5,12 +5,12 @@
     </div>
     <div class="form-group">
         <label for="bulan_tahun">Keterangan Sumbangan</label>
-        {!! Form::select('sumbangan_id', $sumbangan, null, ['class' => 'form-control', 'placeholder' => 'Jenis Sumbangan']) !!}
+        {!! Form::select('sumbangan_id', $sumbangan, null, ['class' => 'form-control', 'required' => 'true', 'placeholder' => 'Jenis Sumbangan']) !!}
     </div>
 
     <div class="form-group">
         <label for="Anggota ID">No Gaji Anggota</label>
-        {!! Form::text('no_gaji', null, ['class' => 'form-control', 'placeholder' => 'Contoh : 3374']) !!}
+        {!! Form::text('no_gaji', null, ['class' => 'form-control', 'placeholder' => 'Contoh : 3374', 'autocomplete' => 'off']) !!}
     </div>
 
     <div class="form-group">

@@ -114,6 +114,7 @@ class BayaranController extends Controller
             ->where('status', 1)
             ->get();
 
+
         if($akauns->isEmpty()) {
             Session::flash('error', 'Gagal. No Gaji *' . Request::get('no_gaji') . '* tiada rekod pinjaman/tertunggak');
             return Redirect::back();
@@ -189,7 +190,6 @@ class BayaranController extends Controller
 
         $bilBayaran = Yuran::where('no_gaji', $account->no_gaji)
             ->where('created_at', '>=', $account->created_at)
-            ->where('potongan', '!=', 0.00)
             ->count('id');
 
         $kadarSebulan = ($account->kadar * $account->jumlah / 100) / 12;

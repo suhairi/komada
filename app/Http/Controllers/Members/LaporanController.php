@@ -72,9 +72,12 @@ class LaporanController extends Controller
             $bulan = explode('-', $fee->bulan_tahun);
             $bulan = (int)$bulan[0];
 
+            if($bulan < 10)
+                $bulan = '0' . $bulan;
+
             $jumlah = $fee->yuran + $fee->pertaruhan + $fee->tka + $fee->takaful + $fee->potongan;
 
-            array_push($bayaran, ['bulan' => $bulan, 'perkara' => 'Yuran Bulanan', 'catatan' => '', 'jumlah' => $jumlah]);
+            array_push($bayaran, ['bulan' => $bulan, 'perkara' => 'Yuran Bulanan', 'catatan' => $profile->zon->nama, 'jumlah' => $jumlah]);
 
             $bulan = explode('-', $fee->bulan_tahun);
             $bulan = $bulan[0];
@@ -94,7 +97,7 @@ class LaporanController extends Controller
                     $catatan = $catatan->nama;
 
                     $jumlah = $cash->jumlah;
-                    array_push($bayaran, ['bulan' => $bulan[0], 'perkara' => 'Bayaran Tunai', 'catatan' => $catatan, 'jumlah' => $jumlah]);
+                    array_push($bayaran, ['bulan' => $bulan[0], 'perkara' => 'Bayaran Tunai/Cek', 'catatan' => $catatan, 'jumlah' => $jumlah]);
                 }
             } // end if tunai is not empty
 
@@ -124,9 +127,9 @@ class LaporanController extends Controller
             'tahun' => 'required'
         ]);
 
-        $zon = Request::get('zon');
-        $bulan = Request::get('bulan');
-        $tahun = Request::get('tahun');
+        $zon    = Request::get('zon');
+        $bulan  = Request::get('bulan');
+        $tahun  = Request::get('tahun');
 
         if($validation->fails())
         {
@@ -146,7 +149,9 @@ class LaporanController extends Controller
         $bahagian = Zon::where('kod', Request::get('zon'))
             ->first();
 
-        $profiles = Profile::where('zon_gaji_id', Request::get('zon'))
+        // $bahagian = $bahagian->nama;
+
+        $profiles = Profile::where('zon_gaji_id', $bahagian->id)
             ->where('status', 1)
             ->get();
 
@@ -155,6 +160,7 @@ class LaporanController extends Controller
 
         foreach($profiles as $profile)
         {
+            // dd('here');
             // yuran, tka, takaful
             $yuran = $this->getYuran($profile->no_gaji, $bulan_tahun);
 
@@ -166,7 +172,7 @@ class LaporanController extends Controller
             // sumbangan kematian
             $sumbangan = number_format($this->getSumbangan($bulan_tahun), 2);
 
-
+            // jumlah yuran + bayaran tunai/cek
             // Pinjaman. WT, Kecemasan, Buku Sekolah, Roadtax, Tayar Bateri, Insurans
             $pwt = $this->getBayaran($profile->no_gaji, $bulan_tahun, 1);
             $bs = $this->getBayaran($profile->no_gaji, $bulan_tahun, 2);
@@ -175,13 +181,13 @@ class LaporanController extends Controller
             $tb = $this->getBayaran($profile->no_gaji, $bulan_tahun, 5);
             $kc = $this->getBayaran($profile->no_gaji, $bulan_tahun, 6);
 
+            
             $jumlah = $yuran->yuran + $yuran->tka + $yuran->takaful + $sumbangan +
                 $pwt['jumlah'] + $pwt['cp'] + $pwt['ins'] +
                 $kc['jumlah'] + $kc['cp'] + $kc['ins'] +
                 $bs['jumlah'] + $rt['jumlah'] +
                 $tb['jumlah'] + $tb['cp'] +
                 $ins['jumlah'] + $profile->jumlah_pertaruhan;
-
 
             array_push($persons, [
                 'no_gaji'       => $profile->no_gaji,
@@ -421,8 +427,7 @@ class LaporanController extends Controller
      *  Helper Functions
      */
 
-    protected function getYuran($no_gaji, $bulan_tahun)
-    {
+    protected function getYuran($no_gaji, $bulan_tahun) {
         $yuran = Yuran::where('no_gaji', $no_gaji)
             ->where('bulan_tahun', $bulan_tahun)
             ->first();
@@ -430,8 +435,7 @@ class LaporanController extends Controller
         return $yuran;
     }
 
-    protected function getSumbangan($bulan_tahun)
-    {
+    protected function getSumbangan($bulan_tahun) {
         $tarikh = explode('-', $bulan_tahun);
         $tarikh = $tarikh[1] . '-' . $tarikh[0];
 
@@ -441,8 +445,7 @@ class LaporanController extends Controller
         return $sumbangan;
     }
 
-    protected function getBayaran($no_gaji, $bulan_tahun, $perkhidmatan_id)
-    {
+    protected function getBayaran($no_gaji, $bulan_tahun, $perkhidmatan_id) {
         $tarikh = explode('-', $bulan_tahun);
         $tarikh = $tarikh[1] . '-' . $tarikh[0];
         $bayaran = [];

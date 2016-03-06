@@ -95,17 +95,18 @@ class CalculatorController extends Controller
         }
 
         $layakPinjam = $this->getJumlahLayak(Request::get('no_gaji'));
+        $pertaruhan = $this->getJumlahPertaruhan(Request::get('no_gaji'));
 
         Session::put('no_gaji', Request::get('no_gaji'));
 
-        return View('members.calculator.pwt_calculator', compact('akaunPotongan', 'found', 'info', 'akaun', 'kelayakan', 'layakPinjam'));
+        return View('members.calculator.pwt_calculator',
+            compact('akaunPotongan', 'found', 'info', 'akaun', 'kelayakan', 'layakPinjam', 'pertaruhan'));
     }
 
 
     // Helper Functions
 
-    protected function getJumlahLayak($no_gaji)
-    {
+    protected function getJumlahLayak($no_gaji) {
         $jumlah = Yuran::where('no_gaji', $no_gaji)
             ->sum('yuran');
 
@@ -119,6 +120,14 @@ class CalculatorController extends Controller
             $layak = 0.8 * $jumlah;
 
         return $layak;
+    }
+
+    protected function getJumlahPertaruhan($no_gaji) {
+
+        $jumlah = Yuran::where('no_gaji', $no_gaji)
+            ->sum('pertaruhan');
+
+        return $jumlah;
     }
 
 

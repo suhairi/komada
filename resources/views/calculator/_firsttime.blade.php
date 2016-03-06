@@ -22,7 +22,7 @@
                 </tr>
                 <tr>
                     <th>Tempoh</th>
-                    <td>{!! Form::select('tempoh', ['12' => '12', '24' => '24', '36' => '36', '48' => '48', '60' => '60'], null, ['class' => 'form-control', 'id' => 'tempoh', 'placeholder' => 'Tempoh', 'onchange' => 'calc()', 'required' => 'true']) !!}</td>
+                    <td>{!! Form::number('tempoh', '', ['class' => 'form-control', 'id' => 'tempoh', 'placeholder' => 'Tempoh', 'onkeyup' => 'calc()', 'required' => 'true']) !!}</td>
                 </tr>
                 <tr>
                     <th>Insurans</th>
@@ -62,6 +62,28 @@
         </div>
     </div>
 </div>
+
+<div class="col-xs-4">
+    <div class="panel panel-primary">
+        <div class="panel-heading"><h4>Info</h4></div>
+        <div class="panel-body">
+            <table class="table table-condensed">
+                <tr>
+                    <th>Layak Pinjam</th>
+                    <th>: RM</th>
+                    <td align="right">{{ number_format($layakPinjam, 2) }}</td>
+                </tr>
+                <tr>
+                    <th>Jumlah Pertaruhan</th>
+                    <th>: RM</th>
+                    <td align="right">{{ number_format($pertaruhan, 2) }}</td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+</div>
+
 
 <script>
 

@@ -1,0 +1,1 @@
+<button class="btn btn-danger" id="btn_submit"><i class="glyphicon glyphicon-floppy-save"></i> {{ $value }}</button>

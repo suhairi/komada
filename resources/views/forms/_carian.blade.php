@@ -2,7 +2,7 @@
 <table class="table">
     <tr>
         <th>No Gaji : </th>
-        <td><input class="form-control" name="no_gaji" type="text" placeholder="No Gaji" autofocus="" required="" /></td>
+        <td><input class="form-control" name="no_gaji" type="text" placeholder="No Gaji" autofocus="" required="" autocomplete="off" /></td>
     </tr>
     <tr>
 

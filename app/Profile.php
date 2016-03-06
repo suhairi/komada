@@ -17,17 +17,15 @@ class Profile extends Model
 
     protected $dates = ['tarikh_khidmat', 'tarikh_ahli'];
 
-    public function jantina()
-    {
+    public function jantina() {
         return $this->hasOne('App\Jantina', 'id', 'jantina_id');
     }
-    public function profileCategory()
-    {
+
+    public function profileCategory() {
         return $this->hasOne('App\ProfileCategory', 'id', 'profile_category_id');
     }
 
-    public function zon()
-    {
+    public function zon() {
         return $this->hasOne('App\Zon', 'id', 'zon_gaji_id');
     }
 

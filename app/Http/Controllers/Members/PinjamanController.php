@@ -70,7 +70,7 @@ class PinjamanController extends Controller
             'jumlah'            => Request::get('jumlah'),
             'tempoh'            => Request::get('tempoh'),
             'kadar'             => (float)Request::get('kadar'),
-            'caj_perkhidmatan'  => Request::get('caj_perkhidmatan'),
+            'caj_proses'        => Request::get('caj_perkhidmatan'),
             'insurans'          => Request::get('insurans'),
             'jumlah_keseluruhan'=> Request::get('jumlah_keseluruhan'),
             'baki'              => $baki,
