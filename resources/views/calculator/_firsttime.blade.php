@@ -63,16 +63,22 @@
     </div>
 </div>
 
-<div class="col-xs-4">
+<div class="col-xs-5">
     <div class="panel panel-primary">
         <div class="panel-heading"><h4>Info</h4></div>
         <div class="panel-body">
             <table class="table table-condensed">
                 <tr>
+                    <th>Yuran Terkumpul</th>
+                    <th>: RM</th>
+                    <td align="right">{{ number_format($yuranTerkumpul, 2) }}</td>
+                </tr>
+                <tr>
                     <th>Layak Pinjam</th>
                     <th>: RM</th>
-                    <td align="right">{{ number_format($layakPinjam, 2) }}</td>
+                    <td align="right">{{ number_format($layakPinjam['jumlah'], 2) }} <br /> {{ $layakPinjam['desc'] }}</td>
                 </tr>
+
                 <tr>
                     <th>Jumlah Pertaruhan</th>
                     <th>: RM</th>
@@ -94,7 +100,7 @@
         tempoh = document.getElementById('tempoh').value
         insurans = document.getElementById('insurans').value
 
-        if(jumlah >= 1000)
+        if(jumlah >= 5000)
             document.getElementById('byrn_perkhidmatan').value = '50.00';
         else
             document.getElementById('byrn_perkhidmatan').value = '0.00';

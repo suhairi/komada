@@ -114,7 +114,7 @@
         insurans = document.getElementById('insurans').value
         langsai = document.getElementById('langsai').value;
 
-        if(jumlah >= 1000)
+        if(jumlah >= 5000)
             document.getElementById('byrn_perkhidmatan').value = '50.00';
         else
             document.getElementById('byrn_perkhidmatan').value = '0.00';

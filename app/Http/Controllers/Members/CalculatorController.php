@@ -94,17 +94,25 @@ class CalculatorController extends Controller
             return Redirect::back()->withInput();
         }
 
+        $yuranTerkumpul = $this->getYuranTerkumpul(Request::get('no_gaji'));
         $layakPinjam = $this->getJumlahLayak(Request::get('no_gaji'));
         $pertaruhan = $this->getJumlahPertaruhan(Request::get('no_gaji'));
 
         Session::put('no_gaji', Request::get('no_gaji'));
 
         return View('members.calculator.pwt_calculator',
-            compact('akaunPotongan', 'found', 'info', 'akaun', 'kelayakan', 'layakPinjam', 'pertaruhan'));
+            compact('akaunPotongan', 'found', 'info', 'akaun', 'kelayakan', 'layakPinjam', 'pertaruhan', 'yuranTerkumpul'));
     }
 
 
     // Helper Functions
+
+    protected function getYuranTerkumpul($no_gaji) {
+        $jumlah = Yuran::where('no_gaji', $no_gaji)
+            ->sum('yuran');
+
+        return $jumlah;
+    }
 
     protected function getJumlahLayak($no_gaji) {
         $jumlah = Yuran::where('no_gaji', $no_gaji)
@@ -113,11 +121,15 @@ class CalculatorController extends Controller
         // missing => $jumlah = $jumlah + jumlah_caruman_lama
         // done. by attaching it to yuran (bulan_tahun : jan 2015)
         // so the system will automatically calculate gracefully.
+        // $layak = new Array();
 
-        if($jumlah < 10000)
-            $layak = 2 * $jumlah;
-        else
-            $layak = 0.8 * $jumlah;
+        if($jumlah < 10000) {
+            $layak['jumlah'] = 2 * $jumlah;
+            $layak['desc'] = "(2x yuran terkumpul)";
+        } else {
+            $layak['jumlah'] = 0.8 * $jumlah;
+            $layak['desc'] = "(80% yuran terkumpul)";
+        }
 
         return $layak;
     }
