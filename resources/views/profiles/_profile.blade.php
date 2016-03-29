@@ -53,9 +53,12 @@
             </tr>
             <tr>
                 <th>Zon Pembayaran Gaji</th>
-                <td>{{ $profile->zon->nama }}</td>
+                <td>
+                    @if($profile->zon_gaji != null)
+                        {{ $profile->zon_gaji->nama }}
+                    @endif
+                </td>
             </tr>
-
             <tr>
                 <th>Status</th>
                 <td>

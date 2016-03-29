@@ -25,8 +25,8 @@ class Profile extends Model
         return $this->hasOne('App\ProfileCategory', 'id', 'profile_category_id');
     }
 
-    public function zon() {
-        return $this->belongsTo('App\Zon', 'zon_id', 'id');
+    public function zon_gaji() {
+        return $this->belongsTo('App\Zon');
     }
 
 
