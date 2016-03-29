@@ -70,6 +70,7 @@ class CarianController extends Controller
 //            ->where('status', 1)
             ->get();
 
+
         return View('members.profile', compact('bil', 'profiles', 'yurans', 'yuranTambahan', 'biasas'));
     }
 }

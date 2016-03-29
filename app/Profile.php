@@ -26,7 +26,7 @@ class Profile extends Model
     }
 
     public function zon() {
-        return $this->hasOne('App\Zon', 'id', 'zon_gaji_id');
+        return $this->belongsTo('App\Zon', 'zon_id', 'id');
     }
 
 

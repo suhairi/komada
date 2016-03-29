@@ -20,6 +20,7 @@
 
     <h2>Maklumat Ahli</h2>
 
+
     @forelse($profiles as $profile)
         <ul class="nav nav-tabs">
             <li role="presentation" class="active">

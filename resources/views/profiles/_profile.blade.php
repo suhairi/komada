@@ -51,13 +51,10 @@
                 <th>Pertaruhan</th>
                 <td>RM {{ number_format($profile->jumlah_pertaruhan, 2) }}</td>
             </tr>
-
             <tr>
                 <th>Zon Pembayaran Gaji</th>
                 <td>{{ $profile->zon->nama }}</td>
             </tr>
-
-
 
             <tr>
                 <th>Status</th>
