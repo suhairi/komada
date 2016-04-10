@@ -50,16 +50,23 @@ class CarianController extends Controller
                 ->orderBy('created_at', 'asc')
                 ->get();
 
-            foreach($yuranTambahans as $tambahan)
-                array_push($yuranTambahan, [
-                    'bulan'     => $bulan,
-                    'no_gaji'   => $tambahan->no_gaji,
-                    'nama'      => $tambahan->profileName($tambahan->no_gaji),
-                    'catatan'   => $tambahan->sumbangan->nama,
-                    'penerima'  => $tambahan->penerima,
-                    'tarikh'    => $tambahan->tarikh,
-                    'jumlah'    => $tambahan->jumlah
-                ]);
+            if($yuranTambahans->isEmpty()) {
+
+                $yuranTambahan = 0.00;
+            } else {
+
+                foreach($yuranTambahans as $tambahan) {
+                    array_push($yuranTambahan, [
+                        'bulan'     => $bulan,
+                        'no_gaji'   => $tambahan->no_gaji,
+                        'nama'      => $tambahan->profileName($tambahan->no_gaji),
+                        'catatan'   => $tambahan->sumbangan->nama,
+                        'penerima'  => $tambahan->penerima,
+                        'tarikh'    => $tambahan->tarikh,
+                        'jumlah'    => $tambahan->jumlah
+                    ]);
+                }
+            }
 
             if($i == Carbon::now()->format('m'))
                 $i = 13;

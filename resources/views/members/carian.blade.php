@@ -39,10 +39,8 @@
 
         <div class="tab-content">
             <div id="profil" class="tab-pane fade in active">
-                @include('profiles._profile')
             </div>
             <div id="yuran" class="tab-pane fade">
-                @include('profiles._yuran')
             </div>
             <div id="menu2" class="tab-pane fade">
                 {{-- here --}}

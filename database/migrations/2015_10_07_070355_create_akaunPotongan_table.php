@@ -16,6 +16,7 @@ class CreateAkaunPotonganTable extends Migration
             $table->increments('id');
             $table->string('no_gaji', 10);
             $table->tinyInteger('perkhidmatan_id', false, false)->nullable();
+            $table->float('jumlah', 7, 2);
             $table->tinyInteger('tempoh', false, false);
             $table->float('kadar', 4, 2);
             $table->float('caj_proses', 7, 2);

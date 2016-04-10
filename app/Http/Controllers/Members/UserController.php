@@ -28,7 +28,8 @@ class UserController extends Controller
                 $profile = Profile::where('no_gaji', $account->no_gaji)
                     ->first();
 
-                array_push($profiles, ['nama' => $profile->nama, 'no_gaji' => $account->no_gaji, 'baki' => $account->baki, 'bulanan' => $account->bulanan]);
+                if($profile != null)
+                    array_push($profiles, ['nama' => $profile->nama, 'no_gaji' => $account->no_gaji, 'baki' => $account->baki, 'bulanan' => $account->bulanan]);
             }
 
         }

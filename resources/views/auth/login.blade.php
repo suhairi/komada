@@ -5,9 +5,12 @@
 
     <div class="container-fluid">
 
+
         <div class="row">
             <div class="col-xs-12">
-                <br /><br /><br /><br /><br />
+                <br />
+                @include('notify.notifications')
+                <br /><br /><br /><br />
             </div>
         </div>
 

@@ -23,9 +23,16 @@
                     <td align="right">{{ number_format($yuran->tka, 2) }}</td>
                     <td align="right">{{ number_format($yuran->takaful, 2) }}</td>
                     <td align="right">{{ number_format($yuran->pertaruhan, 2) }}</td>
-                    <td align="right">{{ number_format($yuran->potongan, 2) }}</td>
-                    <?php $total += $yuran->yuran + $yuran->tka + $yuran->takaful + $yuran->potongan; ?>
+
+                    <?php $potongan = $yuran->pwt + $yuran->kc + $yuran->bs + $yuran->rt + $yuran->tb; ?>
+                    <td align="right">{{ number_format($potongan, 2) }}</td>
+
+                    <?php $total += $yuran->yuran + $yuran->tka + $yuran->takaful + $potongan; ?>
                     <td align="right">
+
+                    @if($yuranTambahan == 0.00)
+                        {{ number_format($yuranTambahan, 2) }}
+                    @else                       
                         @foreach($yuranTambahan as $tambahan)
                             @if(strpos($yuran->bulan_tahun, $tambahan['bulan'] . '-') !== false)
                                 <span title="Kematian : {{ $tambahan['nama'] }} ({{ $tambahan['no_gaji'] }}); Penerima : {{ $tambahan['penerima'] }}">
@@ -34,6 +41,7 @@
                                 <?php $total += $tambahan['jumlah']; ?>
                             @endif
                         @endforeach
+                    @endif
                     </td>
                     <td align="right">{{ number_format($total, 2) }}</td>
                     <?php $grandTotal += $total + $yuran->jumlah; ?>
