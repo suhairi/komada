@@ -83,7 +83,7 @@
                 <table class="table table-condensed table-striped">
                     <tr class="danger">
                         <th>Layak Pinjam</th>
-                        <td align="right">RM {{ number_format($layakPinjam, 2) }}</td>
+                        <td align="right">RM {{ number_format($layakPinjam['jumlah'], 2) }} <br />{{ $layakPinjam['desc'] }}</td>
                     </tr>
                     <tr>
                         <th>Baki Pinjaman</th>

@@ -14,7 +14,7 @@
                 <li><a href="{{ route('members.settings.tka') }}">TKA</a></li>
                 <li><a href="{{ route('members.settings.pengguna') }}">Pengguna</a></li>
                 @if(Auth::user()->email == 'suhairi81@gmail.com')
-                    <li><a href="{{ route('members.admin.backup') }}">Backup</a></li>
+                    <!-- <li><a href="{{ route('members.admin.backup') }}">Backup</a></li> -->
                     <li><a href="{{ route('members.admin.todolist') }}">To do List</a></li>
                 @endif
                 <li><a href="{{ route('members.password') }}">Tukar Kata Laluan</a></li>

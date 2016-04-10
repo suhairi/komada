@@ -73,6 +73,8 @@ class CalculatorController extends Controller
             $found = true;
         }
 
+        //###########################################################################################
+        
         // check if the no_gaji one of ahli komada
         $profile = Profile::where('no_gaji', Request::get('no_gaji'))
             ->get();
@@ -87,6 +89,8 @@ class CalculatorController extends Controller
         $profile = Profile::where('no_gaji', Request::get('no_gaji'))
             ->where('status', 0)
             ->get();
+
+        //###########################################################################################
 
         if(!$profile->isEmpty())
         {
