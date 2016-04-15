@@ -161,7 +161,8 @@ class BayaranController extends Controller
             return Redirect::back();
         }
 
-        $akaun->baki = $akaun->baki - Request::get('jumlah_bayaran');
+        // $akaun->baki = $akaun->baki - Request::get('jumlah_bayaran');
+        $akaun->baki = 0.00;
         $akaun->status = 0;
 
         $tunai = Bayaran::create([
