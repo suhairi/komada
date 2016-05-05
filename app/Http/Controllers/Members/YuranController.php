@@ -87,8 +87,27 @@ class YuranController extends Controller
         $doneMonth = Yuran::where('bulan_tahun', Request::get('bulan_tahun'))
             ->first();
 
-        if(!empty($doneMonth))
-        {
+        $currentMonth = date('m');
+        $currentYear = date('Y');
+
+        $postedDate = explode('-', Request::get('bulan_tahun'));
+        $postedMonth = $postedDate[0];
+
+        $postedYear = $postedDate[1];
+
+        if($postedYear > $currentYear || $postedYear < $currentYear) {
+            Session::flash('error', 'Gagal. Potongan hendaklah pada tahun semasa.');
+            return Redirect::back();
+        }
+
+        if($postedYear == $currentYear) {
+            if($postedMonth > $currentMonth) {
+                Session::flash('error', 'Gagal. Potongan hendaklah pada bulan semasa atau sebelum.');
+                return Redirect::back();
+            }
+        }
+
+        if(!empty($doneMonth)) {
             Session::flash('error', 'Gagal. Bulan yang dipilih telah dibuat potongan.');
             return Redirect::back();
         }
