@@ -29,5 +29,9 @@ class Profile extends Model
         return $this->belongsTo('App\Zon');
     }
 
+    public function status() {
+        return $this->hasOne('App\Status', 'id', 'status');
+    }
+
 
 }

@@ -463,6 +463,13 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
             'uses'  => 'Members\MasalahController@masalah1'
         ]);
 
+        Route::get('masalah2', [
+            'as'    => 'members.masalah.masalah2',
+            'uses'  => 'Members\MasalahController@masalah2'
+        ]);
+
+
+
     });
 
     Route::group(['prefix' =>'penyata'], function() {

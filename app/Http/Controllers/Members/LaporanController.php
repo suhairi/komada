@@ -75,10 +75,19 @@ class LaporanController extends Controller
             if($bulan < 10)
                 $bulan = '0' . $bulan;
 
+            // Yuran Bulanan
+
             $jumlah = $fee->yuran + $fee->pertaruhan + $fee->tka + $fee->takaful + $fee->potongan;
 
-            array_push($bayaran, ['bulan' => $bulan, 'perkara' => 'Yuran Bulanan', 'catatan' => $profile->zon->nama, 'jumlah' => $jumlah]);
+            array_push($bayaran, ['bulan' => $bulan, 'perkara' => 'Yuran Bulanan', 'catatan' => $profile->zon_gaji->nama, 'jumlah' => $jumlah]);
 
+            // Bayaran pwt 
+
+            if($fee->pwt != 0)
+                array_push($bayaran, ['bulan' => $bulan, 'perkara' => 'PWT', 'catatan' => $profile->zon_gaji->nama, 'jumlah' => $fee->pwt]); 
+
+
+            // Bayaran Tunai
             $bulan = explode('-', $fee->bulan_tahun);
             $bulan = $bulan[0];
 

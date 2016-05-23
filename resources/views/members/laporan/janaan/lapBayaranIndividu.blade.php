@@ -9,7 +9,7 @@
                 <div class="panel-heading"><h4>Senarai Bayaran bagi tahun {{ date('Y') }}</h4></div>
                 <div class="panel-body">
 
-                    <table class="table table-hover table-striped">
+                    <table class="table table-condensed table-hover table-striped">
                         <thead>
                             <tr>
                                 <th>Nama</th>
