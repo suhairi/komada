@@ -23,6 +23,10 @@ class AkaunPotongan extends Model
                             'status'
                         ];
 
+    public function profile() {
+        return $this->belongsTo('App\Profile');
+    }
+
     public function perkhidmatan()
     {
         return $this->hasOne('App\Perkhidmatan', 'id', 'perkhidmatan_id');

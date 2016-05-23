@@ -38,6 +38,11 @@
                     {{--<li class='last'><a href="#"><i class="glyphicon glyphicon-file"></i> Laporan Komisyen</a></li>--}}
                 </ul>
             </li>
+            <li class='has-sub'><a href='#'><span>Masalah</span></a>
+                <ul>
+                    <li><a href="{{ route('members.masalah.masalah1') }}"><i class="glyphicon glyphicon-file"></i> PWT - Bayaran Bulanan RM 0</a></li>
+                </ul>
+            </li>
 
         </ul>
     </div>

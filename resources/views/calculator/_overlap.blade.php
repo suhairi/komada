@@ -15,7 +15,7 @@
                     <tr>
                         <th>Jenis Pinjaman</th>
                         <td>Pinjaman Wang Tunai</td>
-                    </tr>
+                    </tr>                    
                     <tr>
                         <th><div class="input-group">Jumlah Pinjaman (RM)</div></th>
                         <td>{!! Form::number('jumlah', '0.00', ['class' => 'form-control', 'step' => 'any', 'min' => $info[2], 'id' => 'jumlah', 'onkeyup' => 'calc()', 'required' => 'true']) !!}</td>
@@ -81,6 +81,14 @@
             <div class="panel-heading"><h4>Maklumat Pinjaman</h4></div>
             <div class="panel-body">
                 <table class="table table-condensed table-striped">
+                    <tr>
+                        <th>Nama</th>
+                        <td>{{ $profile->nama}}</td>
+                    </tr>
+                    <tr>
+                        <th>No KP <br /> No Gaji</th>
+                        <td>{{ $profile->nokp }} <br /> {{ $profile->no_gaji }}</td>
+                    </tr>
                     <tr class="danger">
                         <th>Layak Pinjam</th>
                         <td align="right">RM {{ number_format($layakPinjam['jumlah'], 2) }} <br />{{ $layakPinjam['desc'] }}</td>

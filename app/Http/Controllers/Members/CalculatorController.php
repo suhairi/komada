@@ -30,7 +30,6 @@ class CalculatorController extends Controller
             ->where('perkhidmatan_id', Request::get('perkhidmatan_id'))
             ->get();
 
-
         $info = [];
         $kelayakan = true;
 
@@ -44,7 +43,7 @@ class CalculatorController extends Controller
                 ->where('perkhidmatan_id', Request::get('perkhidmatan_id'))
                 ->first();
 
-            $baki = $akaun->baki;
+            // $baki = $akaun->baki;
 
             // Formula tempoh = ceiling(baki / bulanan)
             $bakiTempoh = ceil(number_format(($akaun->baki / $akaun->bulanan), 2));
@@ -56,6 +55,8 @@ class CalculatorController extends Controller
 
             $kadarSebulan = $akaun->jumlah * ($akaun->kadar / 100) / 12;
             $lebihanKadar = $bakiTempoh * $kadarSebulan;
+
+
 
 
             $langsai = $baki - $lebihanKadar + ($kadarSebulan * 6);
@@ -90,6 +91,8 @@ class CalculatorController extends Controller
             ->where('status', 0)
             ->get();
 
+        dd('here');
+
         //###########################################################################################
 
         if(!$profile->isEmpty())
@@ -98,14 +101,20 @@ class CalculatorController extends Controller
             return Redirect::back()->withInput();
         }
 
+        // this to pass profile attribute to the view.
+        $profile = Profile::where('no_gaji', Request::get('no_gaji'))
+            ->first();
+
         $yuranTerkumpul = $this->getYuranTerkumpul(Request::get('no_gaji'));
         $layakPinjam = $this->getJumlahLayak(Request::get('no_gaji'));
         $pertaruhan = $this->getJumlahPertaruhan(Request::get('no_gaji'));
 
+
+
         Session::put('no_gaji', Request::get('no_gaji'));
 
         return View('members.calculator.pwt_calculator',
-            compact('akaunPotongan', 'found', 'info', 'akaun', 'kelayakan', 'layakPinjam', 'pertaruhan', 'yuranTerkumpul'));
+            compact('profile', 'akaunPotongan', 'found', 'info', 'akaun', 'kelayakan', 'layakPinjam', 'pertaruhan', 'yuranTerkumpul'));
     }
 
 
@@ -114,6 +123,8 @@ class CalculatorController extends Controller
     protected function getYuranTerkumpul($no_gaji) {
         $jumlah = Yuran::where('no_gaji', $no_gaji)
             ->sum('yuran');
+
+            dd($jumlah);
 
         return $jumlah;
     }
