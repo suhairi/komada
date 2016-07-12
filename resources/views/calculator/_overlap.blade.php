@@ -1,7 +1,7 @@
 
 <div class="row">
 
-    <div class="col-xs-4">
+    <div class="col-xs-6">
         <div class="panel panel-primary">
             <div class="panel-heading"><h4>Overlap</h4></div>
             <div class="panel-body">
@@ -30,8 +30,8 @@
                     </tr>
 
                     <tr>
-                        <th>Tempoh</th>
-                        <td>{!! Form::select('tempoh', ['12' => '12', '24' => '24', '36' => '36', '48' => '48', '60' => '60'], null, ['class' => 'form-control', 'id' => 'tempoh', 'placeholder' => 'Tempoh', 'onchange' => 'calc()', 'required' => 'true']) !!}</td>
+                        <th>Tempoh (bulan)</th>
+                        <td>{!! Form::number('tempoh', '', ['class' => 'form-control', 'id' => 'tempoh', 'placeholder' => 'Tempoh', 'onkeyup' => 'calc()', 'required' => 'true']) !!}</td>
                     </tr>
                     <tr>
                         <th>Insurans</th>

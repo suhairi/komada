@@ -140,6 +140,7 @@ class LaporanController extends Controller
         $bulan  = Request::get('bulan');
         $tahun  = Request::get('tahun');
 
+
         if($validation->fails())
         {
             Session::flash('error', 'Gagal. Sila pilih ruangan yang disediakan');
@@ -173,10 +174,10 @@ class LaporanController extends Controller
             // yuran, tka, takaful
             $yuran = $this->getYuran($profile->no_gaji, $bulan_tahun);
 
-            if($yuran == null) {
-                Session::flash('error', 'Gagal. Laporan tidak dapat dijana. Yuran bagi ' . $bulan_tahun . ' belum diproses.');
-                return Redirect::back();
-            }
+            // if($yuran == null) {
+            //     Session::flash('error', 'Gagal. Laporan tidak dapat dijana. Yuran bagi ' . $bulan_tahun . ' belum diproses.' . $profile->no_gaji);
+            //     return Redirect::back();
+            // }
 
             // sumbangan kematian
             $sumbangan = number_format($this->getSumbangan($bulan_tahun), 2);
@@ -190,35 +191,63 @@ class LaporanController extends Controller
             $tb = $this->getBayaran($profile->no_gaji, $bulan_tahun, 5);
             $kc = $this->getBayaran($profile->no_gaji, $bulan_tahun, 6);
 
-            
-            $jumlah = $yuran->yuran + $yuran->tka + $yuran->takaful + $sumbangan +
-                $pwt['jumlah'] + $pwt['cp'] + $pwt['ins'] +
-                $kc['jumlah'] + $kc['cp'] + $kc['ins'] +
-                $bs['jumlah'] + $rt['jumlah'] +
-                $tb['jumlah'] + $tb['cp'] +
-                $ins['jumlah'] + $profile->jumlah_pertaruhan;
 
-            array_push($persons, [
-                'no_gaji'       => $profile->no_gaji,
-                'nama'          => $profile->nama,
-                'yuran'         => number_format($yuran->yuran, 2),
-                'tka'           => number_format($yuran->tka, 2),
-                'pertaruhan'    => number_format($profile->jumlah_pertaruhan, 2),
-                'takaful'       => number_format($yuran->takaful, 2),
-                'sumbangan'     => number_format($sumbangan, 2),
-                'pwt'           => number_format($pwt['jumlah'], 2),
-                'pwtCP'         => number_format($pwt['cp'], 2),
-                'pwtIns'        => number_format($pwt['ins'], 2),
-                'kecemasan'     => number_format($kc['jumlah'], 2),
-                'kecemasanCP'   => number_format($kc['cp'], 2),
-                'kecemasanIns'  => number_format($kc['ins'], 2),
-                'bs'            => number_format($bs['jumlah'], 2),
-                'rt'            => number_format($rt['jumlah'], 2),
-                'tb'            => number_format($tb['jumlah'], 2),
-                'tbCP'            => number_format($tb['jumlah'], 2),
-                'ins'           => number_format($ins['jumlah'], 2),
-                'jumlah'        => number_format($jumlah, 2)
-            ]);
+            if($yuran != null) {
+                $jumlah = (float)$yuran->yuran + $yuran->tka + $yuran->takaful + (float)$sumbangan +
+                    $pwt['jumlah'] + $pwt['cp'] + $pwt['ins'] +
+                    $kc['jumlah'] + $kc['cp'] + $kc['ins'] +
+                    $bs['jumlah'] + $rt['jumlah'] +
+                    $tb['jumlah'] + $tb['cp'] +
+                    $ins['jumlah'] + $profile->jumlah_pertaruhan;
+
+                array_push($persons, [
+                    'no_gaji'       => $profile->no_gaji,
+                    'nama'          => $profile->nama,
+                    'yuran'         => number_format($yuran->yuran, 2),
+                    'tka'           => number_format($yuran->tka, 2),
+                    'pertaruhan'    => number_format($profile->jumlah_pertaruhan, 2),
+                    'takaful'       => number_format($yuran->takaful, 2),
+                    'sumbangan'     => number_format($sumbangan, 2),
+                    'pwt'           => number_format($pwt['jumlah'], 2),
+                    'pwtCP'         => number_format($pwt['cp'], 2),
+                    'pwtIns'        => number_format($pwt['ins'], 2),
+                    'kecemasan'     => number_format($kc['jumlah'], 2),
+                    'kecemasanCP'   => number_format($kc['cp'], 2),
+                    'kecemasanIns'  => number_format($kc['ins'], 2),
+                    'bs'            => number_format($bs['jumlah'], 2),
+                    'rt'            => number_format($rt['jumlah'], 2),
+                    'tb'            => number_format($tb['jumlah'], 2),
+                    'tbCP'            => number_format($tb['jumlah'], 2),
+                    'ins'           => number_format($ins['jumlah'], 2),
+                    'jumlah'        => number_format($jumlah, 2)
+                ]);
+            } else {
+                $jumlah = 0.0;
+
+                array_push($persons, [
+                    'no_gaji'       => $profile->no_gaji,
+                    'nama'          => $profile->nama,
+                    'yuran'         => 0.0,
+                    'tka'           => 0.0,
+                    'pertaruhan'    => 0.0,
+                    'takaful'       => 0.0,
+                    'sumbangan'     => 0.0,
+                    'pwt'           => 0.0,
+                    'pwtCP'         => 0.0,
+                    'pwtIns'        => 0.0,
+                    'kecemasan'     => 0.0,
+                    'kecemasanCP'   => 0.0,
+                    'kecemasanIns'  => 0.0,
+                    'bs'            => 0.0,
+                    'rt'            => 0.0,
+                    'tb'            => 0.0,
+                    'tbCP'          => 0.0,
+                    'ins'           => 0.0,
+                    'jumlah'        => number_format($jumlah, 2)
+                ]);
+            }
+          
+            
 
             $jumlahBesar += $jumlah;
         }
@@ -463,14 +492,18 @@ class LaporanController extends Controller
             ->where('created_at', 'like', $tarikh . '%')
             ->first();
 
-        if($yuran != null)
+        if($yuran != null) {
             $tarikhYuran = $yuran->created_at;
 
-        $akaun = AkaunPotongan::where('no_gaji', $no_gaji)
+            $akaun = AkaunPotongan::where('no_gaji', $no_gaji)
             ->where('perkhidmatan_id', $perkhidmatan_id)
             ->where('status', 1)
             ->where('created_at', '<=', $tarikhYuran)
             ->first();
+        } else {
+            $akaun = null;
+        }
+
 
         if($akaun != null) {
             $bayaran = [

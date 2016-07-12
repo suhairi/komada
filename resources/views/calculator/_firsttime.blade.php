@@ -21,7 +21,7 @@
                     <td>{!! Form::number('jumlah', '0.00', ['class' => 'form-control', 'step' => 'any', 'id' => 'jumlah', 'onkeyup' => 'calc()', 'required' => 'true']) !!}</td>
                 </tr>
                 <tr>
-                    <th>Tempoh</th>
+                    <th>Tempoh (bulan)</th>
                     <td>{!! Form::number('tempoh', '', ['class' => 'form-control', 'id' => 'tempoh', 'placeholder' => 'Tempoh', 'onkeyup' => 'calc()', 'required' => 'true']) !!}</td>
                 </tr>
                 <tr>

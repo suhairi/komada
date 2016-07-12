@@ -64,8 +64,6 @@ Route::group(['prefix' => 'members', 'middleware' => 'auth'], function() {
     ]);
 
     
-
-
     // Change Password
     Route::get('password', [
         'as'    => 'members.password',

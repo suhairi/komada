@@ -43,7 +43,7 @@ class CalculatorController extends Controller
                 ->where('perkhidmatan_id', Request::get('perkhidmatan_id'))
                 ->first();
 
-            // $baki = $akaun->baki;
+            $baki = $akaun->baki;
 
             // Formula tempoh = ceiling(baki / bulanan)
             $bakiTempoh = ceil(number_format(($akaun->baki / $akaun->bulanan), 2));
@@ -91,7 +91,7 @@ class CalculatorController extends Controller
             ->where('status', 0)
             ->get();
 
-        dd('here');
+        // dd('here');
 
         //###########################################################################################
 
@@ -109,6 +109,12 @@ class CalculatorController extends Controller
         $layakPinjam = $this->getJumlahLayak(Request::get('no_gaji'));
         $pertaruhan = $this->getJumlahPertaruhan(Request::get('no_gaji'));
 
+        if($yuranTerkumpul <= 0)
+        {
+            Session::flash('error', 'Gagal. No Gaji *' . Request::get('no_gaji') . ' mempunyai yuran terkumpul RM 0.00. Tidak Layak membuat pinjaman.');
+            return Redirect::back()->withInput();
+        }
+
 
 
         Session::put('no_gaji', Request::get('no_gaji'));
@@ -124,7 +130,7 @@ class CalculatorController extends Controller
         $jumlah = Yuran::where('no_gaji', $no_gaji)
             ->sum('yuran');
 
-            dd($jumlah);
+            // dd($jumlah);
 
         return $jumlah;
     }
