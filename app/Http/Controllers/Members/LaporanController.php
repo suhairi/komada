@@ -272,10 +272,15 @@ class LaporanController extends Controller
         $year = Request::get('tahun');
 //        $tarikh = $year . '-' . $month . '-' . '01 00:00:00';
 
+        if($month < 10)
+            $month = '0' . $month;
+
         $yuran = Yuran::where('bulan_tahun', 'like', $month . '-' . $year . '%')
             ->first();
 
         $tarikh = $yuran->created_at;
+
+        // dd($tarikh);
 
         $perkara = Array();
 
@@ -290,18 +295,21 @@ class LaporanController extends Controller
             $perkara[$zone->kod]['tka'] = 0.00;
             $perkara[$zone->kod]['takaful'] = 0.00;
 
-            $fees = Yuran::where('bulan_tahun', Request::get('bulan') . '-' . Request::get('tahun'))
+            $fees = Yuran::where('bulan_tahun', $month . '-' . $year)
                 ->get();
+
+            // dd($fees);
 
             if($fees->isEmpty()) {
                 Session::flash('error', 'Gagal. Laporan tidak dapat dijana. Yuran Bulan ini belum diproses.');
                 return Redirect::back();
             }
 
-            $profiles = Profile::where('zon_gaji_id', $zone->kod)
-                ->where('status', 1)
+            $profiles = Profile::where('zon_gaji_id', (int)$zone->kod)
+                // ->where('status', 1)
                 ->get();
 
+            // Check profiles in the table. If null means no one in the table.
             if($profiles->isEmpty()) {
                 Session::flash('error', 'Gagal. Tiada maklumat profile ahli KOMADA. Sila hubungi Programmer');
                 return Redirect::back();
@@ -310,17 +318,20 @@ class LaporanController extends Controller
             foreach($profiles as $profile) {
 
                 $fee = Yuran::where('no_gaji', $profile->no_gaji)
-                    ->where('bulan_tahun', Request::get('bulan') . '-' . Request::get('tahun'))
+                    ->where('bulan_tahun', $month . '-' . $year)
                     ->first();
 
                 if($fee == null) {
-                    dd($profile->no_gaji);
+                    $perkara[$zone->kod]['yuran'] += 0.0;
+                    $perkara[$zone->kod]['per'] += 0.0;
+                    $perkara[$zone->kod]['tka'] += 0.0;
+                    $perkara[$zone->kod]['takaful'] += 0.0;
+                } else {
+                    $perkara[$zone->kod]['yuran'] += $fee->yuran;
+                    $perkara[$zone->kod]['per'] += $fee->pertaruhan;
+                    $perkara[$zone->kod]['tka'] += $fee->tka;
+                    $perkara[$zone->kod]['takaful'] += $fee->takaful;
                 }
-
-                $perkara[$zone->kod]['yuran'] += $fee->yuran;
-                $perkara[$zone->kod]['per'] += $fee->pertaruhan;
-                $perkara[$zone->kod]['tka'] += $fee->tka;
-                $perkara[$zone->kod]['takaful'] += $fee->takaful;
             }
 
             // 2 - Yuran Tambahan
@@ -422,7 +433,7 @@ class LaporanController extends Controller
 
             // 7 - Tayar / Bayar - perkhidmatan_id = 5
 
-            $perkara[$zone->kod]['ins'] = 0.00;
+            $perkara[$zone->kod]['tb'] = 0.00;
 
             $accounts = AkaunPotongan::where('status', 1)
                 ->where('perkhidmatan_id', 5)
