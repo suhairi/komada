@@ -34,6 +34,10 @@
                         <td>{!! Form::number('tempoh', '', ['class' => 'form-control', 'id' => 'tempoh', 'placeholder' => 'Tempoh', 'onkeyup' => 'calc()', 'required' => 'true']) !!}</td>
                     </tr>
                     <tr>
+                        <th>Caj Perkhidmatan</th>
+                        <td>{!! Form::number('byrn_perkhidmatan', '0.00', ['class' => 'form-control', 'id' => 'byrn_perkhidmatan', 'onkeyup' => 'calc()',]) !!}</td>
+                    </tr>
+                    <tr>
                         <th>Insurans</th>
                         <td>{!! Form::number('insurans', '0.00', ['class' => 'form-control', 'id' => 'insurans', 'onkeyup' => 'calc()',]) !!}</td>
                     </tr>
