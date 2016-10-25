@@ -28,7 +28,7 @@ class CarianController extends Controller
         if($profiles->isEmpty())
         {
             Session::flash('error', 'Gagal. No Gaji * ' . Request::get('no_gaji') . ' * tidak berdaftar sebagai ahli KOMADA.');
-            return Redirect::back();
+            return Redirect::route('members.index');
         }
 
         $yurans = Yuran::where('no_gaji', Request::get('no_gaji'))

@@ -5,7 +5,7 @@
 
 <div class="form-group">
     <label for="no_anggota">No Anggota</label>
-    {!! Form::text('no_anggota', null, ['class' => 'form-control', 'readonly' => 'true']) !!}
+    {!! Form::text('no_anggota', null, ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">
@@ -17,6 +17,19 @@
     <label for="nokp">No KP</label>
     {!! Form::text('nokp', null, ['class' => 'form-control']) !!}
 </div>
+
+{{-- TMABAHAN 18102016 --}}
+<div class="form-group">
+    <label for="nokp">Alamat 1</label>
+    {!! Form::text('alamat1', null, ['class' => 'form-control', 'rows' => 3]) !!}
+</div>
+<div class="form-group">
+    <label for="nokp">Alamat 2</label>
+    {!! Form::text('alamat2', null, ['class' => 'form-control', 'rows' => 3]) !!}
+</div>
+
+
+
 
 <div class="form-group">
     <label for="jantina">Jantina</label>

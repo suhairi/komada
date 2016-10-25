@@ -154,7 +154,7 @@ class ProfileController extends Controller
 
         $anggota = ['keseluruhan' => $keseluruhan, 'aktif' => $active, 'inactive' => $inactive, 'no_akhir' => $max];
 
-        $profile = Profile::where('no_anggota', $id)
+        $profile = Profile::where('no_gaji', $id)
             ->first();
 
         $status = ['1' => 'AKTIF', '0' => 'TIDAK AKTIF', '2' => 'PENCEN'];
@@ -168,15 +168,20 @@ class ProfileController extends Controller
 
     public function update($id)
     {
-//        return Request::all();
-        $profile = Profile::where('no_anggota', Request::get('no_anggota'))
+       // return Request::all();
+        $profile = Profile::where('no_gaji', Request::get('no_gaji'))
             ->first();
+
+        // return $profile;
 
         if (Request::get('status') == 0)
             $profile->status = 0;
 
         $profile->nama = strtoupper(Request::get('nama'));
+        $profile->no_anggota = Request::get('no_anggota');
         $profile->nokp = Request::get('nokp');
+        $profile->alamat1 = Request::get('alamat1');
+        $profile->alamat2 = Request::get('alamat2');
         $profile->email = strtoupper(Request::get('email'));
         $profile->jantina_id = Request::get('jantina_id');
         $profile->zon_gaji_id = Request::get('zon_gaji_id');
@@ -200,7 +205,7 @@ class ProfileController extends Controller
             Session::flash('error', 'Gagal. Kemaskini Profil gagal dikemaskini.');
         }
 
-        return Redirect::route('members.profiles.edit', Request::get('no_anggota'));
+        return Redirect::route('members.profiles.edit', Request::get('no_gaji'));
     }
 
 }
