@@ -205,7 +205,7 @@ class ProfileController extends Controller
             Session::flash('error', 'Gagal. Kemaskini Profil gagal dikemaskini.');
         }
 
-        return Redirect::route('members.profiles.edit', Request::get('no_anggota'));
+        return Redirect::route('members.profiles.edit', Request::get('no_gaji'));
     }
 
 }
