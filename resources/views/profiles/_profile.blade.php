@@ -73,7 +73,7 @@
             </tr>
             <tr>
                 <td colspan="2" align="right">
-                    <a href="{{ route('members.profiles.edit', ['id' => $profile->no_anggota]) }}"
+                    <a href="{{ route('members.profiles.edit', ['id' => $profile->no_gaji]) }}"
                     <button class="btn btn-success"><i class="glyphicon glyphicon-floppy-save"> </i> Kemaskini</button>
                 </td>
             </tr>
